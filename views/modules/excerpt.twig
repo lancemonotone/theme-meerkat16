@@ -1,0 +1,8 @@
+<div class="post-excerpt">
+    {% do action('meerloop_before_excerpt') %}
+    {% if theme.do_display('thumb') %}
+        {% include 'post_thumbnail.twig' %}
+    {% endif %}
+    <p>{{ post.get_preview(50, null, __('Continue reading &raquo;')) }}</p>
+    {% do action('meerloop_after_excerpt') %}
+</div><!-- .post-excerpt -->

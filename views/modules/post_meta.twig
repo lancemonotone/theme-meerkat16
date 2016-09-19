@@ -1,0 +1,10 @@
+{% if theme.do_display('author') or theme.do_display('date') %}
+    <div class="post-meta">
+        {% if theme.do_display('author') %}
+            {% include 'modules/author_byline.twig' %}
+        {% endif %}
+        {% if theme.do_display('date') %}
+            {% include 'modules/date.twig' %}
+        {% endif %}
+    </div>
+{% endif %}

@@ -1,0 +1,23 @@
+<div id="masthead" class="site-banner outer-container {{ header_image ? 'has-header-img' }}" role="banner">
+    <div class="inner-container">
+
+        {{ header_image }}
+
+        <div class="header-meta">
+
+            <div class="site-title-container">
+
+                <a class="site-title" href="{{ site.url }}" rel="home" title="{{ __('Go to') }} {{ site.name }}">
+                    {{ site.name }}
+                </a>
+
+            </div>
+
+            {{ breadcrumbs }}
+
+            {% if page == 'home' %}
+                {% include 'widgets-header.twig' ignore missing %}
+            {% endif %}
+        </div>
+    </div>
+</div><!-- .site-banner -->

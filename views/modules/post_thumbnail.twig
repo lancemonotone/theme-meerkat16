@@ -1,0 +1,11 @@
+{% if post.get_thumbnail %}
+    {% if not size %}
+            {% set size = 'wms_widget_thumb_size_default' %}
+    {% endif %}
+    <figure class="post-thumbnail">
+        <img alt="{{ post.thumbnail.alt }}" src="{{ post.thumbnail.src(size) | tojpg }}" srcset="{{ post.thumbnail.src(size) | tojpg | retina(1) }} 1x,
+                {{ post.thumbnail.src(size) | tojpg | retina(2) }}  2x,
+                {{ post.thumbnail.src(size) | tojpg | retina(3) }}  3x,
+                {{ post.thumbnail.src(size) | tojpg | retina(4) }}  4x">
+    </figure>
+{% endif %}

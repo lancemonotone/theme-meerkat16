@@ -1,0 +1,72 @@
+{% if nav_obj.count %}
+    {% if(toggle) %}
+        <button class="menu-toggle" data-target="#{{ menu_class }}">
+            <span class="toggle-title"> Section Menu </span><span class="btb bt-bars"></span>
+        </button>
+
+        <div class="menu-container">
+        <a class="site-title" href="{{ site.url }}" rel="home" title="{{ __('Go to') }} {{ site.name }}">
+		    	<div class="site-title-inner outer-container">
+		            <span class="inner-container">
+		            	{{ site.name }} MENU
+		       
+		            </span>
+		        </div>
+    		 </a>
+    {% endif %}
+
+    <div id="{{ menu_class }}" class="widget widget_nav_menu">
+        <h3 class="title"><span>{{ __(menu_name|default(nav_obj.name)) }}</span></h3>
+        <div class="widget-insides">
+            <nav class="{{ menu_class }}" role="navigation" aria-label="{{ __(nav_obj.name) }}">
+                <ul class="menu">
+                    {% for item in nav_obj.get_items %}
+                        <li class="nav-item {{ item.classes | join(' ') }}">
+                            <a class="nav-link top-level-a" href="{{ item.get_link }}" title="{{ item.post_excerpt }}">
+                                <h4 class="title top-level">{{ item.title }}</h4>
+                                {% if show_description and item.description%}
+                                    <span class="description">{{ item.description }}</span>
+                                {% endif %}
+                            </a>
+                            {% if item.get_children %}
+                                <ul class="nav nav-drop child">
+                                    {% for child in item.get_children %}
+                                        <li class="nav-drop-item {{ child.classes | join(' ') }}">
+                                            <a class="nav-link" href="{{ child.get_link }}" title="{{ child.post_excerpt }}">
+                                                <span class="title">{{ child.title }}</span>
+                                                {% if show_description and child.description %}
+                                                    <span class="description">{{ child.description }}</span>
+                                                {% endif %}
+                                            </a>
+                                            {% if child.get_children %}
+                                                <ul class="nav nav-drop grandchild">
+                                                    {% for grandchild in child.get_children %}
+                                                        <li class="nav-drop-item {{ grandchild.classes | join(' ') }}">
+                                                            <a class="nav-link" href="{{ grandchild.get_link }}" title="{{ grandchild.post_excerpt }}">
+                                                                <span class="title">{{ grandchild.title }}</span>
+                                                                {% if show_description and child.description %}
+                                                                    <span class="description">{{ grandchild.description }}</span>
+                                                                {% endif %}
+                                                            </a>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav><!-- .{{ menu_class }} -->
+            {% if fn('current_user_can', CAPABILITY_THRESH ) and nav_obj.id != 90974 %} {# global navigation id #}
+                <a class="edit-me" href="/wp-admin/nav-menus.php?action=edit&menu={{ nav_obj.id }}">Edit Menu</a>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if(toggle) %}
+        </div><!-- .menu-container -->
+    {% endif %}
+{% endif %}

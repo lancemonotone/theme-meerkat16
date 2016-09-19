@@ -1,0 +1,11 @@
+{% set cats_list = fn('get_the_category_list', ', ', '', post.ID) %}
+{% set tags_list = fn('get_the_tag_list', '', ', ', '', post.ID) %}
+
+{% if cats_list or tags_list %}
+    {% if cats_list %}
+        <span class="cat-links">{{ __('Categories') }}: {{ cats_list }}</span>
+    {% endif %}
+    {% if tags_list %}
+        <span class="tag-links">{{ __('Tags') }}: {{ tags_list }}</span>
+    {% endif %}
+{% endif %}

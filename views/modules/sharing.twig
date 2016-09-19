@@ -1,0 +1,15 @@
+{% if theme.do_display('sharing') %}
+    {{ js.load_js_src('addthis') }}
+    {# How long is this article? Do we need links at top and bottom? #}
+    {% set len = post.post_content|length %}
+    {% if location == 'before' or ( location == 'after' and len > 3000 ) %}
+        <div class="social-share share-{{ location }}">
+            <div class="addthis_toolbox addthis_default_style ">
+                <a class="addthis_button_facebook"></a>
+                <a class="addthis_button_twitter"></a>
+                <a class="addthis_button_email"></a>
+                <a class="addthis_button_compact"></a>
+            </div>
+        </div>
+    {% endif %}
+{% endif %}

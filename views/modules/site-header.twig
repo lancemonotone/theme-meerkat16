@@ -1,0 +1,93 @@
+<header class="site-header">
+    <a class="skip-link screen-reader-text" href="#content">{{ __('Skip to content', 'twentysixteen' ) }}</a>
+
+    <div class="network-header">
+        <div class="outer-container">
+            <div class="inner-container">
+
+                <a class="wordmark" href="{{ constant('WWW_BLOG_URL') }}" title="{{ __('Go to') }} Williams College">
+                    {% set svg = {
+                    'title':'Williams College',
+                    'viewbox':'0 0 828.9 135.9',
+                    'img_dir':constant('IMG_URL'),
+                    'url':'wordmark_v2.svg',
+                    'symbol':'williams-logo',
+                    'png':'williams_wordmark_292_purple.png'
+                    } %}
+                    {% include 'svg.twig' with {'svg' : svg} %}
+                </a>
+
+{#                  <div id="nav-button-container" class="nav-button-container">  #}
+
+                    {#
+                                        <button class="menu-toggle" data-target="#navbox-container">
+                                            <span class="toggle-title">Search </span><span class="bts bt-search"></span>
+                                        </button>
+                    #}
+
+
+                    <button class="menu-toggle" data-target="#network-header-menu">
+                        <span class="toggle-title">Menu </span><span class="btb bt-bars"></span>
+                    </button>
+{#                       </div> #}
+                    <div id="wms-search" class="wms-search">
+                        {{ navbox_widget }}
+                  
+
+
+                </div>
+
+            </div><!-- .inner-container -->
+        </div><!-- .outer-container -->
+    </div><!-- .network-header -->
+
+    <div class="network-utility outer-container">
+
+        <div class="network-utility-container inner-container">
+
+            <div id="network-header-menu" class="network-header-menu">
+
+                {% include 'navigation.twig' with {'nav_obj' : global_nav, 'menu_class' : 'global-navigation', 'show_description' : true} %}
+
+                <div id="featured-links-container">
+                    {% include 'navigation.twig' with {'nav_obj' : featured_links_nav, 'menu_class' : 'featured-links'} %}
+                </div>
+                <div id="col4">
+                    <div id="quick-container">
+                        <div class="quick-list">
+                            <h4 class="ql-heaeder">Quick Links</h4>
+                            <ul id="your-links"><!-- generated via quicklinks.js --></ul>
+                            {#<ul id="quick-actions">
+                                <li class="quick-action">
+                                    <a class="quick-launch" href="/ql/?iframe">
+                                        Customize your Quick Links
+                                    </a>
+                                </li>
+                                <li class="quick-action">
+                                    <a class="quick-bookmark" href="javacript:void()">
+                                        Add this page to your Quick Links
+                                    </a>
+                                </li>
+                            </ul>#}
+                        </div>
+                    </div>
+
+                    {% include 'navigation.twig' with {'nav_obj' : global_social_nav, 'menu_class' : 'social-navigation'} %}
+                </div> {# end col4 #}
+
+            </div><!-- .network-header-menu -->
+
+            {#
+                        <div id="navbox-container" class="navbox-container" role="search" aria-label="Williams College-wide Search">
+                            {{ navbox_widget }}
+                        </div>
+            #}<!-- .navbox-container -->
+
+        </div><!-- .network-utility-container -->
+    </div><!-- .network-utility -->
+
+    {% if (site.blog_id != '93') or (site.blog_id == '93' and page != 'home') %}
+        {% include 'site-masthead.twig' %}
+    {% endif %}
+
+</header>

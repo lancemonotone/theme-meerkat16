@@ -1,0 +1,367 @@
+.wms-search {
+	position: absolute;
+    right: 75px;
+    top:16px;
+	width: 0%;
+	min-width: 163px;
+	height: 60px;
+	float: right;
+	-webkit-transition: width 0.3s;
+	-moz-transition: width 0.3s;
+	transition: width 0.3s;
+	-webkit-backface-visibility: hidden;
+	.wms-navbox-input{
+		display: none;
+	}
+	.tt-hint{
+		background-color: transparent !important;
+	}
+	.search-text{
+		
+	}
+}
+
+.wms-search-input {
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: none;
+	outline: none;
+	background: #fff;
+	width: 100%;
+	height: 60px;
+	margin: 0;
+	z-index: 10;
+	padding: 20px 65px 20px 20px;
+	font-family: inherit;
+	font-size: 20px;
+	color: #2c3e50;
+}
+
+.wms-search-input::-webkit-input-placeholder {
+	color: #efb480;
+}
+
+.wms-search-input:-moz-placeholder {
+	color: #efb480;
+}
+
+.wms-search-input::-moz-placeholder {
+	color: #efb480;
+}
+
+.wms-search-input:-ms-input-placeholder {
+	color: #efb480;
+}
+
+.wms-icon-search,
+.wms-search-submit  {
+	display: block;
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 0;
+	margin: 0;
+	line-height: 60px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.wms-search-submit {
+	background: #fff; /* IE needs this */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE 8 */
+    filter: alpha(opacity=0); /* IE 5-7 */
+    opacity: 0;
+	color: transparent;
+	border: none;
+	outline: none;
+	z-index: -1;
+}
+	.search-text{
+		font-size: $base_font_size + 2;
+		font-family: $sans-serif;
+	    text-transform: uppercase;
+	    letter-spacing: 1px;
+	    margin-right: 6px;
+	    display: none;
+	}
+
+
+.wms-icon-search {
+	color: #fff;
+	font-family: $blacktie;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	-webkit-font-smoothing: antialiased;
+      border: none;
+      color: $white;
+      padding: 10px;
+      line-height: 18px;
+      text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
+      outline: none;
+      font-size: $base_font_size + 7;
+      z-index: 500;
+     &:hover {
+        background-color: $white;
+        border-color: $white;
+        color: $almost_black;
+        outline: none;
+        box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.15);
+       .search-text{
+	        font-weight: 500;
+       }
+	}
+
+
+}
+
+.wms-icon-search:after {
+	content: "\F002";
+	opacity: .5;
+	font-weight: 900;
+	font-family: $blacktie;
+}
+
+/* Open state */
+.wms-search.wms-search-open,
+.no-js .wms-search {
+	width: 100%;
+	.wms-navbox-input{
+		display: block;
+	}
+}
+
+.wms-search.wms-search-open .wms-icon-search,
+.no-js .wms-search .wms-icon-search {
+		box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.15);
+		background-color: $white;
+		border-color: $white;
+		color: $almost_black;
+		opacity: 1;
+		z-index: 1200;
+		font-family: $sans-serif;
+		.search-text{
+			font-family: $sans-serif;
+			font-weight: 400;
+			letter-spacing: 1px;
+		}
+}
+
+.wms-search.wms-search-open .wms-search-submit,
+.no-js .wms-search .wms-search-submit {
+	z-index: 1350;
+}
+.twitter-typeahead{
+    width: 80%;
+    top: 43px;
+    right: -20px;
+    position: absolute !important;
+}
+
+/*********************
+WMS-NAV Plugin Overrides
+*********************/
+.wms-navbox {
+    position: relative;
+    z-index: 2001;
+}
+.wms-navbox-input {
+    background: none repeat scroll 0 0 #FFFFFF !important;
+    border: none !important;
+    color: #808080;
+    height: 52px;
+    margin-bottom: 0 !important;
+    padding: 20px 40px 0 0px !important;
+    width: 100%;
+}
+
+.tt-dropdown-menu {
+    background-color: #fff;
+//      box-shadow: 0px 6px 16px 0px rgba(0, 0, 0, 0.15);
+    display: none;
+    height: 72px;
+    left: -4px !important;
+    padding: 35px 0 4px;
+    position: absolute;
+    top: 0 !important;
+    z-index: -1 !important;
+    /* Firefox */
+    width: -moz-calc(100% + 8px);
+    /* WebKit */
+    width: -webkit-calc(100% + 8px);
+    /* Opera */
+    width: -o-calc(100% + 8px);
+    /* Standard */
+    width: calc(100% + 8px);
+    /* IE-old */
+    width: expression(100% + 8px);
+    border: none !important;
+}
+.wms-search-open .tt-dropdown-menu {
+ 	box-shadow: 0px 6px 16px 0px rgba(0, 0, 0, 0.15) !important;
+ 	display: block !important;
+
+ }
+input[type="submit"].wms-navbox-button{
+	z-index: 5;
+    top: 60px;
+    right:0;
+    background: $williams_purple;
+	background-image: linear-gradient(-135deg, #67459F 0%, $williams_purple 100%);
+	border: none;
+	display: none;
+}
+.wms-search-open input[type="submit"].wms-navbox-button{
+	display: block;
+}
+// shift pos of menu icon
+.bt-bars:before {
+    content: "\f000";
+    vertical-align: top;
+    line-height: 18px;
+}
+/*********************
+SEARCH UI IN CONTENT  
+*********************/
+.searchui-incontent{
+	.wms-navbox-form{
+	    padding-bottom: 59px;
+	    padding-top: 11px;
+	    margin-left: 5px;
+	}
+	.twitter-typeahead{
+	    position: relative;
+	    display: block;
+	    position: relative !important;
+	    top: 0;
+	    left: 0;
+	    width: 100%;	
+	}	
+	.wms-icon-search{
+		display: none;
+	}
+	.tt-dropdown-menu {
+	    background-color: transparent;
+	    box-shadow: none;
+	    display: block !important;
+	    height: 72px;
+	    left: -4px !important;
+	    padding: 35px 0 4px;
+	    position: absolute;
+	    top: 0 !important;
+	    z-index: -1 !important;
+	    width: -moz-calc(100% + 8px);
+	    width: -webkit-calc(100% + 8px);
+	    width: -o-calc(100% + 8px);
+	    width: calc(100% + 8px);
+	    width: expression(100% + 8px);  
+	 
+	}
+	.wms-navbox-input{
+	        border-color: #FFFFFF !important;
+		    color: #373737 !important;
+		    color: #808080;
+		    height: 52px;
+		    margin-bottom: 0 !important;
+		    width: 100%;
+		    background-color: #fff !important;
+		    HEIGHT: 72px;
+		    display: block;
+		    margin: 0;
+		    padding: 0 0 0 20px !important;
+			border: 1px solid $transparent_grey !important;
+		     &:focus{
+			 	box-shadow: 0px 6px 16px 0px rgba(0, 0, 0, 0.15) !important;
+		}
+		    
+
+		}
+		input[type="submit"].wms-navbox-button{
+		    display: block;
+		    padding: 0px;
+		    height: 40px;
+		    width: 35px;
+		    top: 27px;
+		    right: 12px;
+		}
+}
+
+/*********************
+LARGER MOBILE DEVICES
+*********************/
+@media only screen and (min-width: $larger_mobile) {
+	.wms-icon-search .search-text{
+		display: inline;
+	}
+	.wms-search {
+		right: 191px;
+		top: 8px;
+	}
+	.wms-icon-search{
+		padding: 17px 27px;
+		line-height: $base_font_size + 7px;
+		&:after{
+			position: relative;
+			top: 5px;
+		}
+	}
+	.twitter-typeahead{
+    	width: 60%;
+    	top: 54px;
+    }
+    .searchui-incontent .twitter-typeahead {
+			width: 100%;
+    }
+    .bt-bars:before {
+	    position: relative;
+	    top: 3px;
+	}
+	input[type="submit"].wms-navbox-button{
+		z-index: 5;
+	    top: 70px;
+	    right:0;
+	}
+	.searchui-incontent input[type="submit"].wms-navbox-button{
+		display: block;
+	    padding: 0px;
+	    height: 50px;
+	    width: 50px;
+	    top: 23px;
+	    right: 12px;
+	}
+	
+}
+/*********************
+MOBILE WIDE
+*********************/
+@media only screen and (min-width: $mobile) {
+	
+
+}
+
+/*********************
+TABLET & SMALL LAPTOPS
+*********************/
+@media only screen and (min-width: $tablet) {
+	
+	.wms-search.wms-search-open,
+	.no-js .wms-search {
+		width: 60%;
+	}
+		
+}
+/*********************
+DESKTOP
+*********************/
+@media only screen and (min-width: $desktop) {
+	
+}
+/*********************
+LARGE VIEWING SIZE
+*********************/
+@media only screen and (min-width: $large) {
+	
+}

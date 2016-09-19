@@ -1,0 +1,39 @@
+{# @uses printfriendly [false(*)|true] #}
+<footer class="entry-footer">
+    {% if post.can_edit %}
+        {% include 'modules/edit_link.twig' %}
+    {% endif %}
+
+    {% include 'modules/last_updated.twig' %}
+
+    {% if printfriendly | default(false) %}
+
+        {% include 'modules/printfriendly.twig' %}
+
+    {% endif %}
+
+    {% if theme.do_display('related_tax') or fn('comments_open', post.ID) or fn('have_comments', post.ID) %}
+
+        {% if theme.do_display('related_tax') or theme.do_display('comment_status') %}
+
+            {% include 'modules/comment_status.twig' %}
+
+            {% include 'modules/related_tax.twig' %}
+
+        {% endif %}
+
+    {% endif %}
+
+</footer><!-- .entry-footer -->
+
+{% if theme.do_display('author_bio') %}
+
+    {% include 'modules/author_bio.twig' %}
+
+{% endif %}
+
+{% if theme.do_display('comment_form') %}
+
+    {% include 'modules/comment_form.twig' %}
+
+{% endif %}

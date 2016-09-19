@@ -1,0 +1,427 @@
+//colors
+$color_0: #446181;
+$color_1: rgba(50, 50, 50, 0.75);
+$color_3: #32475f;
+$color_4: #8ab840;
+$color_5: #475304;
+$color_7: #364d66;
+$color_8: #3586aa;
+$color_9: rgba(39, 172, 211, .5);
+$color_10: #1e2a38;
+$color_11: #111921;
+$color_12: #364003;
+$color_13: #566505;
+$color_14: #98a0a5;
+$color_15: #dddedf;
+$color_16: #749b36;
+$color_17: #3f541d;
+$color_18: #5a782a;
+$color_19: #d5fa05;
+$color_20: #eef8fd;
+$color_21: #a6c4e6;
+$color_22: #27acd3;
+$color_23: #333;
+$color_24: #284463;
+$color_25: #c1ddeb;
+$color_26: #555;
+$color_27: red;
+$color_28: #ec881d;
+$color_29: #b66916;
+$color_30: #ff931f;
+$color_31: #aaa;
+$color_32: #888;
+$color_33: #bbbbbb;
+
+.quick-list {
+}
+
+#quicklinks {
+  background-color: $white;
+  margin: 50px 18px;
+  padding: 15px;
+  position: relative;
+  a.edit-me {
+    position: relative;
+    margin: 10px;
+    float: right;
+    display: inline-block;
+    width: auto;
+    background-image: none;
+    font-size: inherit;
+  }
+
+  .quick-header {
+    ul {
+      list-style-type: none;
+      margin: 0 0 1em;
+    }
+    li {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      a {
+        padding: 10px;
+        display: inline-block;
+        &.logout {
+          font-weight: normal;
+          span#logout {
+            display: inline;
+            padding-left: 5px;
+            color: $color_19;
+            text-decoration: underline;
+            font-weight: bold;
+          }
+          &:hover span#logout {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+
+  }
+
+  .quick-content {
+    background: $white;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    .col-wrapper {
+      flex-basis: 100%;
+      min-width: 200px;
+    }
+    ul {
+      list-style: none;
+      li {
+        cursor: move;
+        &:nth-child(even) {
+          background: $color_20;
+        }
+        &.quick-cat {
+          background: $color_10;
+          font-weight: bold;
+          color: $white;
+          a.cancel-edit {
+            font-weight: normal;
+          }
+        }
+        &:hover {
+          background: $color_25;
+          form {
+            background: $white;
+          }
+        }
+        form {
+          cursor: default;
+        }
+        &.editing {
+          border-top: 1px solid $color_22;
+          border-bottom: 1px solid $color_22;
+          background: $white;
+          color: $color_23;
+          &:hover {
+            background: $white;
+            color: $color_23;
+          }
+          .quick-item {
+            font-weight: bold;
+          }
+          .sprite {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  #quick-filter-input {
+    width: 100%;
+  }
+  #your-links {
+    overflow: auto;
+  }
+  .sprite {
+    &.delete {
+      display: none;
+    }
+    &.edit {
+      display: none;
+    }
+    &.star {
+      float: left;
+      margin-top: 10px;
+      margin-right: 5px;
+    }
+  }
+  form {
+    padding-left: 10px;
+    padding-top: 10px;
+    .form-item {
+      margin-bottom: 10px;
+      float: left;
+      width: 100%;
+    }
+    label {
+      font-weight: bold;
+      padding-right: 10px;
+    }
+    input[type=text] {
+      width: 70%;
+      border: 1px solid $color_33;
+      padding: 3px 5px;
+    }
+    input[type=password] {
+      width: 70%;
+      border: 1px solid $color_33;
+      padding: 3px 5px;
+    }
+  }
+  ul li .sprite {
+    float: right;
+    margin: 5px 5px 0 0;
+  }
+  input.button {
+    color: $white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 10px;
+    background: $color_28;
+    padding: 4px 8px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 8px;
+    border: 1px solid $color_29;
+    &:hover {
+      background: $color_30;
+    }
+  }
+}
+
+.quick-user {
+  /*clear: both;
+  background: $color_20;
+  padding: 15px;
+  border-bottom: 1px solid $color_21;*/
+  p {
+    margin-top: 10px;
+    padding: 0 15px;
+  }
+  a {
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.user-name {
+  font-weight: bold;
+  color: $color_22;
+}
+
+.dismiss-help {
+  float: right;
+  margin-right: 10px;
+}
+
+.left-col {
+  left: 0;
+  .col-inner {
+    padding-left: 15px;
+  }
+}
+
+.right-col {
+  left: 50%;
+  .col-inner {
+    padding-right: 15px;
+  }
+}
+
+.col-inner {
+  padding: 10px;
+}
+
+.above-list {
+  padding-bottom: 10px;
+}
+
+#quick-filter {
+  margin-top: 15px;
+  margin-bottom: 5px;
+  position: relative;
+  width: 100%;
+}
+
+.quick-instr {
+}
+
+.login-hint {
+  font-weight: bold;
+  color: $color_0;
+}
+
+.login-status {
+  font-weight: bold;
+  color: $color_27;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.login-success {
+  color: $color_22;
+}
+
+.quick-tools {
+  height: 40px;
+  width: 100%;
+  a {
+    &.quick-tool {
+      &.quick-save {
+        float: left;
+        width: 20px;
+        height: 32px;
+        background-color: $color_20;
+        border-color: $color_8;
+        margin-right: 0;
+        vertical-align: bottom;
+      }
+      &:hover {
+        background: $color_8;
+      }
+      &.autosave {
+        background: $color_31;
+        border: 1px solid $color_32;
+        .sprite {
+          opacity: .6;
+        }
+        &:hover {
+          background: $color_31;
+        }
+      }
+    }
+    &.quick-save.unsaved-changes {
+      background: $color_28;
+      border-color: $color_10;
+    }
+  }
+}
+
+a {
+  &.restore-default-links {
+    float: right;
+    margin-right: 5px;
+    color: $color_22;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  &.quick-tool {
+    color: $color_22;
+  }
+}
+
+#utility-nav .utility-links .quick-list {
+  li {
+    display: block;
+    width: 100%;
+    line-height: 27px;
+    height: 27px;
+    overflow: hidden;
+    padding-left: 10px;
+    font-size: 13px;
+    float: none;
+    color: $white;
+    border-right: none;
+    border-bottom: 1px solid $color_7;
+    a {
+      color: $white;
+    }
+    &:hover {
+      background: $color_8;
+    }
+    &.quick-cat {
+      background: $color_10;
+      border: 1px solid $color_11;
+      line-height: 24px;
+      margin: -1px 0 0 -1px;
+      .quick-item {
+        color: $white;
+      }
+    }
+  }
+  ul#quick-actions li {
+    background: $color_4;
+    border-color: $color_5;
+    line-height: 33px;
+    height: 33px;
+    &:last-child {
+      border-bottom: none;
+    }
+    a {
+      color: $color_12;
+      font-weight: bold;
+    }
+    &:hover {
+      background: $color_13;
+      a {
+        color: $white;
+      }
+    }
+  }
+}
+
+li#quick-container:hover {
+  background: $color_9;
+  .quick-list {
+    display: block;
+  }
+}
+
+#quick-container #your-links li a {
+  display: block;
+  width: 100%;
+}
+
+.quick-action .sprite {
+  display: inline-block;
+  margin-right: 4px;
+  margin-bottom: -2px;
+  &.gear {
+    margin-bottom: -4px;
+  }
+}
+
+#your-links li:hover .sprite {
+  &.delete {
+    display: block;
+    cursor: pointer;
+  }
+  &.edit {
+    display: block;
+    cursor: pointer;
+  }
+}
+
+.quick-tool .sprite.download {
+  margin-top: 7px;
+  margin-left: 1px;
+}
+
+form a {
+  color: $color_22;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+/*********************
+DESKTOP
+*********************/
+@media only screen and (min-width: $larger_mobile) {
+  #quicklinks {
+    .quick-content {
+      .col-wrapper {
+        flex-basis: 48%;
+      }
+    }
+  }
+}

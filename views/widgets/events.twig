@@ -1,0 +1,14 @@
+<div class="widget-events">
+{% for event in events %}
+    <div class="event">
+        <img class="event-photo" src="{{ event.photo_url }}">
+        <div class="event-text">
+            <div class="event-date">{{ event.first_date|date("D j M") }}</div>
+            <div class="event-title"><a href="{{ event.localist_url }}">{{ event.title }}</a></div>
+            <div class="event-details">
+            <div class="event-time-location">{{ event.event_instances[0].event_instance.start|date("g:i a") }} at {{ event.location_name }}</div>
+        </div>
+        </div>
+    </div>
+{% endfor %}
+</div>

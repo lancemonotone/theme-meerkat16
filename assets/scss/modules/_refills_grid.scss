@@ -1,0 +1,108 @@
+@mixin grid-item-columns($columns) {
+  width: (100% / 12) * $columns;
+}
+
+.grid-items {
+  $action-color: $williams_purple !default;
+  $base-background-color: white !default;
+  $medium-screen: 40em !default;
+  $large-screen: 53.75em !default;
+  $grid-items-background: $base-background-color;
+  $grid-item-background: desaturate($action-color, 30%);
+  $grid-item-colors: $action-color,
+  $green,
+  $dark_grey,
+  $blue,
+  $action-color,
+  $green,
+  $dark_grey,
+  $blue;
+  $grid-item-border-size: 9px;
+  $grid-item-columns: 4;
+  $grid-item-big-columns: 8;
+  $grid-item-color: white;
+  $grid-item-height: 14em;
+  @include clearfix;
+
+  .grid-item {
+    background: $grid-item-background;
+    border-bottom: $grid-item-border-size solid $grid-items-background;
+    border-left: ($grid-item-border-size / 2) solid $grid-items-background;
+    border-right: ($grid-item-border-size / 2) solid $grid-items-background;
+    border-top: 0;
+    cursor: pointer;
+    float: left;
+    height: $grid-item-height;
+    outline: none;
+    overflow: hidden;
+    padding: 1em;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.1s ease-in-out;
+    width: 100%;
+    position: relative;
+    background-color: $yellow;
+    box-shadow: inset 0 0 2px 1px transparentize($almost_black, .6);
+    @include filter(grayscale(30%));
+
+    &:focus,
+    &:hover {
+      box-shadow: inset 0 0 0 2px $yellow;
+      background-color: darken($yellow, 10%);
+      @include filter(grayscale(0%));
+    }
+
+    @include media($large-screen) {
+      @include grid-item-columns($grid-item-columns);
+    }
+
+  }
+
+  .grid-item img {
+    display: block;
+    height: 3em;
+    margin: 0 auto 1em;
+  }
+
+  .grid-item .title {
+    background: transparentize($black, .3);
+    bottom: 10px;
+    color: $grid-item-color;
+    font-size: 1.2em;
+    left: 0;
+    @include padding(8px 13px);
+    position: absolute;
+    text-align: right;
+    width: 100%;
+  }
+
+  .grid-item p {
+    color: transparentize($grid-item-color, 0.3);
+    line-height: 1.5em;
+    margin: auto;
+
+    @include media($medium-screen) {
+      max-width: 70%;
+    }
+  }
+
+  .grid-item-big {
+    @include media($large-screen) {
+      @include grid-item-columns($grid-item-big-columns);
+    }
+
+    p {
+      @include media($medium-screen) {
+        max-width: 60%;
+      }
+    }
+  }
+
+  .grid-item-image {
+    background: url("https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png");
+    background-color: $grid-item-background;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}

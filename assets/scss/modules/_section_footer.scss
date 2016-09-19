@@ -1,0 +1,99 @@
+@include sticky-footer(135px);
+.section-footer {
+  border-top: 5px solid rgba($marigold, .2);
+  background-color: #fff;
+  color: $almost_black;
+  padding-top: 23px;
+  padding-bottom: 23px;
+  text-align: left;
+
+  .widget-area{
+	  margin-bottom: 0;
+  }
+  a {
+    color: $almost_black;
+    &:hover {
+      color: $links;
+    }
+  }
+  .btl{
+	  font-size: 19px;
+	  color: $grey-blue;
+	  padding: 4px 4px 4px 4px;
+	  &.bt-fax, &.bt-envelope{
+		  margin-right: 4px;
+	  }
+  }
+  .site-title{
+	  margin-right: 10px;
+  }
+  .social-navigation{
+	  padding-top: 0;
+	  margin-top: 8px;
+	  padding-left: 0;
+  }
+  #social-navigation{
+	  
+	&.widget{
+		margin-bottom: 0;
+	}			
+	h3.title{
+	 display: none;
+	}
+	h4{
+	  display: none;
+	}
+	
+	.social-navigation ul{
+		li {
+			display: inline-block;
+			width: auto;
+			margin-bottom: 0;
+			color: $grey-blue;
+				a{
+			  	min-width: 33px;
+			  	opacity: .5;
+			  	&:before{
+				  	font-size: 18px;
+				  	text-align: left;
+			  	}
+			  	&:hover{
+				  	opacity: 1;
+			  	}
+			}
+		}
+	}
+	
+  }
+  .inner-container {
+    padding-bottom: 0;
+  }
+  .address-container{
+	  display: block;
+	  width: 100%;
+	  address{
+	  	letter-spacing: 1px;
+	  	span{
+		  	margin-right: 7px;
+		  	display: inline-block;
+	  	}
+	  	span:nth-of-type(5), span:nth-of-type(6), span:nth-of-type(7){
+		  	display: block;
+		  	width: 100%;
+	
+	  	}
+	  }
+  }
+
+}
+
+/*********************
+TABLET & SMALL LAPTOPS
+*********************/
+@media only screen and (min-width: $tablet) {
+	.section-footer .address-container address{
+		span:nth-of-type(5), span:nth-of-type(6), span:nth-of-type(7){
+		display: inline;
+		}
+	}
+}

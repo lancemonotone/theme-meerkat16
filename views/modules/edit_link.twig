@@ -1,0 +1,7 @@
+{% if post.can_edit %}
+    <span class="edit-link">
+        <a class="post-edit-link" href="{{ post.edit_link }}">Edit
+            <span class="screen-reader-text">{{ post.post_title }}</span>
+        </a>
+    </span>
+{% endif %}

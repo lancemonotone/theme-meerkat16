@@ -1,0 +1,21 @@
+.widget-events {
+  .event {
+    margin-bottom:  1em;
+    clear: both;
+  }
+  .event-text {
+    padding-left: 35%;
+  }
+  .event-title {
+    font-family: canada-type-gibson, Helvetica Neue, Open Sans, sans-serif;
+    font-size: 1.2em;
+    line-height: 1.4em;
+  }
+  .event-date {
+    color: #777;
+  }
+  .event-photo {
+    float: left;
+    width: 30%;
+  }
+}

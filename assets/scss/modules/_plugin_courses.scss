@@ -1,0 +1,100 @@
+/*
+ * Customize layout of course list
+ */
+.course_code:after, .course_terms:after{
+	 content: "\00a0\00a0";
+ }
+ .course_terms{
+	 color: $dark-grey;
+}
+.course_bottom a.catlink {
+  	float: left;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 700;
+	border-bottom: 8px solid $grey-blue;
+	margin-bottom: 30px;
+	padding-bottom: 10px;
+	clear: left;
+	&:after{
+	    font-family: $blacktie;
+	    content: " \F02F";
+	    opacity: .5;
+	    color: $almost_black;
+	    vertical-align: top;
+	}
+}
+.course_bottom p.instructors {
+  float: left;
+}
+.course_unit {
+  clear: both;
+}
+ .site-content .content-inner .post-content .wms_courselist{
+	.course_header{
+		letter-spacing: 1px;
+	} 
+	.offered_N{
+		.course_code, .course_title{
+			opacity: .6;
+		}
+		p.not_offered{
+		    color: $marigold;
+		    text-transform: uppercase;
+		    font-family: $sans-serif;
+		    font-weight: 500;
+		    letter-spacing: 1px;
+		    font-size: 15px;
+		}
+		
+		.desc{
+			opacity: .6;
+			font-weight: bold;
+		}
+		.instructors{
+			opacity: .6;
+		}
+		.catlink{
+		    opacity: .7;
+		}
+	}
+}
+
+/*********************
+LARGER MOBILE DEVICES
+*********************/
+@media only screen and (min-width: $larger_mobile) {
+	.course_bottom a.catlink {
+	  	float: right;
+		border-bottom: none;
+		margin-bottom: 0;
+		padding-bottom: 0;
+		clear: none;
+	}
+}
+/*********************
+MOBILE WIDE
+*********************/
+@media only screen and (min-width: $mobile) {
+
+}
+
+/*********************
+TABLET & SMALL LAPTOPS
+*********************/
+@media only screen and (min-width: $tablet) {
+	
+
+}
+/*********************
+DESKTOP
+*********************/
+@media only screen and (min-width: $desktop) {
+	
+}
+/*********************
+LARGE VIEWING SIZE
+*********************/
+@media only screen and (min-width: $large) {
+	
+}

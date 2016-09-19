@@ -1,0 +1,9 @@
+{% if site_nav.count %}
+    <aside id="secondary" class="sidebar widget-area" role="complementary">
+        {% include 'navigation.twig' with {'nav_obj':site_nav, 'menu_name':site.name, 'menu_class':'site-navigation', 'toggle':true} %}
+    </aside><!-- .sidebar .widget-area -->
+{% endif %}
+
+{% if sidebar_widgets %}
+    {% include 'widget-area.twig' with {'widgets' : sidebar_widgets} %}
+{% endif %}

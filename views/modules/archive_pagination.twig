@@ -1,0 +1,25 @@
+{% if pagination %}
+    <div class="tool-pagination tool-pagination-archive cf">
+        {% if pagination.prev %}
+            <div class="prev">
+                <a href="{{ pagination.prev.link }}" class="page-numbers {{ pagination.prev.link|length ? '' : 'invisible' }}">Prev</a>
+            </div>
+        {% endif %}
+        <ul class="pages">
+            {% for page in pagination.pages %}
+                <li>
+                    {% if page.link %}
+                        <a href="{{page.link}}" class="{{page.class}}">{{page.title}}</a>
+                    {% else %}
+                        <span class="{{page.class}}">{{page.title}}</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+        {% if pagination.next %}
+            <div class="next">
+                <a href="{{ pagination.next.link }}" class="page-numbers {{ pagination.next.link|length ? '' : 'invisible' }}">Next</a>
+            </div>
+        {% endif %}
+    </div> <!-- .tool-pagination -->
+{% endif %}

@@ -1,0 +1,5 @@
+{% if widgets %}
+    <aside id="{{ widgets.id | default(widgets.class) }}" class="{{ widgets.class }} widget-area cf" role="complementary">
+        {{ widgets.widgets }}
+    </aside>
+{% endif %}

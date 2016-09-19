@@ -1,0 +1,502 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Print Stylesheet
+
+This is the print stylesheet. There's probably not a lot
+of reasons to edit this stylesheet. If you want to
+though, go for it.
+
+******************************************************************/
+
+//original selectors
+//.format-aside .main-title, .format-image .main-title, .format-video .main-title, .format-quote .main-title, .format-gallery .main-title, .format-status .main-title, .format-link .main-title, .format-audio .main-title, .format-chat .main-title
+%extend_98 {
+  font-size: 17.25pt;
+  line-height: 1.304347826;
+  margin-bottom: 1.8em;
+}
+
+//original selectors
+//.entry-content blockquote.alignleft, .entry-content blockquote.alignright
+%extend_56 {
+  border-width: 4px 0 0 0;
+  padding: .9em 0 0;
+  width: calc(50% - .7em);
+}
+
+* {
+  background: transparent !important;
+  color: black !important;
+  text-shadow: none !important;
+  filter: none !important;
+  -ms-filter: none !important;
+}
+
+form {
+  display: none;
+}
+
+button {
+  display: none;
+}
+
+input {
+  display: none;
+}
+
+select {
+  display: none;
+}
+
+textarea {
+  display: none;
+}
+
+.navigation {
+  display: none;
+}
+
+.global-navigation {
+  display: none;
+}
+
+.social-navigation {
+  display: none;
+}
+
+.sidebar {
+  display: none;
+}
+
+.content-bottom-widgets {
+  display: none;
+}
+
+.header-image {
+  display: none;
+}
+
+.page-links {
+  display: none;
+}
+
+.edit-link {
+  display: none;
+}
+
+.comment-respond {
+  display: none;
+}
+
+.comment-edit-link {
+  display: none;
+}
+
+.comment-reply-link {
+  display: none;
+}
+
+.comment-metadata {
+  font-size: 9.75pt;
+  .edit-link {
+    display: none;
+  }
+  a {
+    color: $dark_grey !important;
+  }
+}
+
+.pingback {
+  .edit-link {
+    display: none;
+  }
+  .comment-body > a {
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: none;
+    border-bottom: 1px solid $williams_purple !important;
+  }
+}
+
+body {
+  font-size: 12pt;
+  background: none !important;
+  color: $almost_black !important;
+  &:not(.search-results) {
+    .entry-summary {
+      font-size: 14.25pt;
+      color: $dark_grey !important;
+      blockquote {
+        color: $dark_grey !important;
+      }
+    }
+    .entry-header + .entry-summary {
+      margin-top: -1.5em;
+    }
+  }
+}
+
+blockquote {
+  font-size: 14.25pt;
+  border-color: $almost_black !important;
+  color: $dark_grey !important;
+  cite {
+    font-size: 12pt;
+    color: $almost_black !important;
+  }
+  small {
+    font-size: 12pt;
+    color: $almost_black !important;
+  }
+}
+
+pre {
+  font-size: 12pt;
+  border-color: $grey !important;
+}
+
+.entry-content {
+  margin-right: 0;
+  margin-left: 0;
+  h4 {
+    font-size: 12pt;
+  }
+  h5 {
+    font-size: 12pt;
+  }
+  h6 {
+    font-size: 12pt;
+  }
+  .author-title {
+    font-size: 12pt;
+  }
+  h2 {
+    font-size: 17.25pt;
+  }
+  h1 {
+    font-size: 21pt;
+  }
+  h3 {
+    font-size: 14.25pt;
+  }
+  a {
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: none;
+    border-bottom: 1px solid $williams_purple !important;
+  }
+  blockquote {
+    &.alignleft {
+      @extend %extend_56;
+    }
+    &.alignright {
+      @extend %extend_56;
+    }
+  }
+}
+
+.entry-summary {
+  margin-right: 0;
+  margin-left: 0;
+  h4 {
+    font-size: 12pt;
+  }
+  h5 {
+    font-size: 12pt;
+  }
+  h6 {
+    font-size: 12pt;
+  }
+  h2 {
+    font-size: 17.25pt;
+  }
+  h1 {
+    font-size: 21pt;
+  }
+  h3 {
+    font-size: 14.25pt;
+  }
+  a {
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: none;
+    border-bottom: 1px solid $williams_purple !important;
+  }
+}
+
+.comment-content {
+  h4 {
+    font-size: 12pt;
+  }
+  h5 {
+    font-size: 12pt;
+  }
+  h6 {
+    font-size: 12pt;
+  }
+  h2 {
+    font-size: 17.25pt;
+  }
+  h1 {
+    font-size: 21pt;
+  }
+  h3 {
+    font-size: 14.25pt;
+  }
+  a {
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: none;
+    border-bottom: 1px solid $williams_purple !important;
+  }
+}
+
+.site-title {
+  font-size: 17.25pt;
+}
+
+.page-title {
+  font-size: 17.25pt;
+}
+
+.comments-title {
+  font-size: 17.25pt;
+  border-color: $almost_black !important;
+}
+
+.widecolumn {
+  padding: 0;
+  h2 {
+    font-size: 17.25pt;
+  }
+}
+
+.site-description {
+  display: block;
+  font-size: 9.75pt;
+  color: $dark_grey !important;
+}
+
+.main-title {
+  /*font-size: 24.75pt;*/
+  line-height: 1.3;
+  margin-bottom: 1.696969697em;
+  a {
+    color: $almost_black !important;
+  }
+}
+
+.author-bio {
+  font-size: 9.75pt;
+  color: $dark_grey !important;
+}
+
+.entry-footer {
+  font-size: 9.75pt;
+  color: $dark_grey !important;
+  margin-right: 0;
+  margin-left: 0;
+  a {
+    color: $dark_grey !important;
+  }
+}
+
+.sticky-post {
+  font-size: 9.75pt;
+  color: $dark_grey !important;
+}
+
+.taxonomy-description {
+  font-size: 9.75pt;
+  color: $dark_grey !important;
+  a {
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: none;
+    border-bottom: 1px solid $williams_purple !important;
+  }
+}
+
+.entry-caption {
+  font-size: 9.75pt;
+  color: $dark_grey !important;
+}
+
+.comment-notes {
+  font-size: 9.75pt;
+  color: $dark_grey !important;
+}
+
+.comment-awaiting-moderation {
+  font-size: 9.75pt;
+  color: $dark_grey !important;
+}
+
+.site-info {
+  font-size: 9.75pt;
+  color: $dark_grey !important;
+  a {
+    color: $dark_grey !important;
+  }
+}
+
+.gallery-caption {
+  font-size: 9.75pt;
+  color: $dark_grey !important;
+}
+
+.site {
+  background: none !important;
+  margin: 5%;
+}
+
+.network-header {
+  margin-top: 0;
+  margin-bottom: 1.75em;
+}
+
+.site-title .site-title-inner {
+  background: transparent;
+  color: $almost_black !important;
+}
+
+.comment-author {
+  color: $almost_black !important;
+  color: $dark_grey !important;
+}
+
+.page-header {
+  border-color: $almost_black !important;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+code {
+  background-color: $grey !important;
+}
+
+hr {
+  background-color: $grey !important;
+}
+
+abbr {
+  border-color: $grey !important;
+}
+
+acronym {
+  border-color: $grey !important;
+}
+
+table {
+  border-color: $grey !important;
+}
+
+th {
+  border-color: $grey !important;
+}
+
+td {
+  border-color: $grey !important;
+}
+
+.author-info {
+  border-color: $grey !important;
+}
+
+.comment-list {
+  article {
+    border-color: $grey !important;
+  }
+  .pingback {
+    border-color: $grey !important;
+  }
+  .trackback {
+    border-color: $grey !important;
+  }
+}
+
+.no-comments {
+  border-color: $grey !important;
+}
+
+a {
+  color: $williams_purple !important;
+}
+
+.site-inner {
+  max-width: none;
+}
+
+.site-banner {
+  padding: 0 0 1.75em;
+}
+
+.content-main {
+  margin-bottom: 3.5em;
+  > article {
+    margin-bottom: 3.5em;
+  }
+}
+
+.entry-header {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.page-content {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.post-thumbnail {
+  margin-right: 0;
+  margin-left: 0;
+  margin-bottom: 3.5em;
+}
+
+.comments-area {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.site-footer {
+  padding: 0;
+}
+
+.format-aside .main-title {
+  @extend %extend_98;
+}
+
+.format-image .main-title {
+  @extend %extend_98;
+}
+
+.format-video .main-title {
+  @extend %extend_98;
+}
+
+.format-quote .main-title {
+  @extend %extend_98;
+}
+
+.format-gallery .main-title {
+  @extend %extend_98;
+}
+
+.format-status .main-title {
+  @extend %extend_98;
+}
+
+.format-link .main-title {
+  @extend %extend_98;
+}
+
+.format-audio .main-title {
+  @extend %extend_98;
+}
+
+.format-chat .main-title {
+  @extend %extend_98;
+}
+
+.wp-caption .wp-caption-text {
+  font-size: 9.75pt;
+  color: $dark_grey !important;
+}

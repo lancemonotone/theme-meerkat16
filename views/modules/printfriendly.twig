@@ -1,0 +1,7 @@
+{% if not post.get_field('hide_print') %}
+    <span class="sprite printfriendly">
+        <a onclick="return false;" rel="nofollow" href="http://www.printfriendly.com/print/v2?url={{ fn('get_permalink') }}">
+            <span class="assistive-text">{{ __('Print this page') }}</span>
+        </a>
+    </span>
+{% endif %}

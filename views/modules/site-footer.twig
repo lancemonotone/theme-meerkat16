@@ -1,0 +1,52 @@
+<footer id="colophon" class="site-footer" role="contentinfo">
+
+    <div class="outer-container">
+
+        <div class="inner-container">
+            <div class="widget-area">
+
+                <div class="wordmark-container widget">
+                    <div class="widget-insides">
+                        <a class="wordmark" href="{{ constant('WWW_BLOG_URL') }}" title="{{ __('Go to') }} Williams College">
+                            {% set svg = {
+                            'title':'Williams College',
+                            'viewbox':'0 0 828.9 135.9',
+                            'img_dir':constant('IMG_URL'),
+                            'url':'wordmark_v2.svg',
+                            'symbol':'williams-logo',
+                            'png':'williams_wordmark_292_purple.png'
+                            } %}
+                            {% include 'svg.twig' with {'svg' : svg} %}
+                        </a>
+                    </div>
+                </div>
+
+                <div class="address-container widget">
+                    <div class="widget-insides">
+                        <address>
+                            <span>Hopkins Hall</span>
+                            <span>880 Main Street</span>
+                            <span>Williamstown, MA 01267</span>
+                            <span>USA</span>
+                            <span><a href="tel:413.597.3131">(413) 597-3131</a></span>
+                        </address>
+                    </div>
+                </div>
+
+                <div class="utility-links widget">
+                    <div class="widget-insides">
+                        <a href="#page">Back to top</a>
+                        {% if fn('is_user_logged_in') %}
+                            <a href="/wp-admin/" title="Dashboard">Dashboard</a>
+                        {% else %}
+                            <a href="/wp-admin/" title="login">Login</a>
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div><!-- .widget-area -->
+        </div><!-- .inner-container -->
+
+    </div><!-- .outer-container -->
+
+</footer><!-- .site-footer -->

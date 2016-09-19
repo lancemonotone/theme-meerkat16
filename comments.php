@@ -1,0 +1,1 @@
+<?php // Empty, used for comments_template(). Do not delete.

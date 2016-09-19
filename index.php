@@ -1,0 +1,1 @@
+<?php Timberizer::render_template();

@@ -1,0 +1,9 @@
+{# uses @thumbnail_size ['wms_widget_thumb_size_default'(*)|'post-thumbnail'] #}
+<div class="post-content {{ post.get_field('dek') ? 'dek' }}">
+    {% do action('meerloop_before_content') %}
+    {% if theme.do_display('thumb') %}
+        {% include 'modules/post_thumbnail.twig' %}
+    {% endif %}
+    {{ post.content() }}
+    {% do action('meerloop_after_content') %}
+</div><!-- .post-content -->

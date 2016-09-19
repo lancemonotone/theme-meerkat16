@@ -1,0 +1,68 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Typography
+
+Need to import a font or set of icons for your site? Drop them in
+here or just use this to establish your typographical grid. Or not.
+Do whatever you want to...GOSH!
+
+Helpful Articles:
+http://trentwalton.com/2012/06/19/fluid-type/
+http://ia.net/blog/responsive-typography-the-basics/
+http://alistapart.com/column/responsive-typography-is-a-physical-discipline
+
+******************************************************************/
+
+
+/*********************
+FONT FACE (IN YOUR FACE)
+*********************/
+
+/*
+  To embed your own fonts, use this syntax
+  and place your fonts inside the
+  lib/fonts folder. For more information
+  on embedding fonts, go to:
+  http://www.fontsquirrel.com/
+  Be sure to remove the comment brackets.
+*/
+
+/*
+  @font-face {
+      font-family: 'Font Name';
+      src: url('lib/fonts/font-name.eot');
+      src: url('lib/fonts/font-name.eot?#iefix') format('embedded-opentype'),
+             url('lib/fonts/font-name.woff') format('woff'),
+             url('lib/fonts/font-name.ttf') format('truetype'),
+             url('lib/fonts/font-name.svg#font-name') format('svg');
+      font-weight: normal;
+      font-style: normal;
+  }
+*/
+
+
+/*
+The following is based of Typebase:
+https://github.com/devinhunt/typebase.css
+I've edited it a bit, but it's a nice starting point.
+*/
+
+// font stacks
+$dashicons: dashicons;
+$fab: "Font Awesome Brands"; // social icons
+$blacktie: "Black Tie";  // all other icons
+$georgia: Georgia;
+// $inconsolata: Inconsolata;
+$helvetica_neue: Helvetica Neue;
+$open_sans: Open Sans;
+//typekit
+$gibson: canada-type-gibson;
+$caslon: adobe-caslon-pro;
+
+
+// $monospace: $inconsolata, monospace;
+$serif: $caslon, $georgia, serif;
+// $serif_bold: $aleobold, $georgia, serif;
+$sans_serif: $gibson, $helvetica_neue, $open_sans, sans-serif;

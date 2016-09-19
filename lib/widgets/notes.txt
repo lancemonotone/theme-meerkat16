@@ -1,0 +1,23 @@
+localist calendar
+social links
+rss feed link?
+category links
+weather??
+contact?
+
+callout thing like givingpriorities (basically shoves a custom post in a widgetized area)
+
+--------
+widget framework...
+constants/dirs
+(img resizing)
+load styles/scripts
+class WilliamsMasterWidget extends WP_Widget {
+update
+form ****
+display (empty)
+get/set widget option
+ordering
+display widget title
+build form item **** (and all sub-fuctions to build ea type of input element)
+Use /web/lib

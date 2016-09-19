@@ -1,0 +1,3 @@
+{% if post.get_field('last_updated') %}
+    <div class="last-mod note">{{ __('Last modified on') }} {{ post.post_date_modified|date }}</div>
+{% endif %}

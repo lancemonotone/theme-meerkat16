@@ -1,0 +1,22 @@
+// Custom in-page menus
+ul.wms_page_menu_vertical,
+ul.wms_page_menu_horizontal {
+  list-style: none;
+  border-left: 3px solid #666;
+  margin-left: 5px;
+  padding-left: 1em;
+
+  li {
+    text-indent: initial;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+  .current_page_item a {
+    color: $almost_black;
+  }
+}
+ul.wms_page_menu_horizontal {
+
+	margin-bottom: 29px;	
+}

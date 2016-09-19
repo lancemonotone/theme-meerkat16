@@ -1,0 +1,43 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+
+    <article id="post-{{ post.ID }}" class="cf {{ fn('get_post_class') | join(' ') }} {{ post.get_field('page_style') }}">
+
+        {% if page != 'home' and not post.get_field( 'hide_title') %}
+
+            <h1 class="page-title">{{ post.post_title }}</h1>
+
+        {% endif %}
+
+        {% block content_widgets %}
+
+            {% if page == 'home' %}
+
+                {% include 'modules/widget-area.twig' with {'widgets' : home_widgets} %}
+
+            {% endif %}
+
+        {% endblock %}
+
+        {% do action( 'meerloop_before_loop' ) %}
+
+        {% do action( 'meerloop_content_restriction' ) %}
+
+        {% if not theme.campus_only_check(post.ID) %}
+
+            <div class="error">{{ __('Sorry, this content is restricted.') }}</div>
+
+        {% else %}
+
+            {% include 'modules/content.twig' with {'thumbnail_size' : 'post-thumbnail'} %}
+
+            {% include 'modules/post_footer.twig' with {'printfriendly' : true} %}
+
+        {% endif %} {# end campus_only_check #}
+
+        {% do action( 'meerloop_after_loop' ) %}
+
+    </article>
+
+{% endblock %}

@@ -1,0 +1,60 @@
+@include sticky-footer(135px);
+.site-footer {
+  @include linear-gradient(darken($dark_grey, 20%), darken($dark_grey, 10%) 15px);
+  border-top: 5px solid $color_3;
+  color: $almost_white;
+  padding-top: 15px;
+  a {
+    color: $transparent_grey;
+    &:hover {
+      color: $white;
+    }
+  }
+  .inner-container {
+    padding-bottom: 0;
+  }
+  .widget-area {
+    margin: 0;
+    .widget {
+      flex-basis: 30%;
+      .widget-insides > * {
+        padding-top: 10px;
+      }
+      &.wordmark-container {
+        .wordmark {
+          @include bullseye(absolute, 0);
+          left: -12px;
+          width: 90%;
+          max-width: 200px;
+        }
+      }
+      &.address-container {
+        address {
+          font-style: normal;
+          font-size: $base_font_size - 3px;
+          float: right;
+          padding-left: 2em;
+          text-align: right;
+          span {
+            white-space:nowrap;
+            margin-right:.5em;
+          }
+        }
+      }
+      &.utility-links {
+        flex-basis: 100%;
+        border-top: 1px solid grey;
+        padding: .5em 0;
+        margin-bottom: 0;
+        a {
+          display: block;
+          width: auto;
+          float: left;
+          &:nth-of-type(2) {
+            float: right;
+          }
+        }
+      }
+    }
+  }
+}

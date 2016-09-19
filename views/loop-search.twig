@@ -1,0 +1,39 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+
+    <h1 class="page-title">Search & Directories</h1>
+
+    {% do action( 'meerloop_before_loop' ) %}
+
+    {% filter shortcodes %}
+        [tabs open="{{ search.open }}"]
+            [tab title="Search"]
+            <div class="searchui-incontent">
+            	{{ navbox_widget }}
+            </div>
+            {% if search.searchstring %}
+                <table id="results-all" class="cf">
+                    <tr>
+                        <td id="results-web" class="bar-header-container">
+                            <div class="bar-header current" data-target="#web-content"><div class="sprite web"></div>Web Pages</div>
+                            <div id="web-content" class="results-content">
+                                <div id="results-navbox-container" class="cf"></div>
+                                <gcse:searchresults-only queryParameterName="q" linkTarget="_self" webSearchResultSetSize="10"></gcse:searchresults-only>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            {% endif %}
+            [/tab]
+            [tab title="People Directory"]{{ search.people }}[/tab]
+            [tab title="A-Z"]
+            {{ search.az }}
+            [/tab]
+            [tab title="Depts. & Offices"]{{ search.offices }}[/tab]
+        [/tabs]
+    {% endfilter %}
+
+    {% do action( 'meerloop_after_loop' ) %}
+
+{% endblock %}

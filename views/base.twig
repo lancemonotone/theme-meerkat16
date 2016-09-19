@@ -1,0 +1,55 @@
+{% set hide_sidebar = post.get_field('hide_sidebar') or hide_sidebar %}
+
+<!DOCTYPE html>
+<html {{ site.language_attributes }} class="no-js">
+<head>
+    <meta charset="{{ site.charset }}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+    <link rel="pingback" href="{{ site.pingback_url }}"/>
+    {{ fn('wp_head') }}
+</head>
+
+<body class="{{ body_class }} twig-{{ page }}">
+
+<div id="page" class="site">
+
+    <div id="page-inner"> {# necessary for sticky-footer mixin #}
+
+        {% include 'modules/site-header.twig' %}
+
+        <div id="content" class="site-content outer-container">
+
+            <div id="content-inner" class="content-inner inner-container">
+
+                <main id="main" class="content-main {{ hide_sidebar ? 'hide_sidebar' }} {{ 'textcols-' ~ post.get_field('text_cols') }}" role="main">
+
+                    {# start the loop #}
+                    {% block content %}{% endblock %}
+
+                </main><!-- .content-main -->
+
+                {% if not hide_sidebar %}
+
+                    {% include 'modules/sidebar.twig' %}
+
+                {% endif %}
+
+            </div><!-- .content-inner -->
+
+        </div><!-- .site-content -->
+
+    </div><!-- #page-inner -->
+
+</div><!-- #page -->
+
+{% if (site.blog_id != '93') or (site.blog_id == '93' and page != 'home') %}
+	{% include 'modules/section-footer.twig' %}
+{% endif %}
+{% include 'modules/site-footer.twig' %}
+
+{{ wp_footer }}
+
+</body>
+</html>

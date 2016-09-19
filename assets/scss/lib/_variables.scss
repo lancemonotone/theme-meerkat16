@@ -1,0 +1,540 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Variables
+
+Here is where we declare all our variables like colors, fonts,
+base values, and defaults. We want to make sure this file ONLY
+contains variables that way our files don't get all messy.
+No one likes a mess.
+
+*****************************************************************/
+$base_font_size: 16px;
+$gutter_sm: 4.5455%;
+$gutter_lg: 7.6923%;
+$inner_container_padding: 34px;
+
+/*********************
+COLORS
+Need help w/ choosing your colors? Try this site out:
+http://0to255.com/
+*********************/
+$text-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+$alert-yellow: #ebe16f;
+$alert-red: #fbe3e4;
+$alert-green: #e6efc2;
+$alert-blue: #d5edf8;
+
+//colors
+$white: #fff;
+$almost_white: #f4f6f9;
+$grey: #e9edf4;
+$transparent_grey: #c0c0c0;
+$dark_grey: #686868;
+$black-tinted: #363738;
+$black-bk: #282828;
+$almost_black: #1a1a1a;
+$black: #000000;
+$grey-tray: #f6f4fa;
+
+
+// old williams colors
+$williams_purple: #512698; // Williams purple
+$dark_purple: #3D1C72; // Dark purple
+$light_purple: #7C5CB2; // Light purple
+// $green: #8ab840;
+$yellow: #d9d935;
+$orange: #ec881d;
+$blue: #4d6791;
+
+//new colors
+$marigold: #ffba3c;
+$dark-grey: #6D6E70;
+$green: #B7D65E;
+$grey-blue: #9fa9b8;
+$lavender: #815DA7;
+$purple-hover: #6d5595;
+
+//actions
+$williams_blue_mag: rgb(109,138,198);
+$action-purple: #9B21A5;
+$action-orange: rgb(251,173,24);
+$links: #516693; // monocrhomatic to $williams_blue_mag
+$warm_grey: #f7f5f0;
+$color_3: #dee4ee;
+
+/*********************
+BREAKPOINT VARIABLES
+*********************/
+$larger_mobile: 710px;
+$mobile: 783px;
+$tablet: 910px;
+$desktop: 985px;
+$large: 1200px;
+
+//action buttons
+%extend_actionbtn {
+  box-shadow: 0px 16px 50px 0px rgba(0, 0, 0, 0.12);
+  background: #FFFFFF;
+}
+//link underline
+%extend_link_underline {
+	 background-image: linear-gradient(to top,
+            rgba(0,0,0,0) 16%,
+            rgba(0,0,0,.3) 21%,
+            rgba(0,0,0,.3) 16%,
+            rgba(0,0,0,0) 16%
+    );
+}
+
+
+
+/*
+Here's a great tutorial on how to
+use color variables properly:
+http://sachagreif.com/sass-color-variables/
+*/
+//@extend-elements
+
+%visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px; margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+%extend_headings {
+  font-family: $sans_serif;
+  line-height: 1.2;
+  font-weight: 500;
+  margin: 0 0 .5em;
+  color: $almost_black;
+}
+%extend_headings_sans {
+  font-family: $sans_serif;
+  line-height: 1.2;
+  font-weight: 500;
+  margin: 0 0 .5em;
+  color: lighten($black, 45%);
+}
+
+//original selectors
+//button, input, optgroup, select, textarea
+%extend_2 {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+//original selectors
+//input[type="checkbox"], input[type="radio"]
+%extend_3 {
+  //Instead of the line below you could use @include box-sizing($bs)
+  box-sizing: border-box;
+  margin-right: 0.4375em;
+  padding: 0;
+}
+
+//original selectors
+//.menu-item-has-children a:after, .social-navigation a:before, .dropdown-toggle:after, .bypostauthor >article .fn:after, .comment-reply-title small a:before, .pagination .prev:before, .pagination .next:before, .pagination .nav-links:before, .pagination .nav-links:after, .search-submit:before
+%sm_dashicon {
+  display: inline-block;
+  font-family: $dashicons;
+  font-size: $base_font_size - 2px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: unset;
+  speak: none;
+  text-align: center;
+  text-decoration: inherit;
+  text-transform: none;
+  vertical-align: top;
+}
+%sm_blacktie {
+  display: inline-block;
+  font-family: $blacktie;
+  font-size: $base_font_size - 2px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: unset;
+  speak: none;
+  text-align: center;
+  text-decoration: inherit;
+  text-transform: none;
+  vertical-align: top;
+}
+//original selectors
+//body, button, input, select, textarea
+%extend_5 {
+  color: $almost_black;
+  font-size: $base_font_size;
+  line-height: 1.6;
+}
+
+//original selectors
+//h1, h2, h3, h4, h5, h6
+%extend_6 {
+  clear: both;
+  font-family: $serif;
+  font-weight: 700;
+  margin: 0;
+  text-rendering: optimizeLegibility;
+  line-height: 1.2;
+  margin-bottom: 1em;
+}
+
+//original selectors
+//blockquote cite, blockquote small
+%extend_7 {
+  color: $almost_black;
+  display: block;
+  font-size: $base_font_size - 2px;
+  line-height: 1.75;
+}
+
+//original selectors
+//mark, ins
+%extend_8 {
+  background-color: $almost_black;
+  color: $white;
+  padding: 0.125em 0.25em;
+  text-decoration: none;
+}
+
+//original selectors
+//button, button[disabled]:hover, button[disabled]:focus, input[type="button"], input[type="button"][disabled]:hover, input[type="button"][disabled]:focus, input[type="reset"], input[type="reset"][disabled]:hover, input[type="reset"][disabled]:focus, input[type="submit"], input[type="submit"][disabled]:hover, input[type="submit"][disabled]:focus
+%extend_9 {
+  background-color: $almost_black;
+  border: 0;
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  //border-radius: 2px;
+  color: $white;
+  font-family: $sans_serif;
+  font-weight: 700;
+  letter-spacing: 0.046875em;
+  line-height: 1;
+  padding: 0.84375em 0.875em 0.78125em;
+  text-transform: uppercase;
+}
+
+//original selectors
+//input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="search"], input[type="tel"], input[type="number"], textarea
+%extend_10 {
+  background-color: $almost_white;
+  border: 1px solid $color_3;
+  color: $dark_grey;
+  padding: 0.625em 0.4375em;
+  width: 100%;
+}
+
+//original selectors
+//input[type="text"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="number"]:focus, textarea:focus
+%extend_11 {
+  background-color: $white;
+  border-color: $dark_grey;
+  color: $almost_black;
+  outline: 0;
+}
+
+//original selectors
+//.pagination:before, .pagination:after
+%extend_12 {
+  background-color: $almost_black;
+  content: "";
+  height: 52px;
+  position: absolute;
+  top: 0;
+  width: 52px;
+  z-index: 0;
+}
+
+//original selectors
+//.pagination .nav-links:before, .pagination .nav-links:after
+%extend_13 {
+  color: $white;
+  font-size: $base_font_size + 14px;
+  line-height: 51px;
+  opacity: 0.3;
+  position: absolute;
+  width: 52px;
+  z-index: 1;
+}
+
+//original selectors
+//.pagination .prev, .pagination .next
+%extend_14 {
+  background-color: $almost_black;
+  color: $white;
+  display: inline-block;
+  height: 52px;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  width: 52px;
+  z-index: 2;
+}
+
+//original selectors
+//.pagination .prev:before, .pagination .next:before
+%extend_15 {
+  font-size: $base_font_size + 14px;
+  height: 53px;
+  line-height: 52px;
+  position: relative;
+  width: 53px;
+}
+
+//original selectors
+//.image-navigation, .comment-navigation
+%extend_16 {
+  border-top: 1px solid $grey;
+  border-bottom: 1px solid $grey;
+  color: $dark_grey;
+  font-family: $sans_serif;
+  font-size: $base_font_size -1px;
+  line-height: 1.6;
+  margin: 0 7.6923% 2.2em;
+  padding: 1.1em 0;
+}
+
+//original selectors
+//.image-navigation .nav-previous:not(:empty) +.nav-next:not(:empty):before, .comment-navigation .nav-previous:not(:empty) +.nav-next:not(:empty):before
+%extend_17 {
+  content: "\002f";
+  display: inline-block;
+  opacity: 0.7;
+  padding: 0 .5em;
+}
+
+//original selectors
+//.says, .screen-reader-text
+%extend_18 {
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute !important;
+  width: 1px;
+  word-wrap: normal !important;
+}
+
+//original selectors
+//.widget_calendar td, .widget_calendar th
+%extend_19 {
+  line-height: 2.5625;
+  padding: 0;
+  text-align: center;
+}
+
+//original selectors
+//.widget_rss .rss-date, .widget_rss cite
+%extend_20 {
+  color: $dark_grey;
+  display: block;
+  font-family: $sans_serif;
+  font-size: $base_font_size - 5px;
+  font-style: normal;
+  line-height: 1.615384615;
+  margin-bottom: .5em;
+}
+
+//original selectors
+//.tagcloud a:hover, .tagcloud a:focus
+%extend_21 {
+  border-color: $color_3;
+  color: $color_3;
+  outline: 0;
+}
+
+//original selectors
+//.menu-toggle:hover, .menu-toggle:focus
+%extend_22 {
+  background-color: $color_3;
+  border-color: $color_3;
+  color: $white;
+}
+
+//original selectors
+//.menu-toggle.toggled-on, .menu-toggle.toggled-on:hover, .menu-toggle.toggled-on:focus
+%extend_23 {
+  background-color: $color_3;
+  border-color: $color_3;
+  color: $white;
+}
+
+//original selectors
+//.entry-content h1, .entry-summary h1, .comment-content h1, .textwidget h1
+%extend_24 {
+  font-size: $base_font_size + 10px;
+  line-height: 1.25;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+//original selectors
+//.entry-content h2, .entry-summary h2, .comment-content h2, .textwidget h2
+%extend_25 {
+  font-size: $base_font_size + 5px;
+  line-height: 1.23;
+  margin-top: 2.4347826087em;
+  margin-bottom: 1.23em;
+}
+
+//original selectors
+//.entry-content h3, .entry-summary h3, .comment-content h3, .textwidget h3
+%extend_26 {
+  font-size: $base_font_size + 1px;
+  line-height: 1.1052631579;
+  margin-top: 2.9473684211em;
+  margin-bottom: 1.5em;
+}
+
+//original selectors
+//.entry-content h4, .entry-content h5, .entry-content h6, .entry-summary h4, .entry-summary h5, .entry-summary h6, .comment-content h4, .comment-content h5, .comment-content h6, .textwidget h4, .textwidget h5, .textwidget h6
+%extend_27 {
+  font-size: $base_font_size - 2px;
+  line-height: 1.3125;
+  margin-top: 3.5em;
+  margin-bottom: 1.75em;
+}
+
+//original selectors
+//.page-links a, .page-links >span
+%extend_28 {
+  border: 1px solid $grey;
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 2px;
+  display: inline-block;
+  font-size: $base_font_size - 5px;
+  height: 1.8461538462em;
+  line-height: 1.6923076923em;
+  margin-right: 0.3076923077em;
+  text-align: center;
+  width: 1.8461538462em;
+}
+
+//original selectors
+//.page-links a:hover, .page-links a:focus
+%extend_29 {
+  background-color: $almost_black;
+  border-color: transparent;
+  color: $white;
+}
+
+//original selectors
+//.format-aside .main-title, .format-image .main-title, .format-video .main-title, .format-quote .main-title, .format-gallery .main-title, .format-status .main-title, .format-link .main-title, .format-audio .main-title, .format-chat .main-title
+%extend_30 {
+  font-size: $base_font_size + 1px;
+  line-height: 1.5;
+  margin-bottom: 1.5em;
+}
+
+//original selectors
+//.comments-title, .comment-reply-title
+%extend_31 {
+  font-family: $serif;
+  font-weight: 700;
+  font-size: $base_font_size + 2px;
+  font-weight: normal;
+  line-height: 1.3125;
+  padding-top: 1.2em;
+}
+
+//original selectors
+//.comment-metadata, .pingback .edit-link
+%extend_32 {
+  color: $dark_grey;
+  font-family: $sans_serif;
+  font-size: $base_font_size - 5px;
+  line-height: 1.6;
+}
+
+//original selectors
+//.comment-metadata .edit-link:before, .pingback .edit-link:before
+%extend_33 {
+  content: "\002f";
+  display: inline-block;
+  opacity: 0.7;
+  padding: 0 .5em;
+}
+
+//original selectors
+//.comment-reply-link:hover, .comment-reply-link:focus
+%extend_34 {
+  border-color: currentColor;
+  color: $almost_black;
+  outline: 0;
+}
+
+//original selectors
+//.comment-notes, .comment-awaiting-moderation, .logged-in-as, .form-allowed-tags
+%extend_35 {
+  font-size: $base_font_size - 5px;
+  line-height: 1.6;
+  margin-bottom: 2.2em;
+}
+
+//original selectors
+//.entry-content .wp-smiley, .entry-summary .wp-smiley, .comment-content .wp-smiley, .textwidget .wp-smiley
+%extend_36 {
+  border: none;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+//original selectors
+//embed, iframe, object, video
+%extend_37 {
+  margin-bottom: 1.75em;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+//original selectors
+//.widecolumn label, .widecolumn .mu_register label
+%extend_38 {
+  color: $dark_grey;
+  font-family: $sans_serif;
+  font-size: $base_font_size - 5px;
+  font-weight: 400;
+  letter-spacing: .1em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+//original selectors
+//.widecolumn #key, .widecolumn .mu_register #blog_title, .widecolumn .mu_register #user_email, .widecolumn .mu_register #blogname, .widecolumn .mu_register #user_name
+%extend_39 {
+  font-size: $base_font_size - 2px;
+  width: 100%;
+}
+
+//original selectors
+//.widecolumn #submit, .widecolumn .mu_register input[type="submit"]
+%extend_40 {
+  font-size: $base_font_size - 2px;
+  margin: 0;
+  width: auto;
+}
+
+//original selectors
+//body:not(.custom-background-image):before, body:not(.custom-background-image):after
+%extend_41 {
+  background: inherit;
+  content: "";
+  display: block;
+  height: 21px;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 99;
+}
+

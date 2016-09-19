@@ -1,0 +1,56 @@
+{% extends 'loop-page.twig' %}
+
+{% block content %}
+    <h1 class="page-title">{{ post.post_title }}</h1>
+
+    <h1 class="main-title">{{ profile.full_name }}</h1>
+
+    {#
+    if( $this->has_post ){
+        edit_post_link( 'Edit', '<div class="edit-me edit-single">', '</div>', $this->profile_id );
+    }
+    #}
+    <article id="post-{{ profile.post_id }}"
+             class="cf {{ fn('get_post_class') | join(' ') }} {{ post.get_field('page_style') }}">
+        {{ profile.pic }}
+
+        <div class="profile-section profile-contact">
+
+            {{ profile.title }}
+
+            {{ profile.email }}
+
+            {{ profile.profile_website }}
+
+            {{ profile.profile_cv_upload }}
+
+            {{ profile.phone }}
+
+            {{ profile.address }}
+
+            {{ profile.at_williams_since }}
+
+            {{ profile.profile_contact }}
+
+        </div>
+
+        {{ profile.educ }}
+
+        {{ profile.profile_interests }}
+
+        {{ profile.wms_course }}
+
+        {{ profile.profile_publications }}
+
+        {{ profile.profile_grants }}
+
+        {{ profile.profile_affiliations }}
+
+        {{ profile.profile_other }}
+
+        {{ profile.committees }}
+
+        {{ profile.profile_other_service }}
+
+    </article>
+{% endblock %}

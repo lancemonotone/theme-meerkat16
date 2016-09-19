@@ -1,0 +1,11 @@
+{% set num = fn('get_comments_number', post.ID) %}
+{% set href = fn('get_comments_link', post.ID) %}
+{% if not num %}
+    {% set text = 'Leave a comment' %}
+{% elseif num == 1 %}
+    {% set text = '1 comment' %}
+{% elseif num > 1 %}
+    {% set text = num ~ ' comments' %}
+{% endif %}
+
+<span class="comment-status"><a href="{{ href }}">{{ text }}</a></span>
