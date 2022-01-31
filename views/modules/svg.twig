@@ -1,7 +1,2 @@
-{#
-<svg viewBox="{{ svg.viewbox }}">
-    {% if svg.title %}<title>{{ svg.title }}</title>{% endif %}
-    <use xlink:href="{{ svg.img_dir ~ svg.url }}#{{ svg.symbol }}"></use>
-#}
-    <image src="{{ svg.img_dir ~ svg.url }}" width="829"  height="136"/>
-{# </svg> #}
+{% set file_to_get = img_dir ~ url  %}
+{{ fn("wp_remote_get", file_to_get).body }}

@@ -55,6 +55,10 @@ class Meerkat16_Profile_Single {
 
         $this->set_ldap_record();
 
+        if( $this->has_ldap ){
+				$this->is_faculty = strpos($this->ldap_record['wmsaffiliation'], 'EMPF') !== false ? true : false;
+        }
+
         if( $this->has_ldap || $this->has_post ){
             $this->build_profile();
         }
@@ -96,7 +100,7 @@ class Meerkat16_Profile_Single {
             }
 
             foreach( $profile_fields as $field ){
-                $profile_post[ $field ] = get_field( $field, $this->profile_id );
+                $profile_post[ $field ] = get_field( $field, $this->profile_post->ID );
             }
 
             if( $this->profile_site_id != $this->current_blog->blog_id ){
@@ -107,45 +111,45 @@ class Meerkat16_Profile_Single {
         $profile_post[ 'educ' ]                      = $this->get_education( $profile_post );
         $profile_post[ 'post_id' ]                   = $this->profile_id;
         $profile_post[ 'pic' ]                       = $this->get_profile_pic();
-        $profile_post[ 'title' ]                     = $this->build_directory_item( $this->ldap_record[ 'title' ], 'profile-dir-title' );
+        $profile_post[ 'title' ]                     = $this->build_directory_item( $this->ldap_record[ 'title' ], 'profile-dir-title', 'h2' );
         $profile_post[ 'email' ]                     = $this->get_email();
         $profile_post[ 'profile_website' ]           = $this->get_profile_website( $profile_post );
         $profile_post[ 'profile_cv_upload' ]         = $this->get_profile_cv_upload( $profile_post );
-        $profile_post[ 'phone' ]                     = $this->build_directory_item( $this->ldap_record[ 'phone' ], 'profile-dir-phone' );
+        $profile_post[ 'phone' ]                     = $this->build_directory_item( $this->ldap_record[ 'phone' ], 'profile-dir-phone', 'div' );
         $profile_post[ 'address' ]                   = $this->build_directory_item( $this->ldap_record[ 'address' ], 'profile-dir-addr' );
-        $profile_post[ 'profile_at_williams_since' ] = $this->get_at_williams_since( $profile_post );
+        $profile_post[ 'profile_at_wms_since' ] = $this->get_at_williams_since( $profile_post );
         $profile_post[ 'profile_contact' ]           = $this->get_profile_contact( $profile_post );
         $profile_post[ 'profile_interests' ]         = $this->build_profile_section( 'profile_interests', 'Areas of Expertise', $profile_post );
         $profile_post[ 'profile_publications' ]      = $this->build_profile_section( 'profile_publications', 'Scholarship/Creative Work', $profile_post );
         $profile_post[ 'profile_grants' ]            = $this->build_profile_section( 'profile_grants', 'Awards, Fellowships & Grants', $profile_post );
         $profile_post[ 'profile_affiliations' ]      = $this->build_profile_section( 'profile_affiliations', 'Professional Affiliations', $profile_post );
         $profile_post[ 'profile_other' ]             = $this->build_profile_section( 'profile_other', '', $profile_post );
-        $profile_post[ 'profile_other_service' ]     = $this->build_profile_section( 'profile_other_service', '', $profile_post );
+        $profile_post[ 'profile_other_service' ]     = $this->build_profile_section( 'profile_other_service', '', $profile_post, 'p' );
 
         $this->profile_post = $profile_post;
     }
 
-    protected function build_profile_section( $meta_key, $title, $profile_post ){
+    protected function build_profile_section( $meta_key, $title, $profile_post, $tag="div" ){
         if( ! $profile_post[ $meta_key ] ){
             return false;
         }
 
-        $out = '<div class="profile_section">';
+        $out = '<' . $tag . ' class="profile-section  profile-' . $meta_key . ' profile-auto">';
         if( $title ){
             $out .= '<h3>' . $title . '</h3>';
         }
         $out .= $profile_post[ $meta_key ];
-        $out .= '</div>';
+        $out .= '</' . $tag . '>';
 
         return $out;
     }
 
-    protected function build_directory_item( $ldap_val, $class ){
+    protected function build_directory_item( $ldap_val, $class, $tag="div" ){
         if( ! $ldap_val ){
             return false;
         }
 
-        $out = "<div class=\"profile_dir_item $class\">";
+        $out = "<" . $tag . " class=\"profile_dir_item $class\">";
         if( is_array( $ldap_val ) ){
             $ldap_val = implode( ' ', $ldap_val );
         }
@@ -153,7 +157,7 @@ class Meerkat16_Profile_Single {
         $ldap_val = preg_replace( '|^(.*?@williams\.edu)$|', '<a href="mailto:' . "$1" . '">' . "$1" . '</a>', $ldap_val );
         $ldap_val = preg_replace( '|^413\/(.*)$|', '413-' . "$1", $ldap_val );
 
-        $out .= $ldap_val . '</div>';
+        $out .= $ldap_val . '</' . $tag . '>';
 
         return $out;
     }
@@ -192,14 +196,17 @@ class Meerkat16_Profile_Single {
 
             return true;
         }
-
         return false;
     }
 
     protected function set_unix_from_url(){
         // get user id from URL
         $url_parts           = explode( '/', $_SERVER[ 'REQUEST_URI' ] );
-        $this->unix_from_url = $url_parts[ 2 ];
+        if ($url_parts[2] == 'profile') {
+            $this->unix_from_url = $url_parts[3];
+        } else {
+            $this->unix_from_url = $url_parts[2];
+        }
     }
 
     protected function set_current_blog(){
@@ -242,7 +249,7 @@ class Meerkat16_Profile_Single {
     protected function filter_ldap_record(){
         include_once( WMS_EXT_LIB . "/ldap/wms-directory.class.php" );
         $wms_ldap_extras = new WilliamsPeopleDirectory();
-        $wms_ldap_extras->filter_record( $this->ldap_record );
+        $wms_ldap_extras->filter_record( $this->ldap_record ); // record is passed by reference
     }
 
     protected function do_redirect(){
@@ -274,7 +281,7 @@ class Meerkat16_Profile_Single {
             return false;
         }
 
-        $course_lib = WPMU_PLUGIN_PATH . 'wms-peoplesoft/lib/';
+        $course_lib = WPMU_MUPLUGIN_PATH . 'wms-peoplesoft/lib/';
         include_once( "$course_lib/courses.php" );
 
         $wms_course = new WilliamsCourseList();
@@ -285,10 +292,10 @@ class Meerkat16_Profile_Single {
             return false;
         }
 
-        $out = '<div class="profile-section profile-courses">';
+        $out = '<div class="profile-section profile-courses profile-auto">';
         $out .= '<h3>Courses</h3>';
         $out .= '<div class="profile-subsection">';
-        $out .= '<div class="not_offered">Note: courses in gray are not offered this academic year.</div>';
+
         $out .= "$course_html";
         $out .= '</div></div>';
 
@@ -303,7 +310,7 @@ class Meerkat16_Profile_Single {
             return false;
         }
 
-        $com_lib = WPMU_PLUGIN_PATH . 'wms-peoplesoft/lib/committees.php';
+        $com_lib = WPMU_MUPLUGIN_PATH . 'wms-peoplesoft/lib/committees.php';
         include_once( $com_lib );
 
         $committees = wms_get_committees( $this->unix_from_url );
@@ -311,8 +318,8 @@ class Meerkat16_Profile_Single {
         if( ! $committees ){
             return false;
         }
-        $out = '<div class="profile-section profile-committees">';
-        $out .= '<h3>Current Committees</h3><div class="profile-subsection">' . $committees . '</div>';
+        $out = '<div class="profile-section profile-committees profile-auto">';
+        $out .= '<h3>Current Committees</h3><div class="profile-subsection"><ul>' . $committees . '</ul></div>';
         $out .= '</div>';
 
         return $out;
@@ -326,19 +333,20 @@ class Meerkat16_Profile_Single {
         if( $this->has_ldap ){
             $photo       = $this->ldap_record[ 'photo' ];
             $photo_class = 'profile-photo' . ( $this->ldap_record[ 'photo_suppressed' ] ? ' suppressed' : '' );
-
-            $pic = '<img class="' . $photo_class . '" src="' . $photo . '">';
-        } else if( $this->has_post ){
+            $pic = '<img alt="Photo of '. $this->ldap_record['full_name'] . '" class="' . $photo_class . '" src="' . $photo . '">';
+        }
+        if( $this->has_post ){ //if profile post, check for image and replace if true
             $title    = esc_attr( get_the_title( $this->profile_post ) );
             $pic_attr = array(
                 'class' => 'profile-photo',
                 'alt'   => $title,
                 'title' => $title,
             );
-
-            $pic = get_the_post_thumbnail( $this->profile_id, 'medium', $pic_attr );
+			if (get_the_post_thumbnail( $this->profile_id, 'medium', $pic_attr )){
+            	$pic = get_the_post_thumbnail( $this->profile_id, 'medium', $pic_attr );
+            }
         }
-
+		 
         return $pic;
     }
 
@@ -348,18 +356,26 @@ class Meerkat16_Profile_Single {
      * @return bool|string
      */
     protected function get_education( $profile_post ){
-        if( ! ( $this->has_post && $this->has_ldap ) || Wms_Server::instance()->is_local() ){
-            return false;
+        if( 
+		    ! $this->has_ldap                              // not in directory
+			|| (! $this->is_faculty && ! $this->has_post ) // is staff, but no profile page 
+			|| Wms_Server::instance()->is_local()          // local can't connect to edu DB
+		){
+            return;
         }
-
-        $educ_lib = WPMU_PLUGIN_PATH . 'wms-peoplesoft/lib/education.php';
+		/*
+		 * Educaction displayed if:
+		 *   - you are faculty
+		 *   - you are staff AND you have a profile post
+		 */
+        $educ_lib = WPMU_MUPLUGIN_PATH . 'wms-peoplesoft/lib/education.php';
         include_once( $educ_lib );
 
         if( ! $educ = wms_get_education( $this->unix_from_url, $profile_post[ 'profile_supress_dates' ] ) ){
             return false;
         }
 
-        $out = '<div class="profile-section profile-education">';
+        $out = '<div class="profile-section profile-education profile-auto">';
         $out .= '<h3>Education</h3><div class="profile-subsection">' . $educ . '</div>';
         $out .= '</div>';
 
@@ -374,7 +390,7 @@ class Meerkat16_Profile_Single {
             return false;
         }
 
-        return '<span class="profile-email"><a href="mailto:' . $this->ldap_record[ 'email' ] . '"><div class="sprite icon-16 email"></div>Email</a></span>';
+        return '<div class="profile-email"><a href="mailto:' . $this->ldap_record[ 'email' ] . '">' . $this->ldap_record[ 'email' ] . '</a></div>';
     }
 
     /**
@@ -387,7 +403,7 @@ class Meerkat16_Profile_Single {
             return false;
         }
 
-        return '<span class="profile-website"><a href="' . $profile_post[ 'profile_website' ] . '"><div class="sprite icon-16 web"></div>Website</a></span>';
+        return '<div class="profile-website"><a href="' . $profile_post[ 'profile_website' ] . '" target="_blank">Website</a></div>';
     }
 
     /**
@@ -400,7 +416,7 @@ class Meerkat16_Profile_Single {
             return false;
         }
 
-        return '<span class="profile-cv"><a href="' . $profile_post[ 'profile_cv_upload' ] . '"><div class="sprite icon-16 pdf"></div>CV</a></span>';
+        return '<div class="profile-cv"><a href="' . $profile_post[ 'profile_cv_upload' ] . ' " target="_blank">CV</a></div>';
     }
 
     /**
@@ -413,7 +429,7 @@ class Meerkat16_Profile_Single {
             return false;
         }
 
-        return '<div class="profile-at-williams"><i>At Williams since ' . $profile_post[ 'profile_at_wms_since' ] . '</i></div>';
+        return '<div class="profile_at_wms_since"><i>At Williams since ' . $profile_post[ 'profile_at_wms_since' ] . '</i></div>';
     }
 
     /**

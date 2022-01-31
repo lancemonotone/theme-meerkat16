@@ -4,6 +4,8 @@
     {% if theme.do_display('thumb') %}
         {% include 'modules/post_thumbnail.twig' %}
     {% endif %}
-    {{ post.content() }}
+    {#{{ post.content }}#}
+    {# Include BB Themer Layout content if it exists #}
+    {{ bb_themer_layout_content ? bb_themer_layout_content : post.content }}
     {% do action('meerloop_after_content') %}
 </div><!-- .post-content -->

@@ -1,6 +1,6 @@
 {% set prev_link = fn('get_previous_post_link','%link', '%title', true ) %}
 {% set next_link = fn('get_next_post_link','%link', '%title', true ) %}
-{% if prev_link or next_link %}
+{% if (prev_link or next_link) %}
     <div class="tool-pagination tool-pagination-post cf">
         {% if prev_link %}
             <div class="prev">{{ prev_link }}</div>

@@ -1,5 +1,7 @@
 {% if not fn('post_password_required') %}
-    {% do fn('comments_template') %} {# This is only to populate comments for the post. Stupid WP. #}
+
+    {# This is only to populate comments for the post. #}
+    {% do fn('comments_template') %}
     <div id="comments" class="comments-area">
 
         {% if fn('have_comments') %}
@@ -32,7 +34,7 @@
         {# If comments are closed and there are comments, let's leave a little note, shall we? #}
         {% if not fn('comments_open')
             and fn('get_comments_number')
-            and fn('post_type_supports', fn('get_post_type', 'comments')) %}
+            and fn('post_type_supports', fn('get_post_type'), 'comments') %}
             <p class="no-comments">{{ __( 'Comments are closed') }}.</p>
         {% endif %}
 

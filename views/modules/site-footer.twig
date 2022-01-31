@@ -1,52 +1,74 @@
-<footer id="colophon" class="site-footer" role="contentinfo">
+<footer id="colophon" role="contentinfo">
 
-    <div class="outer-container">
+	{% if (site.blog_id != '93') or (site.blog_id == '93' and page != 'home') %}
+		{% include 'modules/section_footer.twig' %}
+	{% endif %}
 
-        <div class="inner-container">
-            <div class="widget-area">
+	{% if (site.blog_id != '170')%}
 
-                <div class="wordmark-container widget">
-                    <div class="widget-insides">
-                        <a class="wordmark" href="{{ constant('WWW_BLOG_URL') }}" title="{{ __('Go to') }} Williams College">
-                            {% set svg = {
-                            'title':'Williams College',
-                            'viewbox':'0 0 828.9 135.9',
-                            'img_dir':constant('IMG_URL'),
-                            'url':'wordmark_v2.svg',
-                            'symbol':'williams-logo',
-                            'png':'williams_wordmark_292_purple.png'
-                            } %}
-                            {% include 'svg.twig' with {'svg' : svg} %}
-                        </a>
-                    </div>
-                </div>
+		<div class="outer-container site-footer">
 
-                <div class="address-container widget">
-                    <div class="widget-insides">
-                        <address>
-                            <span>Hopkins Hall</span>
-                            <span>880 Main Street</span>
-                            <span>Williamstown, MA 01267</span>
-                            <span>USA</span>
-                            <span><a href="tel:413.597.3131">(413) 597-3131</a></span>
-                        </address>
-                    </div>
-                </div>
+			<div class="inner-container">
+				<div class="widget-area">
 
-                <div class="utility-links widget">
-                    <div class="widget-insides">
-                        <a href="#page">Back to top</a>
-                        {% if fn('is_user_logged_in') %}
-                            <a href="/wp-admin/" title="Dashboard">Dashboard</a>
-                        {% else %}
-                            <a href="/wp-admin/" title="login">Login</a>
-                        {% endif %}
-                    </div>
-                </div>
+					<div class="wordmark-container widget">
+						<div class="widget-insides">
+							<a aria-label="Go to Williams College Homepage" class="wordmark" href="{{ constant('WWW_BLOG_URL') }}" title="{{ __('Go to') }} Williams College">
+								{% include 'modules/svg.twig' with {
+                                    'title':'Williams College',
+                                    'viewbox':'0 0 828.9 135.9',
+                                    'img_dir':constant('THEME_IMG_URL'),
+                                    'url':'/wordmark_stacked.svg',
+                                    'symbol':'williams-logo',
+                                    'png':'williams_wordmark_292_purple.png'
+                                } %}
+							</a>
+						</div>
+					</div>
+					{% if options.hide_site_footer or (site.blog_id == '93') or (site.blog_id == '247') %}
+						{# home and events show the school address #}
+						<div class="widget address-container">
+							<div class="widget-insides">
+								<address>
+									<span>Hopkins Hall</span><br/>
+									<span>880 Main Street</span><br/>
+									<span>Williamstown, MA 01267</span>
+									<span>USA</span><br/>
+									<span>
+										<a href="tel:413.597.3131">
+											<span class="screen-reader-text">Williams College Phone Number
+											</span>(413) 597-3131</a>
+									</span>
+								</address>
+							</div>
+						</div>
+					{% endif %}
+					<div class="utility-links widget">
+						<div class="widget-insides">
+							<a href="#page">Back to top</a>
+							<a class="extra-link" href="//www.williams.edu/privacy/">Privacy Policy</a>
+							<a class="extra-link" href="//www.williams.edu/feedback/?source_url={{ post.link }}">Comment Form</a>
 
-            </div><!-- .widget-area -->
-        </div><!-- .inner-container -->
+							{% if fn('is_user_logged_in') %}
+								{% if fn('user_can_for_blog', site.id, 'edit_posts', user.ID) %}
+									<a class="extra-link" href="{{ site.home }}/wp-admin/" title="Dashboard">Dashboard</a>
+								{% endif %}
+								{{ fn('do_shortcode', '[logout_to_home text="Log Out"]') }}
+							{% else %}
+								{{ fn('do_shortcode', '[login text="Log In"]' ) }}
+							{% endif %}
+						</div>
+					</div>
 
-    </div><!-- .outer-container -->
+				</div>
+				<!-- .widget-area -->
+			</div>
+			<!-- .inner-container -->
 
-</footer><!-- .site-footer -->
+		</div>
+		<!-- .outer-container -->
+
+	{% endif %}
+
+</footer>
+<!-- .site-footer -->

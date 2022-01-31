@@ -1,5 +1,6 @@
 {# @uses printfriendly [false(*)|true] #}
 <footer class="entry-footer">
+
     {% if post.can_edit %}
         {% include 'modules/edit_link.twig' %}
     {% endif %}
@@ -12,15 +13,19 @@
 
     {% endif %}
 
-    {% if theme.do_display('related_tax') or fn('comments_open', post.ID) or fn('have_comments', post.ID) %}
+    {% if fn('comments_open', post.ID) or fn('have_comments', post.ID) %}
 
-        {% if theme.do_display('related_tax') or theme.do_display('comment_status') %}
+        {% if theme.do_display('comment_status') %}
 
             {% include 'modules/comment_status.twig' %}
 
-            {% include 'modules/related_tax.twig' %}
-
         {% endif %}
+
+    {% endif %}
+
+    {% if theme.do_display('related_tax') %}
+
+        {% include 'modules/related_tax.twig' %}
 
     {% endif %}
 
@@ -29,6 +34,12 @@
 {% if theme.do_display('author_bio') %}
 
     {% include 'modules/author_bio.twig' %}
+
+{% endif %}
+
+{% if template == 'single' and theme.do_display('pagination') %}
+
+    {% include 'modules/post_pagination.twig' %}
 
 {% endif %}
 

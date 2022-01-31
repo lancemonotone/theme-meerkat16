@@ -1,9 +1,22 @@
+
 {% if site_nav.count %}
     <aside id="secondary" class="sidebar widget-area" role="complementary">
-        {% include 'navigation.twig' with {'nav_obj':site_nav, 'menu_name':site.name, 'menu_class':'site-navigation', 'toggle':true} %}
+        {% include 'modules/navigation.twig' with {'nav_obj':site_nav, 'menu_name':site.name, 'menu_class':'site-navigation', 'toggle':true} %}
     </aside><!-- .sidebar .widget-area -->
+{% endif %}
+{% if network_sidebar_message %}
+    {% set sidebar_message = {
+        'id' : 'network-sidebar-message',
+        'class' : 'sidebar widget-area',
+        'widgets' : network_sidebar_message
+    } %}
+    {% include 'modules/widget-area.twig' with {'widgets' : sidebar_message} %}
+{% endif %}
+
+{% if sidebar_widgets_extra %}
+    {% include 'modules/widget-area.twig' with {'widgets' : sidebar_widgets_extra} %}
 {% endif %}
 
 {% if sidebar_widgets %}
-    {% include 'widget-area.twig' with {'widgets' : sidebar_widgets} %}
+    {% include 'modules/widget-area.twig' with {'widgets' : sidebar_widgets} %}
 {% endif %}

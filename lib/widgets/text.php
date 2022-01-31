@@ -85,6 +85,4 @@ class MeerkatTextWidget extends MeerkatWidget {
 } // end class
 
 // register widget
-add_action( 'widgets_init', create_function( '', 'register_widget( "MeerkatTextWidget" );' ) );
-
-?>
+add_action( 'widgets_init', function(){ register_widget( "MeerkatTextWidget" ); });

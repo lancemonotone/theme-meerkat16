@@ -1,47 +1,45 @@
 {% extends 'base.twig' %}
 
-{% block content %}
+    {% block content %}
 
-    <article id="post-{{ post.ID }}" class="cf {{ fn('get_post_class') | join(' ') }} {{ post.get_field('page_style') }}">
+        <article id="post-{{ post.ID }}" class="cf {{ fn('get_post_class') | join(' ') }} {{ post.get_field('page_style') }}">
 
-        {% if page != 'home' and not post.get_field( 'hide_title') %}
+            {% include 'modules/feature_header.twig' %}
 
-            <h1 class="page-title">{{ post.post_title }}</h1>
+            {% if page != 'home' and not post.get_field('hide_title') 
+                and ( not bb_themer_layout_content is defined or '<h1' not in bb_themer_layout_content ) %}
 
-        {% endif %}
+                <h1 class="page-title">{{ post.post_title }}</h1>
 
-        {% block content_widgets %}
+            {% endif %}
 
-            {{ macro.widgets(home_widgets, 'home-widgets') }}
+            {% block content_widgets %}
 
-        {% endblock %}
+                {{ macro.widgets(home_widgets, 'home-widgets') }}
 
-        {% do action( 'meerloop_before_loop' ) %}
+            {% endblock %}
 
-        {% do action( 'meerloop_content_restriction' ) %}
+            {% if not theme.campus_only_check(post.ID) and not fn('is_user_logged_in') %}
 
-        {% if not theme.campus_only_check(post.ID) %}
+                <div class="error">
+                    <p>{{ __('Williams log in required to view this page.') }}</p>
+                    <p>{{ fn('do_shortcode', '[login class="btn"]') }}</p>
+                </div>
 
-            <div class="error">{{ __('Sorry, this content is restricted.') }}</div>
+            {% else %}
 
-        {% else %}
+                {% include 'modules/sharing.twig' with {'location' : 'before'} %}
 
-            {% include 'modules/sharing.twig' with {'location' : 'before'} %}
+                {% include 'modules/post_meta.twig' %}
 
-            {% include 'modules/post_meta.twig' %}
+                {% include 'modules/content.twig'  with {'thumbnail_size' : 'post-thumbnail'} %}
 
-            {% include 'modules/content.twig'  with {'thumbnail_size' : 'post-thumbnail'}  %}
+                {% include 'modules/sharing.twig' with {'location' : 'after'} %}
 
-            {% include 'modules/sharing.twig' with {'location' : 'after'} %}
+                {% include 'modules/post_footer.twig' with {'printfriendly' : true} %}
 
-            {% include 'modules/post_footer.twig' with {'printfriendly' : true} %}
+            {% endif %} {# end campus_only_check #}
 
-        {% endif %} {# end campus_only_check #}
+        </article>
 
-        {% do action( 'meerloop_after_loop' ) %}
-
-        {% include 'modules/post_pagination.twig' %}
-
-    </article>
-
-{% endblock %}
+    {% endblock %}

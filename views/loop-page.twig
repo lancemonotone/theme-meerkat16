@@ -1,14 +1,12 @@
 {% extends 'base.twig' %}
 
+{% set title_hidden = (page == 'home' or post.get_field( 'hide_title')) %}
+
 {% block content %}
 
     <article id="post-{{ post.ID }}" class="cf {{ fn('get_post_class') | join(' ') }} {{ post.get_field('page_style') }}">
 
-        {% if page != 'home' and not post.get_field( 'hide_title') %}
-
-            <h1 class="page-title">{{ post.post_title }}</h1>
-
-        {% endif %}
+        <h1 class="page-title{{ title_hidden ? ' visuallyhidden' }}">{{ post.post_title }}</h1>
 
         {% block content_widgets %}
 
@@ -20,13 +18,9 @@
 
         {% endblock %}
 
-        {% do action( 'meerloop_before_loop' ) %}
+        {% if not theme.campus_only_check(post.ID) and not fn('is_user_logged_in') %}
 
-        {% do action( 'meerloop_content_restriction' ) %}
-
-        {% if not theme.campus_only_check(post.ID) %}
-
-            <div class="error">{{ __('Sorry, this content is restricted.') }}</div>
+            <div class="error"><p>{{ __('Williams log in required to view this page.') }}</p><p>{{ fn('do_shortcode', '[login class="btn"]') }}</p></div>
 
         {% else %}
 
@@ -35,8 +29,6 @@
             {% include 'modules/post_footer.twig' with {'printfriendly' : true} %}
 
         {% endif %} {# end campus_only_check #}
-
-        {% do action( 'meerloop_after_loop' ) %}
 
     </article>
 

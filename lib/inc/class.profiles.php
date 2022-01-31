@@ -12,33 +12,33 @@ class Meerkat16_Profiles {
     public $acf_unix_field_id = 'field_4fedad922565d';
     public $is_wms_profile = false;
 
-    protected function __construct(){
+    protected function __construct() {
         $this->add_hooks();
     }
 
-    private function add_hooks(){
+    private function add_hooks() {
         // template handling
-        add_action( 'template_redirect', array( &$this, 'profile_template' ) );
+        add_action('template_redirect', array(&$this, 'profile_template'));
         // define custom post types
-        add_action( 'init', array( &$this, 'custom_post_support' ), 1 );
+        add_action('init', array(&$this, 'custom_post_support'), 1);
         // add new input fields into post editor
-        add_action( 'admin_menu', array( &$this, 'add_profile_boxes' ), 1 );
+        add_action('admin_menu', array(&$this, 'add_profile_boxes'), 1);
         // change owner of post to faculty member
-        add_filter( 'wp_insert_post_data', array( &$this, 'chown_post' ) );
+        add_filter('wp_insert_post_data', array(&$this, 'chown_post'));
         // give better title prompt
-        add_filter( 'enter_title_here', array( &$this, 'default_title' ) );
+        add_filter('enter_title_here', array(&$this, 'default_title'));
         // remove view link from quick edit, it goes to the wrong place
-        add_filter( 'post_row_actions', array( &$this, 'quick_edit_modifications' ) );
+        add_filter('post_row_actions', array(&$this, 'quick_edit_modifications'));
         // remove bulk actions for profiles. this just gets messy
-        add_filter( 'bulk_actions-edit-profile', array( &$this, 'remove_bulk_actions' ) );
+        add_filter('bulk_actions-edit-profile', array(&$this, 'remove_bulk_actions'));
         // tweak post updated message, which provides incorrect preview url
-        add_filter( 'post_updated_messages', array( &$this, 'tweak_post_updated' ) );
+        add_filter('post_updated_messages', array(&$this, 'tweak_post_updated'));
         // fix ambiguous profile links in dashboard menus
-        add_action( 'admin_bar_menu', array( &$this, 'tweak_toolbar' ), 999 );
-        add_action( 'admin_menu', array( &$this, 'tweak_admin_menu' ) );
+        add_action('admin_bar_menu', array(&$this, 'tweak_toolbar'), 999);
+        add_action('admin_menu', array(&$this, 'tweak_admin_menu'));
     }
 
-    function custom_post_support(){
+    function custom_post_support() {
         // add support for the 'profile' custom post type
 
         $labels = array(
@@ -60,32 +60,33 @@ class Meerkat16_Profiles {
             'show_ui'           => true,
             'capability_type'   => 'post',
             'show_in_nav_menus' => false,
-            'supports'          => array( 'title', 'author', 'thumbnail' ),
-            'rewrite'           => array( 'slug' => 'profile' ),
+            'supports'          => array('title', 'author', 'thumbnail'),
+            'rewrite'           => array('slug' => 'profile'),
             'menu_icon'         => 'dashicons-id',
+            'taxonomies'        => array('topics', 'category'),
+
         );
 
-        register_post_type( 'profile', $args );
+        register_post_type('profile', $args);
     }
 
-    function add_profile_boxes(){
+    function add_profile_boxes() {
         // create our custom input boxes for the profile edit screen ("about" section)
         // add_meta_box( $id, $title, $callback, $page, $context, $priority, $callback_args );
-        add_meta_box( 'admin_profile_container', 'About Profiles', array(
+        add_meta_box('admin_profile_container', 'About Profiles', array(
             &$this,
             'make_profile_box'
-        ), 'profile', 'normal', 'high' );
+        ), 'profile', 'normal', 'high');
     }
 
-    function make_profile_box(){
+    function make_profile_box() {
         // create html for profile edit screen
         global $post;
 
         // intro title & blurb
         ?>
         <div class="metabox-blurb">
-            <a class="metabox-help-docs" href="http://wordpress.williams.edu/wms-profile/" target="_new">Profile Help
-                Documentation</a>
+            <a class="metabox-help-docs" href="http://wordpress.williams.edu/wms-profile/" target="_new">Profile Help Documentation</a>
             <h4>A basic profile page is automatically created for all faculty & staff. It includes:</h4>
             <ul>
                 <li>Name & position title</li>
@@ -98,15 +99,14 @@ class Meerkat16_Profiles {
             <h4>To customize your profile:</h4>
             <ul>
                 <li>Information supplied in the form below will be added to your profile.</li>
-                <li>If you'd like to upload a different photo of yourself, use the "Profile Image" tool in the right
-                    sidebar.
+                <li>If you'd like to upload a different photo of yourself, use the "Profile Image" tool in the right sidebar.
                 </li>
             </ul>
 
             <?php
             $view_href = $this->get_profile_view_link();
 
-            if( $view_href ){
+            if ($view_href) {
                 echo '<a class="button view_profile" target="_new" href="' . $view_href . '">View Williams Profile</a>';
             } else {
                 // if this is a create & not edit, we don't know who the profile is for, so we guess the current user
@@ -121,146 +121,155 @@ class Meerkat16_Profiles {
         <?php
     }
 
-    function chown_post( $data ){
+    function chown_post($data) {
         // change ownership of post to the user (as defined by williams user id) if they exist
-        $acf_fields = $_POST[ 'acf' ];
+        $acf_fields = $_POST['acf'];
 
-        $unix = sanitize_title( $acf_fields[ $this->acf_unix_field_id ] );
-        if( $unix ){
+        $unix = sanitize_title($acf_fields[ $this->acf_unix_field_id ]);
+        if ($unix) {
             // does unix name exist as a wpmu user?
-            if( $user = get_userdatabylogin( $unix ) ){
+            if ($user = get_userdatabylogin($unix)) {
                 // make sure user has author+ status on this blog
-                if( user_can( $user->ID, 'edit_posts' ) ){
+                if (user_can($user->ID, 'edit_posts')) {
                     // change owner of this post to the person it represents
-                    $data[ 'post_author' ] = $user->ID;
+                    $data['post_author'] = $user->ID;
                 }
             }
             // modify guid to a profile/unix url instead of profile/first-last
-            $data[ 'guid' ] = get_site_url() . '/profile/' . $unix;
+            $data['guid'] = get_site_url() . '/profile/' . $unix;
         }
 
         return $data;
     }
 
-    function default_title( $post ){
+    function default_title($post) {
         // overrides default 'Enter Title Here' for profile
-        if( $_GET[ 'post_type' ] == 'profile' ){
+        if (isset($_GET['post_type']) && $_GET['post_type'] == 'profile') {
             return 'Enter Full Name Here';
         } else {
             return 'Enter Title Here';
         }
     }
 
-    function quick_edit_modifications( $actions ){
+    function quick_edit_modifications($actions) {
         /* since we're doing wacky stuff with this post type, view goes to the wrong place
            and quick edit doesn't do anything useful, so nuke 'em */
-        if( $_GET[ 'post_type' ] == 'profile' ){
+        if ($_GET['post_type'] == 'profile') {
             // alter "view" link
-            $unix              = get_field( 'profile_unix' );
-            $profile_url       = get_site_url() . '/profile/' . $unix;
-            $actions[ 'view' ] = '<a href="' . $profile_url . '">View</a>';
+            $unix            = get_field('profile_unix');
+            $profile_url     = get_site_url() . '/profile/' . $unix;
+            $actions['view'] = '<a href="' . $profile_url . '">View</a>';
             // get rid of "quick edit" link
-            unset( $actions[ 'inline hide-if-no-js' ] );
+            unset($actions['inline hide-if-no-js']);
         }
 
         return $actions;
     }
 
-    function remove_bulk_actions(){
+    function remove_bulk_actions() {
         return false;
     }
 
-    function tweak_post_updated( $messages ){
+    function tweak_post_updated($messages) {
         // status messages on post save have wrong link.
         global $post;
-        if( get_post_type( $post ) == 'profile' ){
-            unset ( $messages[ 'post' ][ 1 ] ); // post updated
-            unset ( $messages[ 'post' ][ 6 ] ); // post published
-            unset ( $messages[ 'post' ][ 8 ] ); // post submitted
+        if (get_post_type($post) == 'profile') {
+            unset ($messages['post'][1]); // post updated
+            unset ($messages['post'][6]); // post published
+            unset ($messages['post'][8]); // post submitted
         }
 
         return $messages;
     }
 
-    function tweak_toolbar(){
+    function tweak_toolbar() {
         // modifies links under "howdy, username" referencing profiles in top toolbar
         global $wp_admin_bar, $current_user, $post;
 
         // replace 'Edit Profile' link to edit wordpress profile with link for williams profile
-        $edit_href = $this->get_profile_edit_link( $current_user->user_login, true );
+        $edit_href = $this->get_profile_edit_link($current_user->user_login, true);
 
-        if( $edit_href ){
+        if ($edit_href) {
             $wms_args = array(
                 'id'     => 'edit-profile',
                 'title'  => 'Edit Williams Profile',
                 'href'   => $edit_href,
                 'parent' => 'user-actions'
             );
-            $wp_admin_bar->add_node( $wms_args );
+            $wp_admin_bar->add_node($wms_args);
         } else {
-            $wp_admin_bar->remove_menu( 'edit-profile' );
+            $wp_admin_bar->remove_menu('edit-profile');
         }
 
         // remove other edit wordpress profile link (linked username text)
-        $wp_admin_bar->remove_menu( 'user-info' );
+        $wp_admin_bar->remove_menu('user-info');
 
         // remove incorrect view profile link in toolbar when editing profile
-        if( $post->post_type == 'profile' ){
-            $view_href = $this->get_profile_view_link();
-            $wp_admin_bar->remove_menu( 'view' );
-            $view_args = array(
-                'id'    => 'view',
-                'title' => 'View Profile',
-                'href'  => $view_href
-            );
-            $wp_admin_bar->add_node( $view_args );
+        if (isset($post) && $post->post_type == 'profile') {
+            $wp_admin_bar->remove_menu('view');
+            if (is_admin()) {
+                $view_href = $this->get_profile_view_link();
+                $view_args = array(
+                    'id'    => 'view',
+                    'title' => 'View Profile',
+                    'href'  => $view_href
+                );
+            } else {
+                $edit_href = get_edit_post_link();
+                $view_args = array(
+                    'id'    => 'view',
+                    'title' => 'Edit Profile',
+                    'href'  => $edit_href
+                );
+            }
+            $wp_admin_bar->add_node($view_args);
         }
     }
 
-    function tweak_admin_menu(){
+    function tweak_admin_menu() {
         // modifies links to profiles in left hand admin menu
         global $current_user, $menu, $submenu;
 
         // add link to individual's profile under "Faculty/Staff" menu item
-        $profile_url = $this->get_profile_edit_link( $current_user->user_login, false );
-        if( $profile_url ){
-            add_submenu_page( 'edit.php?post_type=profile', 'Your Williams Profile', 'Your Williams Profile', 'edit_posts', $profile_url );
+        $profile_url = $this->get_profile_edit_link($current_user->user_login, false);
+        if ($profile_url) {
+            add_submenu_page('edit.php?post_type=profile', 'Your Williams Profile', 'Your Williams Profile', 'edit_posts', $profile_url);
         }
 
         // remove references to "Profile" in admin users menu to avoid confusing the WordPress user settings with the Williams Profile
-        if( current_user_can( 'add_users' ) ){
+        if (current_user_can('add_users')) {
             // admins have a "Users" menu with a "Your Profile" subitem
-            $submenu[ 'users.php' ][ 15 ][ 0 ] = 'Your User Settings';
+            $submenu['users.php'][15][0] = 'Your User Settings';
         } else {
             // authors, editors, etc. have a "Profile" menu instead of a "Users" menu- change Profile label to User Settings
-            $menu[ 70 ][ 0 ]                    = 'User Settings';
-            $submenu[ 'profile.php' ][ 5 ][ 0 ] = 'Your User Settings';
+            $menu[70][0]                  = 'User Settings';
+            $submenu['profile.php'][5][0] = 'Your User Settings';
         }
     }
 
-    function get_profile_view_link(){
-        $unix = get_field( 'profile_unix' );
-        if( $unix ){
+    function get_profile_view_link() {
+        $unix = get_field('profile_unix');
+        if ($unix) {
             return get_site_url() . '/profile/' . $unix;
         }
 
         return false;
     }
 
-    function get_profile_edit_link( $user_login, $include_wp_admin ){
+    function get_profile_edit_link($user_login, $include_wp_admin) {
         // construct dashboard link to profile page, if user has one
         $profile_post = false;
 
-        $args     = array( 'post_type' => 'profile', 'meta_key' => 'profile_unix', 'meta_value' => $user_login );
-        $profiles = get_posts( $args );
-        foreach( $profiles as $profile ){
+        $args     = array('post_type' => 'profile', 'meta_key' => 'profile_unix', 'meta_value' => $user_login);
+        $profiles = get_posts($args);
+        foreach ($profiles as $profile) {
             $profile_post = $profile->ID;
         }
         wp_reset_postdata();
 
-        if( $profile_post ){
+        if ($profile_post) {
             $edit_url = '/post.php?action=edit&post=' . $profile_post;
-            if( $include_wp_admin ){
+            if ($include_wp_admin) {
                 return '/wp-admin' . $edit_url;
             } else {
                 return $edit_url;
@@ -270,18 +279,18 @@ class Meerkat16_Profiles {
         return false;
     }
 
-    function profile_template(){
+    function profile_template() {
         // intercept all requests to site.williams.edu/profile/X
         // (this will pick up requests for people who don't have a post)
-        if( substr( $_SERVER[ 'REQUEST_URI' ], 0, 9 ) == '/profile/' ){
+        //if( substr( $_SERVER[ 'REQUEST_URI' ], 0, 9 ) == '/profile/' ){
+        if( Meerkat16::instance()->is_profile_page ){
             $this->is_wms_profile = true;
-            if($profile = Meerkat16_Profile_Single::instance()->get_the_profile()){
-	          
-                Timberizer::render_template( array( 'template' => 'profile', 'profile' => $profile ) );
+            if ($profile = Meerkat16_Profile_Single::instance()->get_the_profile()) {
+                Timberizer::render_template(array('template' => 'profile', 'profile' => $profile));
             } else {
-                Timberizer::render_template( array( 'template' => '404' ) );
+                Timberizer::render_template(array('template' => '404'));
             }
-            exit( 0 );
+            exit(0);
         }
     }
 
@@ -290,8 +299,8 @@ class Meerkat16_Profiles {
      *
      * @return Meerkat16_Profile_Single The singleton instance.
      */
-    public static function instance(){
-        if( null === static::$instance ){
+    public static function instance() {
+        if (null === static::$instance) {
             static::$instance = new static();
         }
 
@@ -304,7 +313,8 @@ class Meerkat16_Profiles {
      *
      * @return void
      */
-    private function __clone(){ }
+    private function __clone() {
+    }
 
     /**
      * Private unserialize method to prevent unserializing of the singleton
@@ -312,7 +322,8 @@ class Meerkat16_Profiles {
      *
      * @return void
      */
-    private function __wakeup(){ }
+    private function __wakeup() {
+    }
 }
 
 Meerkat16_Profiles::instance();

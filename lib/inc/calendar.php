@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Deprecated in favor of Tribe Events Calender. This file does not need to migrate.
+ */
 // creates a grid calendar based off of wordpress posts in a custom post type or category
 // included in functions.php and called via [mk_calendar] shortcode (see shortcodes.php)
 

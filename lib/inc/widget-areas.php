@@ -40,11 +40,14 @@ function sidebar_setup( $widget_areas ) {
  * @return bool|string
  */
 function edit_widget_link( $sidebar ) {
-	// creates an edit link for logged in admins that appears in sidebars/widgetized areas
-	// note: edit widget link is modified in main.js to point specifically to the widget, instead of just the sidebar
-	if ( current_user_can( CAPABILITY_THRESH ) ) {
+	// Creates an edit link for logged in admins that appears in sidebars/widgetized areas.
+	// Note: edit widget anchor tag href is modified in main.js to point specifically to the widget, instead of just the sidebar.
+    // You can override this behavior when building your own edit links like this:
+    // '<span class="edit-me"><a href="edit.php"></span>'
+	if ( current_user_can( 'edit_others_pages' ) ) {
+	    $siteurl = get_home_url();
 		return <<< EOD
-            <a class="edit-me href="/wp-admin/widgets.php?sidebar=$sidebar">Edit Widget</a>
+            <a class="edit-me" href="$siteurl/wp-admin/widgets.php?sidebar=$sidebar">Edit Widget</a>
 EOD;
 	} else {
 		return false;

@@ -49,7 +49,7 @@ class MCE_Table_Buttons {
 	 * @return array Array of TinyMCE plugins
 	 */
 	public static function mce_external_plugins( $plugin_array ) {
-		$plugin_url = THEME_PLUGINS_URL . 'mce-table-buttons/';
+		$plugin_url = THEME_PLUGINS_URL . '/mce-table-buttons/';
 		global $tinymce_version;
 		$variant = ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) ? '' : '.min';
 

@@ -8,7 +8,7 @@ class Meerkat_Search {
 	private static $instance;
 
 	public function isWmsSearch() {
-		if( $_GET[ 'q' ] || $_GET[ 'dt' ] || ( preg_match( '/\/(search|a-z|people|office-directory)(\/|\/\?.*)?$/', $_SERVER[ 'REQUEST_URI' ] ) && ( substr( $_SERVER[ 'SERVER_NAME' ], 0, 3 ) == 'www' ) ) ) {
+		if( isset($_GET[ 'q' ]) || isset($_GET[ 'dt' ]) || ( preg_match( '/\/(search|a-z|people|office-directory)(\/|\/\?.*)?$/', $_SERVER[ 'REQUEST_URI' ] ) && ( substr( $_SERVER[ 'SERVER_NAME' ], 0, 3 ) == 'www' ) ) ) {
 			return true;
 		} else {
 			return false;

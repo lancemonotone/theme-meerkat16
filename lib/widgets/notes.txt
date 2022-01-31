@@ -1,4 +1,3 @@
-localist calendar
 social links
 rss feed link?
 category links

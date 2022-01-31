@@ -1,13 +1,19 @@
 {% if page == 'category' %}
-    {{ fn('single_cat_title', '', false) }}
+    <h1>{{ fn('single_cat_title', '', false) }}</h1>
     {% if fn('category_description') %}
         <div class="archive-meta">{{ fn('category_description') }}</div>
     {% endif %}
 
 {% elseif page == 'author' %}
-    Articles by {{ fn('get_the_author_meta', 'display_name', post.post_author) }}
+   <h1> Articles by {{ fn('get_the_author_meta', 'display_name', post.post_author) }}</h1>
 
 {% elseif page == 'tag' %}
-    {{ fn('single_tag_title', '', false) }}
+    <h1>{{ fn('single_tag_title', '', false) }}</h1>
+
+{% elseif page == 'archive' or page == 'wp-search' %}
+    <h1>{{ archive_title }}</h1>
+    {% if archive_description %}
+        <div class="archive-meta">{{ archive_description }}</div>
+    {% endif %}
 
 {% endif %}

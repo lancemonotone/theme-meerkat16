@@ -256,7 +256,7 @@ function build_html_row( $data ) {
 	}
 	$html .= '<td class="' . $class . '">' . $name;
 	if ( $item['Building'] ) {
-		$html .= ', <a href="/map?b=' . $item['Building']['value'] . '">' . $item['Building']['value'] . '</a>';
+		$html .= ', <a href="http://map.williams.edu/#!s/key=' . $item['Building']['value'] . '">' . $item['Building']['value'] . '</a>';
 	}
 	if ( $item['cross_reference'] ) {
 		$html .= ' <span>' . $item['cross_reference'] . '</span>';
@@ -409,36 +409,39 @@ function wms_areas_of_study() {
 		return "No data found.";
 	}
 
+   $types = array(
+		'study: major' => array('label' => 'Major', 'sort' => 'a'),
+		'study: concentration' => array('label' => 'Concentration', 'sort' => 'b'),
+		'study: other' => array('label' => 'More information', 'sort' => 'c'),
+	);
 	$list = array();
 	foreach ( $result as $area ) {
 		if ( ! $area['Tag']['value'] ) {
 			foreach ( $area['Tag'] as $tag ) {
 				$area[ 'tag: ' . $tag['value'] ] = 1;
+				if (strpos($tag['value'], 'study:') === 0) {
+					$areatype = $tag['value'];
+				}
 			}
 		} else {
 			$area[ 'tag: ' . $area['Tag']['value'] ] = 1;
+			$areatype = $area['Tag']['value'];
 		}
-		$list[ $area['Title']['value'] ] = $area;
+		$titlekey = rtrim($area['Title']['value']) . $types[$areatype]['sort'];
+		$area['aos-type'] = $types[$areatype]['label'];
+		$list[$titlekey] = $area;
 	}
 	ksort( $list );
-	//echo '<pre>' . print_r($list, true) . '</pre>';
 	$c = 0;
-	foreach ( $list as $title => $data ) {
-		$name = $title;
+	foreach ( $list as $data ) {
+		$name = $data['Title']['value'];
 		if ( $data['URL']['value'] ) {
 			$name = '<a href="' . $data['URL']['value'] . '">' . $name . '</a>';
 		}
 		$c ++;
 		$class = ( $c % 2 == 0 ) ? '' : ' class="alt-stripe"';
 		$table .= "<tr$class><td>$name</td>";
-		if ( $data['tag: study: major'] ) {
-			$type = 'Major';
-		} else if ( $data['tag: study: concentration'] ) {
-			$type = 'Concentration';
-		} else {
-			$type = 'More information';
-		}
-		//$table .= "<td>$type</td>";
+		$type = $data['aos-type'];
 		$info = '';
 		if ( $data['More URL']['value'] ) {
 			$info = '<a href="' . $data['More URL']['value'] . '">' . $type . '</a>';

@@ -8,7 +8,7 @@ require_once( '../../../../wp-load.php' );
 require_once( ABSPATH . WPINC . '/registration.php' );
 
 // load ldap library
-include ('/web/lib/ldap/ldap-auth.php');
+require_once('/web/lib/ldap/ldap-auth.php');
 
 login( $_REQUEST['username'], $_REQUEST['password'] );
 
@@ -40,7 +40,7 @@ function login( $username, $pw ) {
             if ($status == 'ok'){
 			    $status = $_REQUEST['fx'];
                 // save to cookie so they do not have to re-login
-				setcookie('quicklinks_user', $username, $cookie_expires, '/', 'williams.edu' );
+				setcookie('Quicklinks', $username, $cookie_expires, '/', 'williams.edu' );
             }
         }
         else {
@@ -60,4 +60,3 @@ function login( $username, $pw ) {
 	header("Location: $redirect");
 	die();
 }
-?>

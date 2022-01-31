@@ -4,8 +4,6 @@
 
     <h1 class="page-title">Search & Directories</h1>
 
-    {% do action( 'meerloop_before_loop' ) %}
-
     {% filter shortcodes %}
         [tabs open="{{ search.open }}"]
             [tab title="Search"]
@@ -33,7 +31,5 @@
             [tab title="Depts. & Offices"]{{ search.offices }}[/tab]
         [/tabs]
     {% endfilter %}
-
-    {% do action( 'meerloop_after_loop' ) %}
 
 {% endblock %}

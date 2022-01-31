@@ -1,7 +1,8 @@
 {% if theme.do_display('author') or theme.do_display('date') %}
     <div class="post-meta">
         {% if theme.do_display('author') %}
-            {% include 'modules/author_byline.twig' %}
+            {% set join_string = theme.do_display('date') ? ', ' %}
+            {% include 'modules/author_byline.twig' with {'join_next': join_string} %}
         {% endif %}
         {% if theme.do_display('date') %}
             {% include 'modules/date.twig' %}

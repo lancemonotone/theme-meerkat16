@@ -4,17 +4,14 @@
     <h1 class="page-title">{{ post.post_title }}</h1>
 
     <h1 class="main-title">{{ profile.full_name }}</h1>
-
-    {#
-    if( $this->has_post ){
-        edit_post_link( 'Edit', '<div class="edit-me edit-single">', '</div>', $this->profile_id );
-    }
-    #}
     <article id="post-{{ profile.post_id }}"
-             class="cf {{ fn('get_post_class') | join(' ') }} {{ post.get_field('page_style') }}">
+            class="cf {{ fn('get_post_class') | join(' ') }} {{ post.get_field('page_style') }}">
         {{ profile.pic }}
 
         <div class="profile-section profile-contact">
+            {% if profile.post_id and function('current_user_can','edit_posts') %}
+                <a href="{{ function('get_edit_post_link', profile.post_id) }}" class="edit-me edit-link">EDIT THIS PROFILE</a>
+            {% endif %}
 
             {{ profile.title }}
 
@@ -22,17 +19,17 @@
 
             {{ profile.profile_website }}
 
-            {{ profile.profile_cv_upload }}
-
             {{ profile.phone }}
+
+            {{ profile.profile_cv_upload }}
 
             {{ profile.address }}
 
-            {{ profile.at_williams_since }}
-
-            {{ profile.profile_contact }}
+            {{ profile.profile_at_wms_since }}
 
         </div>
+
+        {{ profile.profile_contact }}
 
         {{ profile.educ }}
 
@@ -46,11 +43,11 @@
 
         {{ profile.profile_affiliations }}
 
-        {{ profile.profile_other }}
-
         {{ profile.committees }}
 
         {{ profile.profile_other_service }}
+
+        {{ profile.profile_other }}
 
     </article>
 {% endblock %}
