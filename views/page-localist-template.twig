@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html {{ site.language_attributes }} class="no-js">
+<head>
+    <!-- LOCALIST COMMENT - START head_tags -->
+    <!-- LOCALIST COMMENT - PLACEHOLDER localist_styles -->
+    <!-- LOCALIST COMMENT - PLACEHOLDER localist_js -->
+    <meta charset="{{ site.charset }}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+    <link rel="pingback" href="{{ site.pingback_url }}"/>
+    {{ theme.get_favicon() }}
+    {{ fn('wp_head') }}
+    <!-- LOCALIST COMMENT - END head_tags -->
+</head>
+
+<body class="{{ body_class }} twig-{{ page }}">
+<!-- LOCALIST COMMENT - START before_grid -->
+<div id="page" class="site">
+
+    <div id="page-inner"> {# necessary for sticky-footer mixin #}
+
+        {% include 'modules/site-header.twig' %}
+
+        <div>
+            <div>
+                <!-- LOCALIST COMMENT - END before_grid -->
+                <!-- LOCALIST COMMENT - START body -->
+
+                <!-- LOCALIST COMMENT - PLACEHOLDER user_menu -->
+                <!-- LOCALIST COMMENT - PLACEHOLDER search_bar -->
+                <!-- LOCALIST COMMENT - PLACEHOLDER top_bar -->
+
+                <!-- LOCALIST COMMENT - PLACEHOLDER content -->
+                <!-- LOCALIST COMMENT - END body -->
+                <!-- LOCALIST COMMENT - START after_grid -->
+            </div>
+        </div>
+
+    </div><!-- #page-inner -->
+
+</div><!-- #page -->
+
+{% include 'modules/site-footer.twig' %}
+
+{{ wp_footer }}
+<!-- LOCALIST COMMENT - END after_grid -->
+</body>
+</html>

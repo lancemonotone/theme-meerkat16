@@ -1,0 +1,125 @@
+/**
+ These are the Meerkat 16 megamenu QL styles.
+ The editor styles are in wp-content/lib/quicklinks/assets/scss/modules/_quicklinks.scss
+ Generic link styles are in themes/meerkat16/assets/src/scss/modules/_navigation.scss
+ */
+
+.ajax-loading-container {
+  display: inline-block;
+  text-align: center;
+  pointer-events: none;
+  padding: 5px;
+}
+
+.spinner-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  width: 100%;
+}
+
+// 'Show Quick Links only' checkbox is checked
+#network-header-menu.quicklinks-only {
+  // Hide other nav sections
+  #global-navigation,
+  #featured-links-container {
+    display: none;
+  }
+  #quicklinks-container {
+    flex-basis: 100%;
+    &:before {
+      content: none;
+    }
+    #quick-actions {
+      .bts[data-tool="hide-menu"] {
+        //background: $light_purple;
+        //color: white;
+        color: $purple-hover;
+        &:before {
+          content: "\F099"; // arrow down
+        }
+      }
+    }
+    ul#menu-links {
+      //max-height: 300px;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-content: flex-start;
+      align-items: flex-start;
+      li.quick-item {
+        order: 0;
+        flex: 0 1 auto;
+        align-self: stretch;
+        margin-right: 2em;
+        a {
+          font-size: $base_font_size - 2;
+          color: $almost_black;
+          letter-spacing: 1.1px;
+        }
+        &.quick-cat {
+          a {
+            font-weight: 700;
+            color: $almost_black;
+          }
+        }
+      }
+    }
+  }
+}
+
+#quicklinks-container {
+  #quick-actions-container {
+    display: none;
+  }
+  #quick-actions {
+    display: inline-block;
+    position: relative;
+    padding: 0 0 1em;
+    .bts[data-tool="hide-menu"] {
+      &:before {
+        content: "\F098"; // arrow up
+      }
+    }
+  }
+  a.quick-tool {
+    margin-top: 5px;
+    margin-bottom: 2px;
+    display: inline-block;
+    font-weight: bold;
+  }
+}
+@media only screen and (min-width: $mobile_portrait) {
+  #quicklinks-container {
+    ul#menu-links,
+    .spinner-container {
+      max-height: 400px;
+      //overflow-y: auto;
+    }
+  }
+}
+@media only screen and (min-width: $tablet) {
+  #quicklinks-container {
+    #quick-actions .bts[data-tool="hide-menu"] {
+      &:before {
+        content: "\F09A"; // arrow left
+      }
+    }
+  }
+  #network-header-menu.quicklinks-only {
+    #quicklinks-container {
+      #quick-actions .bts[data-tool="hide-menu"] {
+        &:before {
+          content: "\F09B"; // arrow right
+        }
+      }
+      ul#menu-links {
+        li.quick-item {
+          max-width: 25%;
+        }
+      }
+    }
+  }
+}

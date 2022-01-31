@@ -1,0 +1,586 @@
+.grid {
+  @include display(flex);
+  @include justify-content(center);
+  @include align-items(stretch);
+  @include flex-direction(row);
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  clear: both;
+  text-align: center;
+  & > figure {
+    -webkit-align-self: stretch;
+    -ms-flex-item-align: stretch;
+    align-self: stretch;
+    display: block;
+    @include flex(2 2 100%);
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.1s ease-in-out;
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    float: left;
+    height: 14em;
+    /*outline: none;*/
+    overflow: hidden;
+    text-decoration: none;
+    width: 100%;
+    position: relative;
+    background-color: $dark-grey;
+    box-shadow: inset 0 0 2px 1px rgba(26, 26, 26, 0.4);
+    border-right: 1px solid $almost_white;
+    &.btn-1 { //this grid item is being created as a btn
+      height: 6em; //make them shorter on mobile
+    }
+    .detail {
+      display: none;
+    }
+  }
+}
+
+figure {
+  background-color: transparent;
+  &.gradient-bkg {
+    figcaption:before {
+      background-color: transparent;
+      background-image: -webkit-linear-gradient(top, transparent 30%, #000 90%);
+      background-image: linear-gradient(to bottom, transparent 30%, #000 90%);
+      content: "\00a0";
+      height: 100%;
+      position: absolute;
+      left: 0;
+      width: 100%;
+      -webkit-transition: all 0.3s ease;
+      transition: all 0.3s ease;
+      opacity: .8;
+    }
+    figcaption:hover:before {
+      opacity: 0;
+    }
+  }
+  figcaption {
+    background-color: rgba(81, 38, 152, 0);
+  }
+  figcaption:hover, .grid-2 figcaption:hover {
+    background-color: rgba($williams_purple, .8);
+  }
+  &.mobilepos- {
+    &left- {
+      &top {
+        background-position: 20% 20%;
+      }
+      &center {
+        background-position: 20% 50%;
+      }
+      &bottom {
+        background-position: 20% 80%;
+      }
+    }
+    &center- {
+      &top {
+        background-position: 50% 20%;
+      }
+      &center {
+        background-position: 50% 50%;
+      }
+      &bottom {
+        background-position: 50% 80%;
+      }
+    }
+    &right- {
+      &top {
+        background-position: 80% 20%;
+      }
+      &center {
+        background-position: 80% 50%;
+      }
+      &bottom {
+        background-position: 80% 80%;
+      }
+    }
+  }
+}
+
+figure.title-shadow figcaption {
+  h2 {
+    text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.7);
+    letter-spacing: 1.5px;
+  }
+  &:hover h2 {
+    text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.7);
+  }
+}
+
+/*********************
+COLOR BLOCKS
+*********************/
+
+.grid figure a.type-color {
+  width: 100%;
+  height: 100%;
+  display: block;
+  text-transform: uppercase;
+  text-align: left;
+  h2 {
+    text-shadow: none;
+    font-size: 26px;
+    line-height: 35px;
+    top: 0;
+    bottom: auto;
+  }
+  &.background-purple {
+    background-color: $williams_purple;
+    h2 {
+      color: lighten($williams_purple, 30%);
+    }
+  }
+  &.background-marigold {
+    background-color: $marigold;
+    h2 {
+      color: darken($marigold, 30%);
+    }
+  }
+  &.background-dark-grey {
+    background-color: $dark-grey;
+    h2 {
+      color: darken($dark-grey, 30%);
+    }
+  }
+  &.background-green {
+    background-color: $green;
+    h2 {
+      color: darken($green, 25%);
+    }
+  }
+  &.background-grey-blue {
+    background-color: $grey-blue;
+    h2 {
+      color: darken($grey-blue, 25%);
+    }
+  }
+  &.background-lavender {
+    background-color: $lavender;
+    h2 {
+      color: lighten($lavender, 25%);
+    }
+  }
+}
+
+/*********************
+HOVER OVERLAY STYLES
+*********************/
+
+/* Common style */
+
+.grid figure {
+  /*position: relative;
+  float: left;
+  overflow: hidden;
+  margin: 0;
+  min-width: 320px;
+  width: 50%;
+  background-color: transparent;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 24px;*/
+  img {
+    position: relative;
+    display: block;
+    max-width: 100%;
+    opacity: 0.8;
+  }
+  figcaption {
+    padding: 2em;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.25em;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  figcaption::before,
+  figcaption::after {
+    pointer-events: none;
+  }
+  figcaption,
+  figcaption > a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  /* Anchor will cover the whole item by default */
+  /* For some effects it will show as a button */
+  figcaption > a {
+    z-index: 1000;
+    text-indent: 200%;
+    white-space: nowrap;
+    font-size: 0;
+    opacity: 0;
+  }
+  h2 {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin: 0;
+    span {
+      font-weight: 800;
+    }
+  }
+  p {
+    font-family: $sans-serif;
+    margin: 0;
+    letter-spacing: 1px;
+    font-size: $base_font_size - 2;
+    line-height: 1.6;
+    text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.7);
+  }
+}
+
+.video_icon {
+  &:before {
+    font-family: $blacktie;
+    content: "\F07B";
+    @include bullseye(absolute);
+    font-size: 60px;
+    opacity: .5;
+    color: $white;
+    width: 100%;
+  }
+}
+
+.site-content .content-inner .post-content .grid figure p {
+  font-family: $sans-serif;
+  margin: 0;
+  letter-spacing: 1px;
+  font-size: $base_font_size - 2;
+  line-height: 1.6;
+}
+
+/*--------------------*/
+/***** rightbar ******/
+/*------------------*/
+
+figure {
+  &.effect-rightbar {
+    img {
+      max-width: none;
+      width: -webkit-calc(100% - -60px);
+      width: calc(100% - -60px);
+      opacity: 1;
+      -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+      transition: opacity 0.35s, transform 0.35s;
+      -webkit-transform: translate3d(-30px, 0, 0) scale(1.12);
+      transform: translate3d(-30px, 0, 0) scale(1.12);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+    &:hover img {
+      opacity: 0.5;
+      -webkit-transform: translate3d(0, 0, 0) scale(1);
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    h2 {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      padding: 1em 1.2em;
+      font-style: normal;
+    }
+    p {
+      padding: 0 10px 0 0;
+      width: 100%;
+      border-right: 1px solid #fff;
+      text-align: right;
+      opacity: 0;
+      -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+      transition: opacity 0.35s, transform 0.35s;
+      -webkit-transform: translate3d(-40px, 0, 0);
+      transform: translate3d(-40px, 0, 0);
+    }
+    &:hover {
+      -webkit-filter: grayscale(30%);
+      p {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+      }
+    }
+    &.purple-on { // purple on, no hover
+      img {
+        opacity: 0.5;
+        -webkit-transform: translate3d(0, 0, 0) scale(1);
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      p {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+      }
+      figcaption {
+        background-color: rgba($williams_purple, .8);
+      }
+
+      &:nth-of-type(3) {
+        figcaption {
+          background-color: rgba($marigold, .85);
+        }
+      }
+      &:nth-of-type(7) {
+        figcaption {
+          background-color: rgba($dark-grey, .85);
+        }
+      }
+
+    }
+
+  }
+}
+
+/*-----------------*/
+/***** center-reveal *****/
+/*-----------------*/
+figure {
+  &.effect-center-reveal {
+    h2 {
+      -webkit-transition: -webkit-transform 0.35s;
+      transition: transform 0.35s;
+      -webkit-transform: translate3d(0, 20px, 0);
+      transform: translate3d(0, 20px, 0);
+      font-style: normal;
+    }
+    p {
+      opacity: 0;
+      -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+      transition: opacity 0.35s, transform 0.35s;
+      -webkit-transform-origin: 50% 0%;
+      transform-origin: 50% 0%;
+    }
+    &:hover {
+      h2 {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+      }
+      p {
+        opacity: 1;
+      }
+
+    }
+    &.purple-on { // purple on, no hover
+      h2 {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+      }
+      p {
+        opacity: 1;
+      }
+      figcaption {
+        background-color: rgba($williams_purple, .8);
+      }
+    }
+
+  }
+}
+
+// grid 4 base changes shift this to match network header
+.grid-4, .grid-1  {
+  figure {
+    &:nth-of-type(1) {
+      margin-top: -60px;
+    }
+  }
+}
+
+// grid 10 base changes
+.grid-10 {
+  figure {
+    &.effect-rightbar {
+      &:nth-of-type(3) {
+        figcaption {
+          background-color: rgba($marigold, .85);
+        }
+      }
+      &:nth-of-type(7) {
+        figcaption {
+          background-color: rgba($dark-grey, .85);
+        }
+      }
+    }
+  }
+}
+
+/*********************
+MOBILE WIDE
+*********************/
+@media only screen and (min-width: $mobile_landscape) {
+  .grid {
+    &.grid-4, &.grid-1  { //used on www, grid-4 custom...this is one item and 3 buttons
+      figure:nth-of-type(1) {
+        margin-top: 0;
+      }
+    }
+  }
+  .grid figure a.type-color h2{
+    font-size: 31px;
+  }
+}
+
+/*********************
+TABLET & SMALL LAPTOPS
+*********************/
+@media only screen and (min-width: $tablet) {
+  .grid {
+    & > figure {
+      @include flex(1 1 33.3333333333%);
+      &.btn-1 { //this grid item is being created as a btn
+        height: 14em; //make them shorter on mobile, and now taller again
+      }
+    }
+    &.grid-4, &.grid-1  { //used on www, grid-4 custom...this is one item and 3 buttons
+      & > figure {
+
+        &:nth-of-type(1) {
+          @include flex(1 1 100%);
+          height: 721px; //needs to match network header to scale and match
+          background-position: 0 0;
+          margin-top: -121px;
+          &.effect-rightbar {
+            figcaption {
+              h2 {
+                font-size: 50px;
+                text-shadow: none;
+                bottom: 137px;
+              }
+              p {
+                font-size: 15px;
+                width: 100%;
+                position: relative;
+                top: 80%;
+                right: 28px;
+                float: right;
+                max-width: 50%;
+                display: block;
+              }
+            }
+          }
+        }
+        // end rightbar
+        &.effect-center-reveal {
+          figcaption {
+            h2 {
+              font-size: 58px;
+              text-shadow: none;
+              margin-top: 24px;
+            }
+            p {
+              font-size: 15px;
+              text-shadow: none;
+              margin-top: 14px;
+            }
+          }
+        }
+        // end center-reveal
+      }
+    }
+    &.grid-10 { //used on www, grid-10 custom
+      & > figure {
+        &.title-shadow figcaption h2 {
+          text-shadow: none;
+        }
+        &:nth-of-type(2),
+        &:nth-of-type(6) {
+          @include flex(1 1 66.6666666667%);
+        }
+        &:nth-of-type(3) {
+          figcaption {
+            background-color: rgba($marigold, .85);
+          }
+        }
+        &:nth-of-type(7) {
+          figcaption {
+            background-color: rgba($dark-grey, .85);
+          }
+        }
+      }
+    }
+  }
+
+  figure {
+    &.tabletpos- {
+      &left- {
+        &top {
+          background-position: 0% 0%;
+        }
+        &center {
+          background-position: 0% 50%;
+        }
+        &bottom {
+          background-position: 0% 100%;
+        }
+      }
+      &center- {
+        &top {
+          background-position: 50% 0%;
+        }
+        &center {
+          background-position: 50% 50%;
+        }
+        &bottom {
+          background-position: 50% 100%;
+        }
+      }
+      &right- {
+        &top {
+          background-position: 100% 0%;
+        }
+        &center {
+          background-position: 100% 50%;
+        }
+        &bottom {
+          background-position: 100% 100%;
+        }
+      }
+    }
+  }
+
+  figure.effect-rightbar p {
+    width: 73%;
+  }
+
+  .post-content .grid { // in content grid styles
+    &.grid-7 { //used on www
+      .grid-item:nth-of-type(3) {
+        @include flex(1 1 100%);
+      }
+      .grid-item:nth-of-type(1),
+      .grid-item:nth-of-type(2),
+      .grid-item:nth-of-type(4),
+      .grid-item:nth-of-type(5),
+      .grid-item:nth-of-type(6),
+      .grid-item:nth-of-type(7) {
+        @include flex(1 1 50%);
+      }
+    }
+  }
+}
+
+html.ua-explorer {
+  .grid {
+    & > figure {
+      @include flex(1 1 33%);
+    }
+    &.grid-10 { //used on www
+      & > figure {
+        &:nth-of-type(2),
+        &:nth-of-type(6) {
+          @include flex(1 1 66%);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,100 @@
+{% include 'widgets/button_menu-toggle.twig' with {
+'target' : '#quick-actions',
+'title' : __('Quick Links'),
+} %}
+
+<div class="widget widget_nav_menu">
+    <div id="quick-actions-container">
+    <span id="quick-actions" class="quick-icons">
+        <button aria-label="Replace main menu with Quick Links" class="quick-tool edit-me bts" data-tool="hide-menu" title="Replace main menu with Quick Links"></button>
+        <button aria-label="Add this page to Quick Links" class="quick-tool edit-me bts bt-plus" data-tool="add-current-page" title="Add this page to Quick Links"></button>
+        <button aria-label="Customize Quick Links" disabled id="quick-launch" class="quick-tool edit-me bts bt-edit" data-tool="quick-launch" title="Customize Quick Links"></button>
+        <i class="tooltip quick-user-icon btb bt-user" title=""></i>
+    </span>
+    </div>
+    <nav role="navigation" aria-label="Quick Links Navigation">
+        <ul class="nav-drop" id="menu-links">
+            {# generated via quicklinks.js #}
+        </ul>
+    </nav>
+</div>
+{# Spinner #}
+<script type="text/template" id="quicklinks-spinner-template">
+    <div class="spinner-container">
+        <span class="ajax-loading-container">
+            <i class="ajax-loading bts bt-spinner bt-pulse"></i>
+        </span>
+    </div>
+</script>
+
+{# Williams link #}
+<script type="text/template" id="link-static">
+    <li class="quick-item">
+        <span class="title">##title##</span>
+        <span class="quick-icons">
+            <a class="tooltip edit-me bts bt-external-link" href="##url##" title="Open link in new tab" target="_new"></a>
+            <button class="edit-me bts bt-plus quick-tool" data-tool="add-link" title="Add to Your Links"></button>
+        </span>
+    </li>
+</script>
+
+{# Edit User Link #}
+<script type="text/template" id="link-editor">
+    <li class="quick-item">
+        <span class="title">##title##</span>
+        <span class="quick-icons">
+            <a class="tooltip edit-me bts bt-external-link" href="##url##" title="Open link in new tab" target="_new"></a>
+            <button class="edit-me bts bt-edit quick-tool" data-tool="edit-link" title="Edit link"></button>
+            <button class="edit-me bts bt-times-circle quick-tool" data-tool="delete" title="Delete link"></button>
+        </span>
+        <form>
+            <div class="form-item">
+                <label for="custom-item-title">Title</label>
+                <input type="text" name="custom-item-title" class="custom-item-title" value="" title="Item title">
+            </div>
+            <div class="form-item">
+                <label for="custom-item-url">URL</label>
+                <input type="text" class="custom-item-url" name="custom-item-url" value="" title="Item URL">
+            </div>
+            <div class="buttons">
+                <input type="hidden" name="custom-form" value="link"/>
+                <button class="btn quick-tool" data-tool="save-link">Save</button>
+                <button class="btn quick-tool" data-tool="dismiss-forms">Cancel</button>
+            </div>
+        </form>
+    </li>
+</script>
+
+{# Edit Divider #}
+<script type="text/template" id="link-editor-cat">
+    <li class="quick-item quick-cat">
+        <span class="title">##title##</span>
+        <span class="quick-icons">
+            <button class="edit-me bts bt-edit quick-tool" data-tool="edit-link"></button>
+            <button class="edit-me bts bt-times-circle quick-tool" data-tool="delete"></button>
+        </span>
+        <form>
+            <div class="form-item">
+                <label for="custom-item-title">Title</label>
+                <input type="text" name="custom-item-title" class="custom-item-title" value="" title="Item title">
+            </div>
+            <div class="buttons">
+                <input type="hidden" name="custom-form" value="divider"/>
+                <button class="btn quick-tool" data-tool="save-link">Save</button>
+                <button class="btn quick-tool" data-tool="dismiss-forms">Cancel</button>
+            </div>
+        </form>
+    </li>
+</script>
+
+{# Front link #}
+<script type="text/template" id="link-front">
+    <li class="quick-item">
+        <a class="nav-link" href="##url##">##title##</a>
+    </li>
+</script>
+
+{# Front divider #}
+<script type="text/template" id="link-front-cat">
+    <li class="quick-item quick-cat">##title##</li>
+</script>

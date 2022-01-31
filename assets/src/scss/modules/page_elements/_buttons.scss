@@ -1,0 +1,84 @@
+%btn {
+  @extend %extend_actionbtn_sm;
+  display: inline-block;
+  position: relative;
+  font-family: $sans-serif;
+  text-decoration: none;
+  color: $almost_black;
+  font-size: $base_font_size;
+  line-height: 1.2;
+  font-weight: normal;
+  padding: 9px 21px;
+  border: 0;
+  cursor: pointer;
+  letter-spacing: .8px;
+  @include transition(background-color 0.14s ease-in-out);
+  @include NO_link_underline;
+  //btn contexts
+  .btn-group & {
+    margin: 0 26px 15px 0;
+  }
+  a{
+    @include NO_link_underline;
+    color: $almost_black;
+  }
+  // hovering on the btn
+  &:hover, &:focus, &.selected-btn {
+    background-color: darken($white, 22%);
+    box-shadow: none;
+    text-decoration: none;
+    /*outline: thin dotted;*/
+    a{
+      @include NO_link_underline;
+    }
+  } // end hover
+  &:focus{
+    background-color: darken($white, 8%);
+    box-shadow: none;
+    text-decoration: none;
+    /*outline: thin dotted;*/
+    a{
+      @include NO_link_underline;
+    }
+  } // end hover
+
+
+  // clicking on the button
+  &:active, &.selected-btn {
+    top: 1px; // adds a tiny hop to the click
+    background-color: darken($white, 18%);
+    box-shadow: none;
+  } // end active
+
+} // end %btn
+
+//btn colors
+.btn { //standard white
+  @extend %btn; // btn defaults
+
+
+
+} // end white standard button
+
+.btn-purple { //williams purples
+  @extend %btn; // btn defaults
+
+  &:hover, &:focus, &.selected-btn {
+    color: $almost_white;
+    background-color: $williams_purple;
+  } // end hover
+
+  &:active, &.selected-btn {
+    color: $almost_white;
+    background-color: $williams_purple;
+  } // end active
+
+
+
+} // end purples  button
+
+
+
+.btn-group{
+  margin: 10px 0 26px;
+}

@@ -1,0 +1,15 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+
+   {% include 'modules/archive_title.twig' %}
+
+    {% include 'modules/posts.twig' %}
+
+    {% if not theme.do_display('facetwp_filters') and not theme.do_display('facetwp_template') %}
+
+       {% include 'modules/archive_pagination.twig' %}
+
+    {% endif %}
+
+{% endblock %}

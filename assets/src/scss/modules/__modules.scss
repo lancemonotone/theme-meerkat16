@@ -1,0 +1,60 @@
+/*********************
+IMPORTING MODULES
+Modules are reusable blocks or elements we use throughout the project.
+We can break them up as much as we want or just keep them all in one.
+I mean, you can do whatever you want. The world is your oyster. Unless
+you hate oysters, then the world is your peanut butter & jelly sandwich.
+*********************/
+// forms (inputs & labels)
+@import "forms";
+// widgets
+@import "widgets";
+/*********************
+SPECIAL MEERKAT-CENTRIC STYLES
+*********************/
+// navigation
+// Featherlite overlay (global)
+@import "../../../../../../lib/assets/scss/modules/featherlight";
+// Quicklinks (global)
+@import "../../../../../../lib/quicklinks/assets/scss/modules/_quicklinks";
+// expandos/tabs (global)
+@import "../../../../../../lib/assets/scss/modules/expando_tabs";
+// Quicklinks (local)
+@import "quicklinks";
+@import "navigation";
+// custom ACF page layouts
+@import "custom_layouts";
+// wms_menu
+@import "wms_menu";
+// directory listings (should be further modularized)
+@import "directory";
+// site header
+@import "site_header";
+// dept bug
+@import "bug";
+// site footer
+@import "site_footer";
+// section footer
+@import "section_footer";
+// Styling not supplied by wms-peoplesoft plugin
+@import "plugin_courses";
+// New Events styling
+@import "widgets_events";
+//content grids
+@import "grids";
+// media (image galleries etc.)
+@import "media";
+// Expanding Search Box
+@import "uisearch";
+// Staff Profile
+@import "staff_profile";
+//table expandos
+@import "expando_tables";
+// meerkat cal
+@import "cal-grid";
+// page elements- styles parts of page content
+@import "page_elements/__page_elements";
+// responsive masonry layouts
+@import "quads";
+// image expandos--with background urls
+@import "img_expandos";

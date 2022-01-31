@@ -1,0 +1,204 @@
+.Rtable {
+  margin: 0 0 3em 0;
+  padding: 0;
+  li{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    list-style: none;
+    margin-bottom: 0;
+    overflow: visible;
+    border: none;
+    margin-bottom: 3px;
+    background: #fff;
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.1);
+    min-height: 63px;
+    position: relative;
+    width: 100%;
+    &.Rtable-header{
+      background-color: $grey;
+      font-weight: 600;
+      color: rgba($black, .75);
+      display: none;
+      .Rtable-cell{
+        border-right: 2px solid $white;
+        border-bottom: 1px solid $grey;
+        &.omega{
+          border-right: none;
+        }
+      }
+    }
+	 a.Accordion {
+	 	@include NO_link_underline;
+	 }
+    .Rtable-cell {
+      box-sizing: border-box;
+      padding: 0.6em 1.2em;
+      overflow: hidden;
+      -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+      flex-grow: 1;
+      width: 100%;
+      &.alpha{
+
+      }
+      > {
+        h1, h2, h3, h4, h5, h6 {
+          margin: 0;
+        }
+      }
+      &.hiddenSmall {
+        display: none;
+      }
+      &.omega{
+        padding-bottom: 35px;
+      }
+    }
+  }
+}
+
+/* Fallback
+==================================== */
+.no-flexbox .Rtable {
+  display: block;
+  li {
+    .Rtable-cell {
+      width: 100%;
+    }
+  }
+}
+
+
+/* Accordion from Tables Styling
+==================================== */
+.Accordion {
+  border: none;
+  color: $links;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 14px;
+  margin: 0;
+  padding: 0px 49px 0px 22px;
+  position: relative;
+  background: $white;
+  cursor: pointer;
+  transition: background-color .1s, color .1s;
+  letter-spacing: 1px;
+  width: 100%;
+  vertical-align: middle;
+  min-height: 63px;
+  height: 63px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+  &:after {
+    position: absolute;
+    background: $white;
+    border-left: 1px solid #D8E3EA;
+    content: "\F01B";
+    font-family: $blacktie;
+    font-size: 15px;
+    text-align: center;
+    display: block;
+    line-height: 17px;
+    color: $grey-blue;
+    font-weight: normal;
+    padding-left: 13px;
+    top: 50%;
+    right: 0;
+    height: auto;
+    -webkit-transform: translateX(-51%) translateY(-50%);
+    -ms-transform: translateX(-51%) translateY(-50%);
+    transform: translateX(-51%) translateY(-50%);
+  }
+  &:hover, &.active{
+    content: "\F01B";
+    background-color: $white !important;
+    border: none;
+    color: $links !important;
+    &:after{
+      content: "\F01B";
+      line-height: 25px;
+    }
+  }
+  &[aria-selected='true']{
+    &:after {
+      content: "\F021";
+      line-height: 25px;
+      border-bottom: none;
+    }
+  }
+}
+
+/*********************
+Mobile 710
+*********************/
+@media only screen and (min-width: $mobile_portrait) {
+
+}
+/*********************
+Mobile 783
+*********************/
+@media only screen and (min-width: $mobile_landscape) {
+  .Accordion {
+    display: none;
+  }
+  .Rtable--collapse {
+    li {
+      margin-bottom: 0;
+      background: #fff;
+      box-shadow: none;
+      min-height: 63px;
+      position: relative;
+      width: 100%;
+      &.Rtable-header{
+        display: flex;
+        align-items: center;
+      }
+      .Rtable-cell {
+        border-right: 2px solid $grey;
+        border-bottom: 2px solid $grey;
+          padding: 0.8em 1.2em;
+        &.hiddenSmall {
+          display: flex;
+          align-items: center;
+          &.alpha{
+            display: block;
+            border-left: 2px solid $grey;
+          }
+          &.omega{
+            padding-bottom: .8em;
+          }
+        }
+      }
+    }
+  }
+  /* Table column sizing */
+  .Rtable-cell{
+    .Rtable.Rtable--3cols li & {
+      width: 33.33%;
+    }
+    .Rtable.Rtable--7cols li & {
+      &:nth-of-type(1) { width: 20%; }
+      &:nth-of-type(2) {
+        width: 3%;
+      }
+      &:nth-of-type(3) { width: 17%; }
+      &:nth-of-type(4) { width: 15%; }
+      &:nth-of-type(5) {
+        width: 6%;
+      }
+      &:nth-of-type(6) { width: 7%; }
+      &:nth-of-type(7) { width: 7%; }
+    }
+  }
+}
+/*********************
+TABLET & SMALL LAPTOPS 910
+*********************/
+@media only screen and (min-width: $tablet) {
+
+}

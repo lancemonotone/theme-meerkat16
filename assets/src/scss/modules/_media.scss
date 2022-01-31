@@ -1,0 +1,358 @@
+// Enforce 4:3 ratio
+// https://www.bootply.com/gpetrioli/thU89Ryoer#
+// All rows should be equal height
+figure.ratio_4_3 {
+  .inner {
+    width: 100%;
+    background: no-repeat 50% 50%;
+    background-size: cover;
+    background-clip: content-box;
+    &::before {
+      display: block;
+      content: "";
+      padding-top: 75%;
+    }
+    img {
+      display: none;
+    }
+  }
+  // Used in Masonry Gallery
+  .custom-caption-text {
+    height: 3.1em; // 2 lines
+    overflow: hidden !important;
+  }
+}
+
+#content li > img {
+  display: block;
+  margin-top: 1em;
+}
+
+/*------------------------------------------------------------------------------
+ * IMAGE GALLERIES
+ *------------------------------------------------------------------------------*/
+#content .meerkat-image-gallery ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: stretch;
+  li.gallery-icon {
+    position: relative;
+    float: left;
+    list-style: none;
+    padding: 10px 10px 10px 0;
+    .inner {
+      display: inline-block;
+      position: relative;
+      &::after {
+        //http://tobiasahlin.com/blog/how-to-animate-box-shadow/
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 99%;
+        transition: all 0.1s ease-in-out;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+        opacity: 1;
+      }
+      .custom-caption-title {
+        position: absolute;
+        z-index: 250;
+        font-size: 16px;
+        padding: 11px 15px;
+        text-align: right;
+        text-transform: uppercase;
+        background: transparentize($black, .5);
+        color: $white;
+        bottom: 10px;
+        width: 100%;
+        text-shadow: none;
+      }
+    }
+    a:not(.edit-me) {
+      display: block;
+      color: inherit;
+      &:hover {
+        .inner::after {
+          opacity: 0;
+        }
+      }
+    }
+    .custom-caption-text {
+      margin-top: 10px;
+      font-size: 14px;
+      font-family: $sans-serif;
+      a {
+        display: inline-block;
+        color: #516693;
+        text-decoration: underline;
+      }
+    }
+  }
+  /*.gallery-caption {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: center;
+    font-style: italic;
+    background: #eef8fd;
+    color: #3F541D;
+    border-bottom: 1px solid #abb3b9;
+    padding: 6px 10px 8px;
+    min-height: 21px;
+    clear: both;
+    font-size: 13px;
+  }*/
+
+  .icon-large .gallery-caption {
+    font-size: 14px;
+    font-wieght: bold;
+  }
+}
+
+/* nextgen-like style, esp captions */
+#content .meerkat-image-gallery.ngg .gallery-icon {
+  margin-left: 10px;
+}
+
+#content .meerkat-image-gallery.ngg .gallery-icon img {
+  /*	margin: 4px 0px 4px 5px;*/
+  padding: 4px;
+  border: 1px solid #A9A9A9;
+}
+
+#content .meerkat-image-gallery.ngg .gallery-icon img:hover {
+  background-color: #a9a9a9;
+}
+
+#content .meerkat-image-gallery.ngg .gallery-caption {
+  background: white;
+  color: #373737;
+  font-style: normal;
+  border-bottom: none;
+  padding: 4px 0 0;
+}
+
+/* tooltip */
+#content .meerkat-image-gallery .tooltip,
+#sidebar .meerkat-image-gallery .tooltip {
+  font-size: 13px;
+  padding: 5px 8px;
+  margin-top: 30px;
+  margin-left: -20px;
+  color: #284463;
+  max-width: 350px;
+}
+
+/* defaults */
+#content .meerkat-image-gallery ul li.icon-thumbnail {
+  min-width: 100px;
+  margin-bottom: 10px;
+  .inner {
+    max-width: 150px;
+  }
+}
+
+#content .meerkat-image-gallery li.icon-medium {
+  //min-width: 200px;
+  margin-bottom: 20px;
+}
+
+#content .meerkat-image-gallery li.icon-large {
+  //min-width: 1024px;
+  margin-bottom: 25px;
+}
+
+/* rules for row breaks */
+#content .meerkat-image-gallery.gallery-columns-1 ul li {
+  flex-basis: 100%
+}
+
+#content .meerkat-image-gallery.gallery-columns-2 ul li {
+  flex-basis: 50%
+}
+
+#content .meerkat-image-gallery.gallery-columns-3 ul li {
+  flex-basis: 33%
+}
+
+#content .meerkat-image-gallery.gallery-columns-4 ul li {
+  flex-basis: 25%
+}
+
+#content .meerkat-image-gallery.gallery-columns-5 ul li {
+  flex-basis: 20%
+}
+
+#content .meerkat-image-gallery.gallery-columns-6 ul li {
+  flex-basis: 16.66%
+}
+
+#content .meerkat-image-gallery.gallery-columns-7 ul li {
+  flex-basis: 14.28%
+}
+
+#content .meerkat-image-gallery.gallery-columns-8 ul li {
+  flex-basis: 12.5%
+}
+
+#content .meerkat-image-gallery.gallery-columns-9 ul li {
+  flex-basis: 11.11%
+}
+
+.gallery-grid {
+  //overflow: auto;
+}
+
+.gallery-grid img {
+  //border: 1px solid transparent;
+}
+
+.gallery-grid img:hover {
+  //border: 1px solid #27ACD3;
+}
+
+iframe {
+  @extend %extend_37;
+}
+
+object {
+  @extend %extend_37;
+}
+
+.wp-audio-shortcode {
+  margin-top: 0;
+  margin-bottom: 1.75em;
+}
+
+.wp-video {
+  margin-top: 0;
+  margin-bottom: 1.75em;
+}
+
+.wp-playlist {
+  &.wp-audio-playlist {
+    margin-top: 0;
+    margin-bottom: 1.75em;
+    padding-bottom: 0;
+  }
+  .wp-playlist-tracks {
+    margin-top: 0;
+  }
+}
+
+.wp-playlist-item {
+  .wp-playlist-caption {
+    border-bottom: 0;
+    padding: 0.7142857143em 0;
+  }
+  .wp-playlist-item-length {
+    top: 0.7142857143em;
+  }
+}
+
+.wp-caption {
+  margin-bottom: 1.75em;
+  max-width: 100%;
+  img[class*="wp-image-"] {
+    display: block;
+    margin: 0;
+  }
+  .wp-caption-text, figcaption.wp-caption-text {
+    font-style: italic;
+    line-height: 1.6;
+    padding-top: 1.2em;
+    text-align: right;
+    position: relative;
+    bottom: 10px;
+    display: block;
+    background-color: transparent !important;
+    font-weight: 500;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: none;
+    font-size: 13px;
+    color: $dark_grey;
+    text-transform: none;
+    letter-spacing: .5px;
+  }
+}
+
+/*------------------------------------------------------------------------------
+ * ANIMATED SLIDESHOW
+ *------------------------------------------------------------------------------*/
+
+.cycle-container {
+  margin-bottom: 15px;
+  position: relative;
+  &.center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  &.left {
+    margin-right: 15px;
+  }
+  &.right {
+    margin-left: 15px;
+  }
+  &:hover .cycle-control {
+    //background: url("../img/icon_sprite.png") no-repeat scroll -64px -192px transparent;
+    height: 64px;
+    width: 64px;
+    left: 50%;
+    top: 50%;
+    margin-left: -32px;
+    margin-top: -32px;
+    position: absolute;
+    z-index: 9999;
+    opacity: .8;
+    &.cycle-resume {
+      background-position: 0 -192px;
+    }
+  }
+}
+
+/* pause / go buttons */
+
+/* more space for bigger slideshows */
+
+.left.slideshow-medium {
+  margin-right: 20px;
+}
+
+.right.slideshow-medium {
+  margin-left: 20px;
+}
+
+.slideshow-large {
+  margin-bottom: 25px;
+}
+
+.left.slideshow-large {
+  margin-right: 25px;
+}
+
+.right.slideshow-large {
+  margin-left: 25px;
+}
+
+// play button on video-type
+.type-video {
+  position: relative;
+  display: inline-block;
+  &:not(.no-img):after {
+    font-family: $blacktie;
+    content: "\F07B";
+    @include bullseye(absolute);
+    font-size: 60px;
+    opacity: .7;
+    color: $white;
+    width: auto;
+
+  }
+}

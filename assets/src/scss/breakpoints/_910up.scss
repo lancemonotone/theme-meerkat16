@@ -1,0 +1,243 @@
+/******************************************************************
+Site Name: Williams.edu
+Author: Williams Webteam
+Stylesheet: 910px and Up Stylesheet
+******************************************************************/
+
+.network-header {
+  .site-title .site-title-inner {
+    padding: 1em $gutter_sm;
+  }
+}
+
+.sidebar {
+  .site-title {
+    display: none;
+  }
+}
+
+.site-content {
+  .content-inner {
+    display: block;
+    #main {
+      float: left;
+      margin-right: -100%;
+      width: 64%;
+      padding-right: 28px;
+      margin-top: 25px;
+      &.hide_sidebar {
+        margin-right: 0;
+        width: 100%;
+        padding-right: 0;
+      }
+    }
+    #secondary {
+      order: 1;
+      position: relative;
+      border-top: none;
+      margin-top: 25px;
+    }
+  }
+}
+
+.site-footer {
+  .site-info {
+    float: left;
+    width: 45%;
+  }
+}
+
+.entry-header {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.post-thumbnail {
+  margin: 5px 27px 0 0;
+  float: left;
+}
+.post-meta{
+  margin-bottom: 15px;
+}
+h2.post-title{
+  margin-bottom: 5px;
+}
+
+.entry-content {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.entry-summary {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.entry-footer {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.comments-area {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.image-navigation {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.post-navigation {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.tool-pagination {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.page-header {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.page-content {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.content-bottom-widgets {
+  margin-right: 0;
+  margin-left: 0;
+  .widget-area {
+    &:nth-child(1):nth-last-child(2) {
+      float: left;
+      margin-right: 7%;
+      width: 46%;
+    }
+    &:nth-child(2):nth-last-child(1) {
+      float: left;
+      margin-right: 7%;
+      width: 46%;
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.sidebar {
+  float: left;
+  margin-left: 67%;
+  padding: 0;
+  width: 35%;
+  border: none;
+  margin-bottom: 3.5em;
+  padding-top: 0;
+  &.left{  //sidebar on left side
+    margin-left: 0;
+    margin-right: 40px;
+  }
+}
+
+.widget_calendar {
+  td {
+    line-height: 2.7;
+    padding: 0;
+  }
+  th {
+    line-height: 2.7;
+    padding: 0;
+  }
+}
+
+.textwidget {
+  h1 {
+    margin-top: 1.8em;
+  }
+  h2 {
+    margin-top: 2.2em;
+  }
+  h3 {
+    margin-top: 2.625em;
+  }
+  h4 {
+    letter-spacing: 0.15em;
+    margin-top: 3.2em;
+  }
+  h5 {
+    margin-top: 3.2em;
+  }
+  h6 {
+    margin-top: 3.2em;
+  }
+}
+
+.no-sidebar {
+  .content-main {
+    float: none;
+    margin: 0;
+    width: 100%;
+  }
+  .entry-header {
+    margin-right: 15%;
+    margin-left: 15%;
+  }
+  .entry-content {
+    margin-right: 15%;
+    margin-left: 15%;
+  }
+  .entry-summary {
+    margin-right: 15%;
+    margin-left: 15%;
+  }
+  .entry-footer {
+    margin-right: 15%;
+    margin-left: 15%;
+  }
+  .comments-area {
+    margin-right: 15%;
+    margin-left: 15%;
+  }
+  .image-navigation {
+    margin-right: 15%;
+    margin-left: 15%;
+  }
+  .post-navigation {
+    margin-right: 15%;
+    margin-left: 15%;
+  }
+  .tool-pagination {
+    margin-right: 15%;
+    margin-left: 15%;
+  }
+  .page-header {
+    margin-right: 15%;
+    margin-left: 15%;
+  }
+  .page-content {
+    margin-right: 15%;
+    margin-left: 15%;
+  }
+  .content-bottom-widgets {
+    margin-right: 15%;
+    margin-left: 15%;
+  }
+}
+
+.widecolumn {
+  padding-right: 15%;
+  padding-left: 15%;
+}
+
+.widget_rss .rssSummary:last-child {
+  margin-bottom: 1.615384615em;
+}
+
+.tagcloud a {
+  margin: 0 0.2em 0.55em 0;
+  padding: 0.55em 0.4615384615em 0.4615384615em;
+}
+

@@ -1,0 +1,23 @@
+{# NOTE: If forcing 4:3 ratio, please see styles in meerkat16 _media.scss. #}
+
+{% set image = Image(src) %}
+<figure class="{{ class }}-image {{ orientation }} {{ ratio_4_3 }}">
+    {% if url %}
+    <a href="{{ url }}" title="{{ overlay }}">
+        {% endif %}
+        <div class="inner" {% if ratio_4_3 %} style="background-image: url({{ src }});" {% endif %}>
+            <img src="{{ src }}" alt="{{ image.alt }}">
+            {% if overlay %}
+                <div class="custom-caption-title">{{ overlay }}</div>
+            {% endif %}
+        </div>
+        {% if content %}
+            <div class="custom-caption-text">{{ content }}</div>
+        {% endif %}
+        {% if id and fn('current_user_can', CAPABILITY_THRESH) %}
+            <a class="edit-me" href="/wp-admin/upload.php?item={{ id }}">Edit Image</a>
+        {% endif %}
+        {% if url %}
+    </a>
+    {% endif %}
+</figure>

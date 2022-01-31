@@ -1,0 +1,13 @@
+{# show a header image from featured image on feature stories automatically #}
+{% if fn('in_category', 'feature-stories') and (site.blog_id ==
+constant('WWW_BLOG_ID')) and (post.thumbnail.width >
+constant('MIN_FEATURED_HEADER_IMG_WIDTH')) %} {% if fn('has_post_format',
+'video') %}
+{{ fn("wp_oembed_get", post.get_field("video_url")) }}
+{% else %}
+{{ fn("the_post_thumbnail", "large") }}
+{% if fn('get_field','image_credit', post.thumbnail.id) %}
+<div style="text-align: right">
+  {{ fn("get_field", "image_credit", post.thumbnail.id) }}
+</div>
+{% endif %} {% endif %} {% endif %}

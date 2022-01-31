@@ -1,0 +1,18 @@
+<div class="meerkat_localist_widget events_v2">
+    <div class="widget-events">
+        {% for event in events %}
+            <div class="cf event {% if loop.first %}first{% endif %}">
+                {% if loop.first and event.thumb_url %}
+                    <img class="event-photo" src="{{ event.thumb_url }}" alt="top featured event thumbnail">
+                {% endif %}
+                <div class="event-text">
+                    <div class="event-date">{{ event.StartDateTime|date("D m.j") }}</div>
+                    <div class="event-title">
+                        <a id="event-{{loop.index}}" class="hometrack" href="{{ event.permalink }}" data-gtmtext="Event {{loop.index}}">{{ event.post_title }}</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <a id="hr-more-events" class="hr-more hometrack" href="http://events.williams.edu" data-gtmtext="View more events link" ><span>More Events</span></a>
+</div>

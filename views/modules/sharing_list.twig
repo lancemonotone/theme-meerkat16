@@ -1,0 +1,28 @@
+{% if theme.do_display('sharing') or fn('is_page') %}
+    <script type="text/javascript">
+//        add these params to keep addthis from breaking featherlight overlay
+        var addthis_config =
+        {
+            ui_use_css: false,
+            ui_click: true,
+            ui_508_compliant: true
+        }
+    </script>
+    {# How long is this article? Do we need links at top and bottom? #}
+    {% set len = post.post_content|length %}
+    {% if location == 'before' or ( location == 'after' and len > 3000 ) %}
+        <div class="social-share share-{{ location }}" >
+            <div class="addthis_toolbox addthis_default_style addthis_16x16_style"  addthis:url="{{ url }}"  addthis:title="{{ title }}" >
+                <a class="addthis_button_facebook"></a>
+                <a class="addthis_button_twitter"></a>
+                <a class="addthis_button_email"></a>
+                {#<a class="addthis_button_compact" ></a>#}
+                {# link out to sharethis for more addthis_button_compact not playing nicely with overlay #}
+                <a href="https://api.addthis.com/oexchange/0.8/offer?url={{ url }}&title={{ title }}" rel="nofollow" target="_blank" class="custom_addthis_btn">
+                    <span class="at-icon-wrapper" style="background-color: rgb(255, 101, 80); line-height: 16px; height: 16px; width: 16px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" title="More" alt="More" style="width: 16px; height: 16px;" class="at-icon at-icon-addthis"><g><path d="M18 14V8h-4v6H8v4h6v6h4v-6h6v-4h-6z" fill-rule="evenodd"></path></g></svg></span>
+                </a>
+
+            </div>
+        </div>
+    {% endif %}
+{% endif %}

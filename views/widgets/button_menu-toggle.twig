@@ -1,0 +1,8 @@
+<button
+    {% if btn_id %} id="{{ btn_id }}"{% endif %} 
+    {% if featherlight %} data-megaoverlay="{{ featherlight }}" data-featherlight-persist class="menu-toggle-featherlight"  
+    {% else %} class="menu-toggle" 
+    {% endif %} data-target="{{ target }}" aria-label="Toggle {{ title }}" aria-expanded="false" aria-controls="{{ target|slice(1) }}" {% if tab_index %} aria-flowto="{{target|slice(1)}}" aria-describedby="megaoverlay_desc" {% endif %}>
+    <span class="toggle-title" >{{ title }}</span>
+    <span class="btb bt-bars" ></span>
+</button>

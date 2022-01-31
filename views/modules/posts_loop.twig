@@ -1,0 +1,47 @@
+{% for post in posts %}
+
+    <article id="post-{{ post.ID }}" class="cf {{ fn('get_post_class') | join(' ') }}">
+
+        <h2 class="post-title{{ fn('is_sticky', post.ID) ? ' sticky' }}">
+            <a href="{{ post.link }}" rel="bookmark">
+                {{ post.title }}
+            </a>
+        </h2>
+
+        {% block content_widgets %}
+
+            {% if page == 'home' %}
+
+                {% include 'modules/widget-area.twig' with {'widgets' : home_widgets} %}
+
+            {% endif %}
+
+        {% endblock %}
+
+        {% if not theme.campus_only_check(post.ID) and not fn('is_user_logged_in') %}
+
+            <div class="error"><p>{{ __('Williams log in required to view this page.') }}</p><p>{{ fn('do_shortcode', '[login class="btn"]') }}</p></div>
+
+        {% else %}
+
+            {% include 'modules/sharing.twig' with {'location' : 'before'} %}
+
+            {% include 'modules/post_meta.twig' %}
+
+            {% if theme.do_display('content') or fn('is_sticky', post.ID) %}
+
+                {% include 'modules/content.twig' %}
+
+            {% else %}
+
+                {% include 'modules/excerpt.twig' %}
+
+            {% endif %}
+
+            {% include 'modules/post_footer.twig' %}
+
+        {% endif %} {# end campus_only_check #}
+
+    </article>
+
+{% endfor %}

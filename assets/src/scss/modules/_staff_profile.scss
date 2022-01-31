@@ -1,0 +1,227 @@
+/*------------------------------------------------------------------------------
+ * FACULTY/STAFF PROFILE 
+ *------------------------------------------------------------------------------*/
+.wms-profile {
+  font-family: $sans-serif;
+  p {
+    font-family: $sans-serif;
+    font-size: 18px;
+    line-height: 29px;
+  }
+  .profile-section {
+    clear: both;
+    &.profile-auto {
+      margin: 0 0 25px;
+    }
+    &.profile-profile_other {
+      a {
+        @include NO_link_underline;
+      }
+    }
+    ul, ol {
+      margin: 1.25em 0 1.25em 1.25em;
+      li {
+
+        font-size: $base-font_size + 2;
+        line-height: 29px;
+        a {
+          text-decoration: none;
+          @extend %extend_link_underline;
+          &:hover {
+            @extend %extend_link_underline_hover;
+          }
+        }
+      }
+    }
+	/*
+    &.profile-profile_other, &.profile-profile_interests {
+      font-family: $serif;
+      font-size: $base-font_size + 4;
+      line-height: 31px;
+      p {
+        font-family: $serif;
+        font-size: $base-font_size + 4;
+        line-height: 31px;
+      }
+
+      ul, ol {
+        li {
+          font-family: $serif;
+          font-size: 18px;
+          strong {
+            font-weight: 600;
+          }
+        }
+      }
+    }
+	*/
+  }
+  [class^="profile"] {
+    display: block;
+    margin-bottom: .5em;
+    position: relative;
+    &::before {
+      width: 2em;
+      display: inline-block;
+      font-family: $blacktie;
+      opacity: .5;
+      vertical-align: bottom;
+      padding: 0 4px 0 0;
+    }
+  }
+  .profile-photo {
+    float: left;
+    margin: 0 15px 15px 0;
+  }
+  .profile-contact {
+    clear: both;
+  }
+  .profile-email {
+    &:before {
+      content: "\f001";
+    }
+  }
+  .profile-dir-phone {
+    &:before {
+      content: "\f005";
+    }
+  }
+  .profile-website {
+    &:before {
+      content: "\F0B0";
+    }
+  }
+  .profile-cv {
+    &:before {
+      content: "\F02A";
+    }
+  }
+  .profile-additional-contact {
+    p {
+      font-family: $sans-serif;
+      font-size: 16px;
+      line-height: 24px;
+      a {
+        @include NO_link_underline;
+      }
+    }
+  }
+  .profile_expertise, .profile-profile_interests {
+    p {
+      font-family: $sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 25.6px;
+      margin-bottom: 0;
+    }
+  }
+
+  /* course list on faculty profile - override default course list styles */
+  .offered_N {
+    color: $orangered;
+    font-family: $sans-serif;
+    font-weight: 500;
+    letter-spacing: 1px;
+    font-size: 15px;
+  }
+  // 	.profile-courses { float:left; width:100%; margin-bottom:25px; }
+  .wms_courselist {
+    .course_unit {
+      margin-bottom: 0;
+      width: 100%;
+      padding-right: 0;
+      padding-bottom: 0;
+      h4 {
+        display: inline-block;
+        margin-right: 5px;
+        margin-bottom: 6px;
+        font-size: 16px;
+      }
+      a h4 {
+
+      }
+      .course_code {
+        font-size: 13px;
+      }
+      &.offered_N {
+        //opacity: .7;
+        .course_code, p {
+          color: $almost_black;
+        }
+      }
+      p {
+        font-family: $sans-serif;
+        font-size: 18px;
+        letter-spacing: 1px;
+        line-height: 21px;
+        margin-bottom: 0;
+      }
+
+    }
+    .course_terms {
+      font-size: 14px;
+      vertical-align: 1px;
+    }
+  }
+
+  .course_bottom {
+    display: none;
+  }
+  .thesis {
+    display: none;
+  }
+  /* hide thesis/ind study from single view */
+}
+
+/*********************
+LARGER MOBILE DEVICES
+*********************/
+@media only screen and (min-width: $mobile_portrait) {
+
+}
+
+/*********************
+MOBILE WIDE
+*********************/
+@media only screen and (min-width: $mobile_landscape) {
+
+}
+
+/*********************
+TABLET & SMALL LAPTOPS
+*********************/
+@media only screen and (min-width: $tablet) {
+  .wms-profile {
+    .profile-photo {
+      float: left;
+      margin: 0 35px 15px 0;
+    }
+    .profile-contact {
+      clear: none;
+      padding-left: 140px;
+    }
+  }
+
+}
+
+/*********************
+DESKTOP
+*********************/
+@media only screen and (min-width: $desktop) {
+
+}
+
+/*********************
+LARGE VIEWING SIZE
+*********************/
+@media only screen and (min-width: $large) {
+
+}
+
+
+
+
+
+
+
+

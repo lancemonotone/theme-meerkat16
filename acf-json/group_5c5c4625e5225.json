@@ -1,0 +1,229 @@
+{
+    "key": "group_5c5c4625e5225",
+    "title": "Classroom Data",
+    "fields": [
+        {
+            "key": "field_5c5c470072842",
+            "label": "Seats",
+            "name": "seats",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": "",
+            "max": "",
+            "step": ""
+        },
+        {
+            "key": "field_5f44f7a4e355f",
+            "label": "Covid Capacity",
+            "name": "covid",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": "",
+            "max": "",
+            "step": ""
+        },
+        {
+            "key": "field_5fd0e102d7ba2",
+            "label": "Capacity",
+            "name": "capacity",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "0-10": "0-10",
+                "11-24": "11-24",
+                "25-45": "25-45",
+                "46-80": "46-80",
+                "80+": "80+"
+            },
+            "allow_null": 0,
+            "other_choice": 0,
+            "default_value": "",
+            "layout": "vertical",
+            "return_format": "value",
+            "save_other_choice": 0
+        },
+        {
+            "key": "field_5fd0e0e8d7ba1",
+            "label": "Building",
+            "name": "building",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "62 Center": "62 Center",
+                "Bascom": "Bascom",
+                "Bernhard": "Bernhard",
+                "Biology": "Biology",
+                "Brick Modular": "Brick Modular",
+                "CDE": "CDE",
+                "Chapin": "Chapin",
+                "Chemistry": "Chemistry",
+                "Clark": "Clark",
+                "Environmental Center": "Environmental Center",
+                "Facilities": "Facilities",
+                "Faculty House\/Alumni Center": "Faculty House\/Alumni Center",
+                "Greylock": "Greylock",
+                "Griffin": "Griffin",
+                "Hollander Hall": "Hollander Hall",
+                "Hopkins Hall": "Hopkins Hall",
+                "Horn Hall": "Horn Hall",
+                "Jenness": "Jenness",
+                "Jesup": "Jesup",
+                "Lawrence": "Lawrence",
+                "Mears House": "Mears House",
+                "Oakley Center": "Oakley Center",
+                "Paresky": "Paresky",
+                "Physics": "Physics",
+                "Sawyer": "Sawyer",
+                "Schapiro Hall": "Schapiro Hall",
+                "Schow Library": "Schow Library",
+                "South Science": "South Science",
+                "Spencer": "Spencer",
+                "Stetson Court": "Stetson Court",
+                "Weston Field House": "Weston Field House"
+            },
+            "allow_custom": 0,
+            "default_value": [],
+            "layout": "vertical",
+            "toggle": 0,
+            "return_format": "value",
+            "save_custom": 0
+        },
+        {
+            "key": "field_5fd10eb5279c8",
+            "label": "Room Layout",
+            "name": "room_layout",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "Auditorium": "Auditorium",
+                "Lab": "Lab",
+                "Lecture": "Lecture",
+                "Seminar": "Seminar",
+                "Socratic": "Socratic"
+            },
+            "allow_custom": 0,
+            "default_value": [],
+            "layout": "vertical",
+            "toggle": 0,
+            "return_format": "value",
+            "save_custom": 0
+        },
+        {
+            "key": "field_5fd10ef0279c9",
+            "label": "Room Type",
+            "name": "room_type",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "Meeting Room": "Meeting Room",
+                "Registrar Classroom": "Registrar Classroom"
+            },
+            "allow_custom": 0,
+            "default_value": [],
+            "layout": "vertical",
+            "toggle": 0,
+            "return_format": "value",
+            "save_custom": 0
+        },
+        {
+            "key": "field_5d67f57f95dd2",
+            "label": "Seating Type",
+            "name": "seating_type",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "Fixed Table Seating": "Fixed Table Seating",
+                "Movable Tablet Armchairs": "Movable Tablet Armchairs",
+                "Tables and Chairs": "Tables and Chairs",
+                "Tiered, Fixed Tablet Chairs": "Tiered, Fixed Tablet Chairs"
+            },
+            "allow_custom": 0,
+            "default_value": [],
+            "layout": "vertical",
+            "toggle": 0,
+            "return_format": "value",
+            "save_custom": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "site_id",
+                "operator": "==",
+                "value": "53"
+            },
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "private" : true,
+    "modified": 1607536415
+}

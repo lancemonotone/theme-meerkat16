@@ -1,0 +1,142 @@
+@include sticky-footer(424px);
+
+.site-footer {
+  color: lighten(#6C6F6F, 55%);
+  padding: 2rem 0;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 0;
+  background-color: $williams_purple;
+  font-size: 15px;
+  min-height: 351px;
+
+  a {
+    color: lighten(#6C6F6F, 55%);
+    font-weight: 100;
+
+    /*&:hover { // removed for contrast
+      color: $transparent_grey;
+    }*/
+  }
+
+  .inner-container {
+    padding-bottom: 0;
+  }
+
+  .widget-area {
+    margin: 0;
+
+    .widget {
+      .widget-insides>* {
+        padding-top: 10px;
+      }
+
+      &.wordmark-container {
+        .wordmark {
+          @include bullseye(absolute, 0);
+          left: -7px;
+          width: 60%;
+          width: 150px;
+        }
+      }
+
+      &.address-container .widget-insides {
+        address {
+          font-size: 15px;
+          font-weight: 100;
+          letter-spacing: 1px;
+          line-height: 27.2px;
+          font-style: normal;
+
+          span {
+            white-space: nowrap;
+            margin-right: .5em;
+            font-weight: 100;
+            font-style: normal;
+
+          }
+        }
+      }
+
+      &.utility-links {
+        flex-basis: 100%;
+        border-top: 1px solid grey;
+        margin: .5em 0;
+
+        a {
+          display: block;
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}
+
+/*********************
+Tablet 910
+*********************/
+@media only screen and (min-width: $tablet) {
+  @include sticky-footer(428px);
+
+  .site-footer {
+    min-height: 0;
+
+    .widget-area {
+      .widget {
+        &.address-container {
+          top: 39px;
+        }
+
+        &.utility-links {
+          top: 41px;
+
+          a {
+            float: left;
+            width: auto;
+
+            &.extra-link::before {
+              margin: 0 15px;
+              width: 2px;
+              background-color: grey;
+              height: 10px;
+              content: " ";
+              display: inline-block;
+            }
+
+            // Login/Logout and Dashboard
+            &:nth-of-type(4),
+            &:nth-of-type(5) {
+              float: right;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+
+@media only screen and (min-width: $tablet) {
+  .site-footer {
+    padding: 0 0 130px;
+
+    .widget-area {
+      .widget {
+
+        &.wordmark-container {
+          .wordmark {
+            position: relative;
+            top: 150px;
+            width: 240px;
+            left: -11px;
+            padding-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* end MQ */

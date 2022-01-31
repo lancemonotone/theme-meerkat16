@@ -1,0 +1,219 @@
+.section-footer {
+  color: lighten(#9da2a2, 45%);
+  padding-top: 4rem;
+  padding-bottom: 5rem;
+  text-align: left;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  background-color: $dark_purple;
+  // margin-bottom: 25rem;
+  font-weight: 100;
+  font-size: 15px;
+
+  .widget-area {
+    margin-bottom: 0;
+  }
+  a:not(.nav-link) {
+    color: lighten(#9da2a2, 45%);
+    text-decoration: none;
+    &:hover {
+	  /* 
+      color: $black;
+	   */
+      text-decoration: underline;
+    }
+  }
+  .btl {
+    font-size: 19px;
+    color: #d1d2d4;
+    padding: 4px 14px 4px 4px;
+    &.bt-fax, &.bt-envelope {
+      margin-right: 4px;
+    }
+    &:first-of-type{
+      padding-left:0;
+    }
+
+  }
+  .site-title-container {
+    display: block;
+    width: 100%;
+    margin-bottom: 19px;
+  }
+  .site-title {
+    margin-right: 10px;
+    padding-bottom: 27px;
+    width: 100%;
+  }
+  .footer-menu nav {
+    padding-top: 0;
+    margin-top: 8px;
+    padding-left: 0;
+    & .social-navigation-footer ul li a.nav-link.top-level-a{
+      color: $almost_white;
+      opacity: .7;
+    }
+  }
+  .footer-menu.social-menu > div {
+    .h4 {
+      @include hide-text();
+      font-size:0;
+    }
+  }
+  .footer-menu > div {
+    &.widget {
+      margin-bottom: 0;
+       padding-top: 0;
+    }
+    h3.title {
+      @include hide-text();
+      font-size:0;
+    }
+
+	/*  lost something at this poing
+    div nav ul {
+	 */
+    .footer-text-navigation ul,
+    .social-navigation-footer ul {
+      li {
+        display: inline-block;
+        width: auto;
+        margin-bottom: 0;
+        a {
+          min-width: 33px;
+          color: $almost_white;
+          opacity: .7;
+          padding: 0;
+          width: 1em;
+          &:before {
+            font-size: 18px;
+            text-align: left;
+          }
+          &:hover {
+            opacity: 1;
+            color: $white;
+          }
+        }
+      }
+    }
+
+  }
+  .inner-container {
+    padding-bottom: 0;
+  }
+  .address-container {
+  
+    address {
+      letter-spacing: 1px;
+      span {
+        margin-right: 7px;
+        display: inline-block;
+        font-style: normal;
+      }
+      span:nth-of-type(5), span:nth-of-type(6), span:nth-of-type(7) {
+        display: block;
+        width: 100%;
+
+      }
+    }
+  }
+  #footer-blocks{
+    display: block;
+    letter-spacing: 1px;
+    max-width: 100%;
+    & > div{
+      float: left;
+      padding-right: 3.5em;
+      line-height: 1.7em;
+      width:100%;
+      &.othercontact-container{
+            line-height: 1.8em;
+      }
+    }
+  }
+}
+.footer-over{  //clear for Firefox
+    height: 1px;
+}
+/*********************
+USE SOCIAL MENU AS TEXT MENU
+*********************/
+.section-footer .footer-menu.text-menu .footer-text-navigation ul{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+    li{
+      width: 100%;
+      text-align: left;
+      a{
+        width: auto;
+        opacity: 1;
+        line-height: 24px;
+        text-align: left;
+        .h4{
+          font-size: 15px;
+          text-indent: 0;
+          color: $white;
+          font-weight: 100;
+          text-align: left;
+          line-height: 20px;
+          display: inline;
+        }
+      }
+    }
+  
+  } 
+
+
+/*********************
+TABLET & SMALL LAPTOPS
+*********************/
+@media only screen and (min-width: $tablet) {
+
+  .section-footer {
+    //  margin-bottom: 327px;
+    .btl{
+      padding: 4px 14px 4px 4px;
+    }
+  }
+  .section-footer .address-container address {
+    span:nth-of-type(5), span:nth-of-type(6), span:nth-of-type(7) {
+      display: inline;
+    }
+  }.section-footer{
+     #footer-blocks{
+      display: flex;
+	  flex-grow: 1;
+      letter-spacing: 1px;
+      & > div{
+        flex: 0 0 auto;
+        width: auto;
+        float: none; 
+        max-width: 52%;
+      }
+    }
+  }
+  .section-footer .footer-menu.text-menu .footer-text-navigation ul{
+    li{
+      width: auto;
+      padding-bottom: 5px;
+      a .h4 {
+        padding-top: 0;
+        line-height: 15px;
+        vertical-align: top;
+      }
+    }
+    li:not(:last-child) a .h4 {
+      &:after{
+        content: "";
+        height: 10px;
+        width: 1px;
+        background-color: $white;
+        display: inline-block;
+        margin: 0 15px;
+      } 
+    }
+  }
+
+}

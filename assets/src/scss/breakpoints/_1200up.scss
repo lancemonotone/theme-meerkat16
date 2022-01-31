@@ -1,0 +1,157 @@
+/******************************************************************
+Site Name: Williams.edu
+Author: Williams Webteam
+
+Stylesheet: Super Large Monitor Stylesheet
+
+You can add some advanced styles here if you like. This kicks in
+on larger screens.
+
+******************************************************************/
+
+//original selectors inhere
+//body:not(.search-results) .entry-summary blockquote cite, body:not(.search-results) .entry-summary blockquote small
+%extend_97 {
+  font-size: $base_font_size + 11px;
+  line-height: 1.8;
+}
+
+body:not(.search-results) {
+  .entry-summary {
+    font-size: $base_font_size + 5px;
+    line-height: 1.5;
+    margin-bottom: 1.8em;
+    p {
+      margin-bottom: 1.5em;
+    }
+    address {
+      margin-bottom: 1.5em;
+    }
+    hr {
+      margin-bottom: 1.5em;
+    }
+    ul {
+      margin-bottom: 1.5em;
+    }
+    ol {
+      margin-bottom: 1.5em;
+    }
+    dl {
+      margin-bottom: 1.5em;
+    }
+    dd {
+      margin-bottom: 1.5em;
+    }
+    table {
+      margin-bottom: 1.5em;
+    }
+    li {
+      > ul {
+        margin-left: 1em;
+      }
+      > ol {
+        margin-left: 1.5em;
+      }
+    }
+    blockquote {
+      font-size: $base_font_size + 5px;
+      line-height: 1.5;
+      margin: 0 0 1.5em;
+      padding-left: 1.3em;
+      > ul {
+        margin-left: 1em;
+      }
+      > ol {
+        margin-left: 1.5em;
+      }
+      cite {
+        @extend %extend_97;
+      }
+      small {
+        @extend %extend_97;
+      }
+      &:not(.alignleft):not(.alignright) {
+        margin-left: -1.5em;
+      }
+      blockquote:not(.alignleft):not(.alignright) {
+        margin-left: 0;
+      }
+    }
+    th {
+      padding: .3em;
+    }
+    td {
+      padding: .3em;
+    }
+    pre {
+      font-size: $base_font_size - 2px;
+      line-height: 1.75;
+      margin-bottom: 1.75em;
+      padding: 1.75em;
+    }
+    fieldset {
+      margin-bottom: 1.5em;
+      padding: .3em;
+    }
+    h1 {
+      margin-top: 2.1em;
+      margin-bottom: 1em;
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+    h2, .h2 {
+      margin-top: 2.5em;
+      margin-bottom: 1.25em;
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+    h3, .h3 {
+      margin-top: 3em;
+      margin-bottom: 1.5em;
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+    h4, .h4 {
+      margin-top: 3.7em;
+      margin-bottom: 1.8em;
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+    h5, .h5 {
+      margin-top: 3.7em;
+      margin-bottom: 1.8em;
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+    h6, .h6 {
+      margin-top: 3.7em;
+      margin-bottom: 1.8em;
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+    .alignleft {
+      margin: .3em 1.5em 1.5em 0;
+    }
+    .alignright {
+      margin: .3em 0 1.5em 1.5em;
+    }
+    .aligncenter {
+      margin-bottom: 1.5em;
+    }
+  }
+  .entry-header + .entry-summary {
+    margin-top: -.9em;
+  }
+}
+/*
+.network-header {
+  .wordmark {
+    left:  4px;
+   }
+}*/

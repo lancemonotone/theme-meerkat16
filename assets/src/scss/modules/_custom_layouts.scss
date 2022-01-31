@@ -1,0 +1,511 @@
+/*------------------------------------------------------------------------------
+ * TEMPLATE STYLES (selected via page acf options)
+ *------------------------------------------------------------------------------*/
+
+//colors
+
+.half {
+  float: left;
+  //Instead of the line below you could use @include box-sizing($bs)
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.half-w-space {
+  //Instead of the line below you could use @include box-sizing($bs)
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.one-third {
+  float: left;
+  //Instead of the line below you could use @include box-sizing($bs)
+  box-sizing: border-box;
+  width: 100%;
+  &.left {
+    padding-right: 3%;
+  }
+  &.right {
+    padding-left: 3%;
+  }
+}
+
+.two-thirds {
+  float: left;
+  //Instead of the line below you could use @include box-sizing($bs)
+  box-sizing: border-box;
+  width: 100%;
+}
+
+//flex align
+.flexcenter{
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row; /* works with row or column */
+  flex-direction: row;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+//flex align
+.flexcenter-desktop{
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row; /* works with row or column */
+  flex-direction: row;
+}
+
+img {
+  &.alignright {
+    margin-bottom: 15px;
+    margin-left: 15px;
+  }
+  &.alignleft {
+    margin-bottom: 15px;
+    margin-right: 15px;
+  }
+  &.alignnone {
+    margin-bottom: 10px;
+    margin-right: 15px;
+  }
+  &.aligncenter {
+    display: block;
+    margin: 0 auto 10px;
+  }
+}
+
+.wp-caption {
+  border-bottom: 1px solid $grey;
+  color: $almost_black;
+  font-style: italic;
+  text-align: center;
+  font-size: 12px;
+  p {
+    margin-bottom: 7px;
+    padding: 0 5px;
+  }
+  img {
+    border-bottom: 1px solid $grey;
+  }
+  &.alignleft {
+    float: left;
+    margin-right: 15px;
+  }
+  &.alignright {
+    float: right;
+    margin-left: 15px;
+  }
+}
+
+figcaption {
+  border-bottom: 1px solid $grey;
+  color: $almost_black;
+  font-style: italic;
+  text-align: center;
+  font-size: 12px;
+  margin: 0;
+  padding: 5px;
+}
+
+.pic-left {
+  float: left;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  margin-top: 0;
+}
+
+.pic-right {
+  float: right;
+  margin-left: 15px;
+  margin-bottom: 15px;
+  margin-top: 0;
+}
+
+figure {
+  /*float: left;*/
+  margin-bottom: 15px;
+  margin-right: 15px;
+  p {
+    margin: 0;
+  }
+  br {
+    display: none;
+  }
+}
+
+.pic-overlay {
+  background: transparentize($black, .5);
+  padding: 15px;
+  color: white;
+}
+
+.overlay {
+  display: inline-block;
+  position: relative;
+  max-width: 100%;
+  line-height: 0;
+  overflow: hidden;
+  span {
+    position: absolute;
+    font-size: 1.2em;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: transparentize($black, .5);
+    padding: 15px;
+    color: white;
+    line-height: 1.4;
+  }
+  img.alignnone {
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+}
+
+.overlay-hover {
+  display: inline-block;
+  position: relative;
+  max-width: 100%;
+  line-height: 0;
+  overflow: hidden;
+  span {
+    position: absolute;
+    font-weight: bold;
+    font-size: 1.2em;
+    right: 0;
+    left: 0;
+    background: transparentize($black, .5);
+    padding: 15px;
+    color: white;
+    line-height: 1.4;
+    bottom: -20px;
+    display: block !important;
+    opacity: 0;
+    transition: all .2s ease-out;
+  }
+  &:hover span {
+    display: inline-block;
+    bottom: 0;
+    opacity: 1;
+    transition: opacity .2s ease-out;
+  }
+}
+
+.pic-quote {
+  display: inline-block;
+  max-width: 100%;
+  position: relative;
+  margin-bottom: 15px;
+  margin-top: 10px;
+  overflow: hidden;
+  span {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    width: 45%;
+    text-align: right;
+    display: block;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 1.3;
+    color: white;
+    text-shadow: $text-shadow;
+    &.bot {
+      top: auto;
+      bottom: 20px;
+    }
+    &.left {
+      right: auto;
+      left: 30px;
+      text-align: left;
+    }
+    &.wide {
+      width: 90%;
+      margin: 0 auto;
+      text-align: center;
+    }
+  }
+}
+
+@media only screen and(min-width: 750px) and(max-width: 1000px) {
+  .pic-quote span {
+    font-size: 30px;
+  }
+}
+
+@media only screen and(max-width: 750px) {
+  .pic-quote span {
+    display: none;
+  }
+}
+
+article {
+  &.intro {
+    font-size: 14px;
+    line-height: 1.8em;
+    blockquote {
+      line-height: 1.8em;
+      margin-top: 25px;
+      margin-bottom: 25px;
+    }
+    .alignleft {
+      margin-right: 30px;
+      margin-bottom: 25px;
+    }
+    .alignright {
+      margin-left: 30px;
+      margin-bottom: 25px;
+    }
+    .cycle-container {
+      &.left {
+        margin-right: 30px;
+      }
+      &.right {
+        margin-left: 30px;
+      }
+    }
+  }
+  &.splash {
+    .custom-caption-container {
+      width: auto;
+    }
+    .splash-container {
+      position: relative;
+    }
+    .custom-caption {
+      background: transparentize($black, .5);
+      padding: 15px 0 25px;
+      color: $white;
+      position: absolute;
+      z-index: 200;
+      top: 35%;
+      width: 100%;
+      border: 1px solid $grey;
+      border-right: none;
+      border-left: none;
+      a {
+        text-decoration: none;
+      }
+    }
+    .custom-caption-title {
+      width: 80%;
+      margin: 0 auto;
+      color: $white;
+      font-size: 28px;
+      margin-bottom: 5px;
+      line-height: 1.4;
+    }
+    .custom-caption-text {
+      width: 80%;
+      margin: 0 auto;
+      color: $white;
+      font-size: 17px;
+      line-height: 1.6;
+    }
+  }
+  /*&.quad {
+    .custom-caption-container {
+      float: left;
+      width: 100%;
+      margin-bottom: 25px;
+      margin-right: 5%;
+      &:nth-of-type(even) {
+        margin-right: 0;
+      }
+      & > a {
+        display: block;
+      }
+      img {
+        width: 100%;
+      }
+      &:hover .pic-overlay {
+        background: transparentize($black, .6);
+      }
+    }
+    .custom-caption {
+      margin-top: -56px;
+      a {
+        @include NO_link_underline;
+      }
+      .custom-caption-text a {
+        text-decoration: underline;
+      }
+    }
+    .custom-caption-title {
+      position: relative;
+      z-index: 250;
+      font-size: 16px;
+      line-height: 50px;
+      height: 50px;
+      padding: 0 15px;
+      overflow: hidden;
+      text-align: right;
+      text-transform: uppercase;
+    }
+    .custom-caption-text {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    .half {
+      width: 47%;
+      margin-right: 3%;
+      margin-bottom: 20px;
+      &.right {
+        width: 47%;
+        margin-right: 1%;
+        margin-left: 2%;
+      }
+      p {
+        margin: 0;
+      }
+      iframe {
+        margin-bottom: 3px;
+      }
+    }
+  }*/
+}
+
+.facetwp-filter-toggle {
+  position: relative;
+  padding-top: 1em;
+  button.menu-toggle{
+    position: absolute;
+    left: 0;
+    top: -1em;
+  }
+  .widgetized_area {
+    padding-top: 0 !important;
+  }
+  &.toggled-off {
+    .two-thirds {
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and(max-width: 768px) {
+  .entry-content.quad {
+    .half {
+      &.left {
+        float: none;
+        width: 100%;
+      }
+      &.right {
+        float: none;
+        width: 100%;
+      }
+    }
+    .vid-caption {
+      min-height: revert;
+    }
+  }
+}
+
+@media only screen and(max-width: 500px) {
+  .entry-content.quad .custom-caption-container {
+    width: 100%;
+    margin-right: 5%;
+  }
+}
+
+#content {
+  &.wide {
+    .post {
+      padding-left: 0;
+    }
+    .page {
+      padding-left: 0;
+    }
+  }
+  &.ninecol {
+    &.wide {
+      width: 72.5%;
+    }
+    &.mediawall {
+      width: 72.5%;
+    }
+  }
+  &.mediawall {
+    .post {
+      padding-left: 0;
+    }
+    .page {
+      padding-left: 0;
+    }
+  }
+  &.twelvecol.mediawall {
+    padding-top: 1px;
+  }
+}
+
+/*********************
+LARGER MOBILE DEVICES
+*********************/
+@media only screen and (min-width: $mobile_portrait) {
+
+}
+/*********************
+MOBILE WIDE
+*********************/
+@media only screen and (min-width: $mobile_landscape) {
+  article {
+    &.quad {
+      .custom-caption-container {
+        width: 47%;
+      }
+    }
+  }
+  //flex align
+  .flexcenter-desktop{
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row; /* works with row or column */
+    flex-direction: row;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+  }
+}
+
+/*********************
+TABLET & SMALL LAPTOPS
+*********************/
+@media only screen and (min-width: $tablet) {
+  .one-third {
+    width: 33%;
+  }
+  .half {
+    width: 50%;
+  }
+  .half-w-space {
+    width: 50%;
+    float: left;
+    &.left {
+      padding-right: 3%;
+    }
+    &.right {
+      padding-left: 3%;
+    }
+  }
+  .two-thirds {
+    width: 66%;
+    &.right {
+      float: right;
+      width: 63%
+    }
+  }
+}
+/*********************
+DESKTOP
+*********************/
+@media only screen and (min-width: $desktop) {
+
+}
+/*********************
+LARGE VIEWING SIZE
+*********************/
+@media only screen and (min-width: $desktop) {
+
+}

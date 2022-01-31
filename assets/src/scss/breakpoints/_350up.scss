@@ -1,0 +1,11 @@
+.inner-container {
+  padding: 0 $inner_container_padding 1.75em;
+}
+
+.content-main {
+  .widget {
+    flex: 1;
+    margin: 0 0 2em 0;
+    min-width: 45%;
+  }
+}

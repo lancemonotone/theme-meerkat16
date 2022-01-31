@@ -1,0 +1,112 @@
+/* no-js standalone **/
+figure.quad-image {
+  position: relative;
+  float: left;
+  //width: calc(50% - 1em);
+  display: none;
+  .inner {
+    position: relative;
+    &::after {
+      //http://tobiasahlin.com/blog/how-to-animate-box-shadow/
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 99%;
+      transition: all 0.1s ease-in-out;
+      box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+      opacity: 1;
+    }
+    .custom-caption-title {
+      position: absolute;
+      z-index: 250;
+      font-size: 16px;
+      padding: 11px 15px;
+      text-align: right;
+      text-transform: uppercase;
+      background: transparentize($black, .5);
+      color: $white;
+      bottom: 10px;
+      width: 100%;
+      text-shadow: none;
+    }
+  }
+  a:not(.edit-me) {
+    display: block;
+    color: inherit;
+    width: 100%; /*for IE*/
+    &:hover {
+      .inner::after {
+        opacity: 0;
+      }
+    }
+  }
+  .custom-caption-text {
+    margin-top: 10px;
+    font-size: 14px;
+    a {
+      display: inline-block;
+      color: #516693;
+      text-decoration: underline;
+    }
+  }
+}
+html.no-js figure.quad-image {
+  display: inherit;
+}
+.quad-container {
+  animation: fade 2s;
+  //@include column-gap(1em);
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: stretch;
+  figure.quad-image {
+    display: inherit;
+    //width: auto;
+    float: none;
+    margin-right: 0;
+    flex: 0 0 100%;
+    max-width: 375px;
+    .custom-caption-text {
+      min-height: initial;
+      overflow: initial;
+    }
+  }
+  a.edit-me {
+    top: 1em;
+    bottom: inherit;
+    background-image: none !important;
+  }
+}
+
+@media(min-width: $mobile_portrait) {
+  .quad-container {
+    figure.quad-image {
+      //width: calc(50% - 1em);
+      flex-basis: 48%;
+    }
+  }
+}
+
+@-webkit-keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

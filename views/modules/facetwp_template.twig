@@ -1,0 +1,13 @@
+{% filter shortcodes %}
+    [facetwp template="{{ theme.do_display('facetwp_template', true) }}"]
+    [facetwp pager="true"]
+{% endfilter %}
+<script>
+    (function($) {
+        $(document).on('facetwp-loaded', function() {
+            if (typeof($('.facetwp-template .expandos').expando) == 'function') {
+                $('.expandos').expando();
+            }
+        });
+    })(jQuery);
+</script>

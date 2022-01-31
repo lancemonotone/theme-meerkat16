@@ -1,0 +1,9 @@
+{% set timber_img = Image(img_src) %}
+background-image: url({{ timber_img.src(1200)| tojpg }});
+background-image: -webkit-image-set (
+url({{ timber_img.src(1200) | tojpg | retina(1) }}) 1x,
+url({{ timber_img.src(1200) | tojpg | retina(2) }}) 2x);
+{# Future proof it. #}
+background-image: image-set (
+url({{ timber_img.src(1200) | tojpg | retina(1) }}) 1x,
+url({{ timber_img.src(1200) | tojpg | retina(2) }}) 2x);

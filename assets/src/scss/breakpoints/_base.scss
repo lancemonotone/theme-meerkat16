@@ -1,0 +1,1958 @@
+/******************************************************************
+/******************************************************************
+Site Name: Williams.edu
+Author: Williams Webteam
+
+Stylesheet: Base Mobile Stylesheet
+
+Be light and don't over style since everything here will be
+loaded by mobile devices. You want to keep it as minimal as
+possible. This is called at the top of the main stylsheet
+and will be used across all viewports.
+
+******************************************************************/
+
+/**
+ * Does the same thing as <meta name="viewport" content="width=device-width">,
+ * but in the future W3C standard way. -ms- prefix is required for IE10+ to
+ * render responsive styling in Windows 8 "snapped" views; IE10+ does not honor
+ * the meta tag. See https://core.trac.wordpress.org/ticket/25888.
+ */
+@-ms-viewport {
+  width: device-width;
+}
+
+@viewport {
+  width: device-width;
+}
+
+// temp remove outline until styling is fixed
+*:focus,
+*:hover,
+*:active {
+  //outline: none !important;
+}
+
+html {
+  font-family: $sans_serif;
+  font-weight: 500;
+  text-rendering: optimizeLegibility;
+  //Instead of the line below you could use @include box-sizing($bs)
+  box-sizing: border-box;
+  background-color: darken($dark_grey, 10%);
+
+  input[type="button"] {
+    cursor: pointer;
+    -webkit-appearance: none; //remove mobile webkit btn default styles
+    -moz-appearance: none; //remove mobile mozilla btn default styles
+  }
+
+  input[disabled] {
+    cursor: default;
+    opacity: .5;
+  }
+
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"],
+  input[type="file"]::-webkit-file-upload-button,
+  button {
+    border-radius: 0; //reset border radius on chrome
+  }
+}
+
+body {
+  background: transparent;
+  @extend %extend_5;
+  margin: 0;
+}
+
+figure {
+  margin: 0;
+}
+
+footer {
+  margin: 0 auto;
+  background-color: $williams_purple;
+
+  &.entry-footer,
+  &.comment-meta {
+    margin: 0 auto;
+    background-color: #ffffff;
+  }
+}
+
+main {
+  display: block;
+  margin-top: 25px;
+}
+
+video {
+  @extend %extend_37;
+}
+
+.visuallyhidden {}
+
+a {
+  color: $links;
+
+  /*text-decoration: none;*/
+  &:hover,
+  &:active {
+    color: $almost_black;
+    /*outline: thin dotted;*/
+  }
+
+  &:focus {
+    color: $almost_black;
+    /*outline: thin dotted;*/
+  }
+
+  &::-moz-selection {
+    color: $almost_black;
+    background: #b1d7fe;
+    text-shadow: none !important;
+  }
+
+  &::selection {
+    color: $almost_black;
+    background: #b1d7fe;
+    text-shadow: none !important;
+  }
+
+  &.post-thumbnail {
+    &:hover {
+      opacity: 0.85;
+    }
+
+    &:focus {
+      opacity: 0.85;
+    }
+
+  }
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+//remove link underlines for those linking to images
+a[href*=".jpg"],
+a[href*=".jpeg"],
+a[href*=".jpe"],
+a[href*=".png"],
+a[href*=".gif"],
+a[href*=attachment] {
+  @include NO_link_underline;
+}
+
+//remove links underline when wrapping an image
+a.image-link {
+  @include NO_link_underline;
+
+  &.hometrack {
+    display: inline-block;
+  }
+}
+
+strong,
+b {
+  font-weight: 600;
+}
+
+hr {
+  background-color: $grey;
+  border: 0;
+  height: 1px;
+  margin: 0 0 1.75em;
+  clear: both;
+}
+
+/*code {
+  font-family: $monospace;
+  background-color: $grey;
+  padding: 0.125em 0.25em;
+}*/
+
+kbd {
+  font-family: $monospace;
+}
+
+pre,
+code {
+  font-family: $monospace;
+  border: 1px solid $grey;
+  font-size: $base_font_size - 2px;
+  line-height: 1.3125;
+  margin: 0 0 1.75em;
+  max-width: 100%;
+  overflow: auto;
+  padding: 1.75em;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+code {
+  display: block;
+}
+
+samp {
+  font-family: $monospace;
+}
+
+.tool-pagination {
+  border-top: 1px solid $grey;
+  font-family: $sans_serif;
+  font-size: $base_font_size - 1px;
+  min-height: 56px;
+  position: relative;
+  text-align: center;
+  line-height: 1.2;
+  padding-top: 1em;
+
+  div {
+    margin-bottom: 1em;
+    position: relative;
+
+    a {
+      padding: 0 1em;
+      position: absolute;
+      height: 100%;
+
+      &:before {
+        position: absolute;
+        height: 100%;
+      }
+    }
+
+    &.prev {
+      float: left;
+      text-align: left;
+
+      a {
+        left: 0;
+
+        &:before {
+          content: '\00AB';
+          left: 0;
+        }
+      }
+    }
+
+    &.next {
+      float: right;
+      text-align: right;
+
+      a {
+        right: 0;
+
+        &:before {
+          content: '\00BB';
+          right: 0;
+        }
+      }
+    }
+  }
+
+  &.tool-pagination-post div {
+    width: 49%;
+  }
+
+  .current {
+    display: inline-block;
+    font-weight: 700;
+
+    .screen-reader-text {
+      position: static !important;
+    }
+  }
+
+  ul.pages {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+
+    li {
+      display: inline-block;
+    }
+  }
+
+  .page-numbers {
+    display: inline-block;
+    letter-spacing: 0.01em;
+    line-height: 1;
+    padding: .4em .7em;
+  }
+}
+
+.search-submit {
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 0 2px 2px 0;
+  bottom: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 42px;
+
+  &:before {
+    @extend %sm_blacktie;
+    content: "\f400";
+    font-size: $base_font_size + 6px;
+    left: 2px;
+    line-height: 42px;
+    position: relative;
+    width: 40px;
+  }
+}
+
+h1 {
+  @extend %extend_headings_sans;
+  color: $almost_black;
+  font-size: $base_font_size + 11px;
+  margin-bottom: 20px;
+  font-weight: 500;
+  letter-spacing: 1.6px;
+
+  &.page-title {
+    color: $almost_black;
+    font-size: $base_font_size + 11px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    letter-spacing: 1.6px;
+  }
+}
+
+h2,
+.h2 {
+  @extend %extend_headings;
+  font-weight: 500;
+  font-size: $base_font_size + 6px;
+  color: $almost_black;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+h3,
+.h3 {
+  @extend %extend_headings;
+  font-size: $base_font_size + 4px;
+  margin-bottom: .55em;
+}
+
+h4,
+.h4 {
+  @extend %extend_headings;
+  font-size: $base_font_size + 2px;
+  font-weight: 600;
+}
+
+h5,
+.h5 {
+  @extend %extend_headings;
+  font-size: $base_font_size + 1px;
+  font-weight: 500;
+}
+
+h6,
+.h6 {
+  @extend %extend_headings;
+  font-size: $base_font_size + 1px;
+  font-weight: 500;
+  font-family: $serif;
+}
+
+p {
+  margin: 0 0 1.25em;
+
+  a:not([data-featherlight-gallery]):not(.btn):not(.button) {
+    @extend %extend_link_underline_serif;
+
+    &:hover {
+      @extend %extend_link_underline_hover;
+    }
+  }
+
+  a[rel~="attachment"] {
+    @include NO_link_underline;
+  }
+
+  >embed {
+    margin-bottom: 0;
+  }
+
+  >iframe {
+    margin-bottom: 0;
+  }
+
+  >object {
+    margin-bottom: 0;
+  }
+
+  >video {
+    margin-bottom: 0;
+  }
+}
+
+iframe.WmsInclude {
+  //safari fix for responsive iframes
+  width: 1px;
+  min-width: 100%;
+  *width: 100%;
+  border: none;
+}
+
+.widget-area p a {
+  @include NO_link_underline;
+}
+
+dfn {
+  font-style: italic;
+}
+
+cite {
+  font-style: italic;
+}
+
+em {
+  font-style: italic;
+}
+
+i {
+  font-style: italic;
+}
+
+blockquote {
+  border: 0 solid $color_3;
+  border-left-width: 4px;
+  color: $almost_black;
+  font-size: $base_font_size + 1px;
+  font-style: italic;
+  line-height: 1.5;
+  margin: 0 0 1.5em;
+  padding: 0 0 0 1.263157895em;
+  quotes: none;
+
+  &:before {
+    content: "";
+    content: "";
+    display: table;
+  }
+
+  &:after {
+    content: "";
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  p {
+    margin-bottom: 1.5em;
+  }
+
+  cite {
+    @extend %extend_7;
+    font-style: normal;
+
+    &:before {
+      content: "\2014\00a0";
+    }
+  }
+
+  small {
+    @extend %extend_7;
+
+    &:before {
+      content: "\2014\00a0";
+    }
+  }
+
+  em {
+    font-style: normal;
+  }
+
+  i {
+    font-style: normal;
+  }
+
+  strong {
+    font-weight: 400;
+  }
+
+  b {
+    font-weight: 400;
+  }
+
+  &.alignleft {
+    margin: 0.3157894737em 1.5em 1.5em 0;
+  }
+
+  &.alignright {
+    margin: 0.3157894737em 0 1.5em 1.5em;
+  }
+
+  &.aligncenter {
+    margin-bottom: 1.5em;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+q {
+  quotes: none;
+
+  &:before {
+    content: "";
+  }
+
+  &:after {
+    content: "";
+  }
+}
+
+tt {
+  font-family: $monospace;
+}
+
+var {
+  font-family: $monospace;
+}
+
+abbr {
+  border-bottom: 1px dotted $grey;
+  cursor: help;
+}
+
+acronym {
+  border-bottom: 1px dotted $grey;
+  cursor: help;
+}
+
+mark {
+  @extend %extend_8;
+}
+
+ins {
+  @extend %extend_8;
+}
+
+big {
+  font-size: 125%;
+}
+
+ul {
+  margin: 1.75em 0 1.75em 1.25em;
+  padding: 0 0 0 8px;
+  list-style: disc;
+}
+
+ol {
+  margin: 0 0 1.75em 1.25em;
+  padding: 0;
+  list-style: decimal;
+  margin-left: 1.5em;
+}
+
+li {
+  line-height: 1.3;
+  margin-bottom: 9px;
+  font-family: $sans_serif;
+  font-size: $base_font_size +1;
+
+  >ul {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  >ol {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+}
+
+dl {
+  margin: 0 0 1.75em;
+}
+
+dt {
+  font-weight: 700;
+}
+
+dd {
+  margin: 0 0 1.75em;
+}
+
+del {
+  opacity: 0.8;
+}
+
+table {
+  border-style: solid;
+  border-color: $grey;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-width: 1px 0 0 1px;
+  margin: 0 0 1.75em;
+  //table-layout: fixed;
+  width: 100%;
+  background: $white;
+}
+
+th,
+td {
+  @include border-width(0 1px 1px 0);
+  @include border-style(solid);
+  @include border-color($grey);
+  padding: 0.4em;
+
+  li {}
+}
+
+th {
+  text-align: left;
+  background: $grey;
+  border-color: $grey $white;
+  font-weight: 700;
+}
+
+caption {
+  font-weight: normal;
+  text-align: left;
+}
+
+::-webkit-input-placeholder {
+  color: $dark_grey;
+  font-family: $sans_serif;
+}
+
+:-moz-placeholder {
+  color: $dark_grey;
+  font-family: $sans_serif;
+}
+
+::-moz-placeholder {
+  color: $dark_grey;
+  font-family: $sans_serif;
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  color: $dark_grey;
+  font-family: $sans_serif;
+}
+
+.post-password-form {
+  margin-bottom: 1.75em;
+
+  label {
+    color: $dark_grey;
+    display: block;
+    font-family: $sans_serif;
+    font-size: $base_font_size - 5px;
+    letter-spacing: .1em;
+    line-height: 1.6;
+    margin-bottom: 1.75em;
+    text-transform: uppercase;
+  }
+
+  input[type="password"] {
+    margin-top: 0.4em;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.search-form {
+  position: relative;
+}
+
+.entry-content {
+  margin-bottom: 2em;
+  padding-bottom: 1em;
+
+  a {
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: 0 1px 0 0 currentColor;
+
+    &:hover {
+      //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+      box-shadow: none;
+    }
+
+    &:focus {
+      //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+      box-shadow: none;
+    }
+
+    img {
+      display: block;
+    }
+  }
+
+  &:before {
+    content: "";
+    display: table;
+  }
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  h1 {
+    @extend %extend_24;
+    font-weight: 900;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h2 {
+    @extend %extend_25;
+    font-weight: 900;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h3 {
+    @extend %extend_26;
+    font-weight: 900;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h4 {
+    @extend %extend_27;
+    letter-spacing: 0.140625em;
+    text-transform: uppercase;
+    font-weight: 900;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h5 {
+    @extend %extend_27;
+    font-weight: 900;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h6 {
+    @extend %extend_27;
+    font-style: italic;
+    font-weight: 900;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .author-title {
+    clear: none;
+    font-size: $base_font_size - 2px;
+    font-weight: 900;
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  .wp-smiley {
+    @extend %extend_36;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  .wp-audio-shortcode a {
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: none;
+  }
+
+  .wp-playlist a {
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: none;
+  }
+}
+
+.entry-summary {
+  margin-right: $gutter_lg;
+  margin-left: $gutter_lg;
+  border-color: $grey;
+
+  a {
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: 0 1px 0 0 currentColor;
+
+    &:hover {
+      //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+      box-shadow: none;
+    }
+
+    &:focus {
+      //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+      box-shadow: none;
+    }
+
+    img {
+      display: block;
+    }
+  }
+
+  &:before {
+    content: "";
+    display: table;
+  }
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  h1 {
+    font-size: $base_font_size + 8px;
+    line-height: 1.5;
+    color: $williams_purple;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    font-weight: 900;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h2 {
+    @extend %extend_25;
+    font-weight: 900;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h3 {
+    @extend %extend_26;
+    font-weight: 900;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h4 {
+    @extend %extend_27;
+    letter-spacing: 0.140625em;
+    text-transform: uppercase;
+    font-weight: 900;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h5 {
+    @extend %extend_27;
+    font-weight: 900;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h6 {
+    @extend %extend_27;
+    font-style: italic;
+    font-weight: 900;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .wp-smiley {
+    @extend %extend_36;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.taxonomy-description {
+  color: $dark_grey;
+  font-size: $base_font_size - 5px;
+  line-height: 1.6;
+
+  a {
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: 0 1px 0 0 currentColor;
+
+    &:hover {
+      //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+      box-shadow: none;
+    }
+
+    &:focus {
+      //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+      box-shadow: none;
+    }
+  }
+
+  p {
+    margin: .55em 0 1.6em;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.logged-in-as {
+  @extend %extend_35;
+}
+
+.comment-content {
+  a {
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: 0 1px 0 0 currentColor;
+
+    &:hover {
+      //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+      box-shadow: none;
+    }
+
+    &:focus {
+      //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+      box-shadow: none;
+    }
+
+    img {
+      display: block;
+    }
+  }
+
+  &:before {
+    content: "";
+    display: table;
+  }
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  h1 {
+    @extend %extend_24;
+    font-weight: 900;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h2 {
+    @extend %extend_25;
+    font-weight: 900;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h3 {
+    @extend %extend_26;
+    font-weight: 900;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h4 {
+    @extend %extend_27;
+    letter-spacing: 0.140625em;
+    text-transform: uppercase;
+    font-weight: 900;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h5 {
+    @extend %extend_27;
+    font-weight: 900;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h6 {
+    @extend %extend_27;
+    font-style: italic;
+    font-weight: 900;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  ul {
+    margin: 0 0 1.5em 1.25em;
+  }
+
+  ol {
+    margin: 0 0 1.5em 1.25em;
+  }
+
+  li {
+    >ul {
+      margin-bottom: 0;
+    }
+
+    >ol {
+      margin-bottom: 0;
+    }
+  }
+
+  .wp-smiley {
+    @extend %extend_36;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.pingback {
+  .edit-link {
+    @extend %extend_32;
+    display: inline-block;
+
+    &:before {
+      @extend %extend_33;
+    }
+  }
+
+  .comment-edit-link {
+    color: $dark_grey;
+
+    &:hover {
+      color: $williams_purple;
+    }
+
+    &:focus {
+      color: $williams_purple;
+    }
+  }
+
+  .comment-body>a {
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: 0 1px 0 0 currentColor;
+
+    &:hover {
+      //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+      box-shadow: none;
+    }
+
+    &:focus {
+      //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+      box-shadow: none;
+    }
+  }
+}
+
+.textwidget {
+
+  a {
+
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    //     box-shadow: 0 1px 0 0 currentColor;
+    &:hover {
+      //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+      //       box-shadow: none;
+    }
+
+    &:focus {
+      //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+      box-shadow: none;
+    }
+
+    img {
+      display: block;
+    }
+  }
+
+  &:before {
+    content: "";
+    display: table;
+  }
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .s-la-widget a {
+    // overriding css from api
+    color: $links;
+  }
+
+  h1 {
+    @extend %extend_24;
+    font-weight: 900;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h2 {
+    @extend %extend_25;
+    font-weight: 900;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h3 {
+    @extend %extend_26;
+    font-weight: 900;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h4 {
+    @extend %extend_27;
+    letter-spacing: 0.140625em;
+    text-transform: uppercase;
+    font-weight: 900;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h5 {
+    @extend %extend_27;
+    font-weight: 900;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h6 {
+    @extend %extend_27;
+    font-style: italic;
+    font-weight: 900;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .wp-smiley {
+    @extend %extend_36;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.entry-footer {
+  @include clearfix;
+  margin: 2.2em 0;
+  color: $dark_grey;
+  font-family: $sans_serif;
+  font-size: $base_font_size - 5px;
+  line-height: 1.6;
+
+  body.archive & {
+    margin: 0 0 4em 0;
+  }
+
+  &:empty {
+    margin: 0;
+  }
+
+  .avatar {
+    height: 21px;
+    margin: -.2em .55em 0 0;
+    width: 21px;
+  }
+
+  >span:not(:last-child):after {
+    content: "\002f";
+    display: inline-block;
+    opacity: 0.7;
+    padding: 0 .5em;
+  }
+}
+
+.main-menu {
+  display: flex;
+
+  >li {}
+}
+
+.comments-title {
+  //Instead of the line below you could use @include hyphens($value)
+  hyphens: auto;
+  @extend %extend_31;
+  margin-bottom: 1.2em;
+
+  +.comment-navigation {
+    border-bottom: 0;
+    margin-bottom: 0;
+  }
+}
+
+.says {
+  @extend %extend_18;
+}
+
+.screen-reader-text {
+  @extend %extend_18;
+}
+
+.site {
+  background-color: $white;
+
+  .skip-link {
+    background-color: $grey;
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: 0 0 1px 1px $transparent_grey;
+    color: $dark_purple;
+    display: block;
+    font-family: $sans_serif;
+    font-size: $base_font_size - 4px;
+    font-weight: 700;
+    left: -9999em;
+    //outline: none;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    text-transform: none;
+    top: -9999em;
+
+    &:focus {
+      clip: auto;
+      height: auto;
+      left: 6px;
+      top: 7px;
+      width: auto;
+      z-index: 100000;
+    }
+  }
+
+  .avatar {
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 50%;
+  }
+}
+
+.alignleft {
+  float: left;
+  margin: 0.375em 1.75em 1.75em 0;
+}
+
+.alignright {
+  float: right;
+  margin: 0.375em 0 1.75em 1.75em;
+}
+
+.aligncenter {
+  clear: both;
+  display: block;
+  margin: 0 auto 1.75em;
+}
+
+.clear {
+  &:before {
+    content: "";
+    display: table;
+  }
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+.outer-container {
+  @include clearfix;
+  margin: 0 auto;
+  position: relative;
+}
+
+.inner-container {
+  @include clearfix;
+  margin: 0 auto;
+  position: relative;
+  padding: 0 20px 1.75em;
+  max-width: $large;
+
+  &.network-header-menu {
+    margin: 0;
+  }
+}
+
+@media screen and (-ms-high-contrast: active),
+(-ms-high-contrast: none) {
+
+  /* IE10+ specific styles go here */
+  .inner-container {
+    width: 1200px;
+  }
+
+  #quicklinks-container {
+    display: none;
+  }
+}
+
+#masthead .inner-container {
+  padding-bottom: 0;
+}
+
+.wordmark {
+  display: block;
+
+  svg {
+    fill: $white;
+    left: 0;
+    bottom: 0;
+
+    &:hover {
+
+      path,
+      polygon {
+        fill: $marigold;
+      }
+    }
+  }
+
+  .logo {
+    max-width: 268px;
+  }
+}
+
+.site-title {
+  z-index: 999;
+  font-family: $sans_serif;
+  font-size: $base_font_size;
+  line-height: 1;
+  color: #1a1a1a;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.site-content {
+  word-wrap: break-word;
+  z-index: 101;
+  background-color: $white;
+  position: relative;
+  padding-top: 24px;
+
+  .content-inner {
+    @include display(flex);
+    @include flex-direction(column);
+
+    &>* {
+      @include flex(1);
+    }
+
+    .breadcrumbs {
+      order: 0;
+    }
+
+    #secondary {
+      order: 1;
+      position: relative;
+      border-top: none;
+      margin-top: 17px;
+
+      .menu-container {
+        display: none;
+        width: 100%;
+      }
+    }
+
+    #main {
+      order: 2;
+    }
+
+    .sidebar,
+    #network-sidebar-message,
+    #tertiary {
+      order: 3;
+
+      @media only screen and (max-width: $tablet) {
+        & {
+          margin-bottom: 1em;
+          padding: 20px;
+        }
+      }
+    }
+  }
+
+  &:before {
+    content: "";
+    display: table;
+  }
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+.post-content,
+.post-excerpt {
+  @include clearfix;
+
+  p {
+    font-family: $serif;
+    font-size: $base_font_size + 4;
+    line-height: 31px;
+
+    a:not(.btn) {
+      @extend %extend_link_underline_serif;
+      box-shadow: none;
+    }
+  }
+
+  li {
+    font-size: $base_font_size + 4;
+    font-family: $serif;
+
+    a:not([data-featherlight-gallery]) {
+      @extend %extend_link_underline_serif;
+      box-shadow: none;
+
+      &:hover {
+        @extend %extend_link_underline_hover;
+      }
+    }
+
+    table {
+      font-size: $base_font_size;
+    }
+  }
+
+  td,
+  th {
+    p:empty {
+      display: none;
+    }
+
+    ul {
+      margin: 0.5em 1em;
+    }
+
+    p,
+    li {
+      // reset global li styles
+      font-family: inherit;
+      font-weight: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      margin: inherit;
+    }
+  }
+
+  .Rtable li .Rtable-cell,
+  .Rtable li .Accordion {
+    font-family: $sans_serif;
+    font-size: 17px;
+  }
+}
+
+.content-main {
+  margin-top: 12px;
+
+  article {
+    position: relative;
+    width: 100%;
+
+    &:before {
+      content: "";
+      display: table;
+    }
+
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    .post-content.dek>p:first-of-type {
+      font-weight: 700;
+    }
+  }
+}
+
+.content-bottom-widgets {
+  margin: 0 $gutter_lg;
+
+  &:before {
+    content: "";
+    display: table;
+  }
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+.no-js {
+  .network-utility-container {
+    display: flex;
+  }
+
+  .network-header-menu {
+    order: 2;
+  }
+
+  .navbox-container {
+    order: 1;
+  }
+
+  .network-header-menu,
+  .navbox-container {
+    display: block;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  .global-navigation ul ul,
+  .site-navigation ul ul,
+  .widget_nav_menu ul ul {
+    display: block;
+  }
+}
+
+.page-content {
+  margin-right: $gutter_lg;
+  margin-left: $gutter_lg;
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.post-thumbnail {
+  display: block;
+  margin-bottom: 1.75em;
+
+  img {
+    display: block;
+  }
+}
+
+.more-link {
+  white-space: nowrap;
+}
+
+.author-info {
+  border-color: inherit;
+  border-style: solid;
+  border-width: 1px 0 1px 0;
+  clear: both;
+  padding-top: 1.75em;
+  padding-bottom: 1.75em;
+}
+
+.author-bio {
+  color: $dark_grey;
+  font-size: $base_font_size - 5px;
+  line-height: 1.6;
+  margin-bottom: 1.6em;
+  overflow: hidden;
+}
+
+.author-link {
+  white-space: nowrap;
+}
+
+.sticky-post {
+  color: $dark_grey;
+  display: block;
+  font-family: $sans_serif;
+  font-size: $base_font_size - 5px;
+  letter-spacing: .1em;
+  line-height: 1.6;
+  margin-bottom: .55em;
+  text-transform: uppercase;
+}
+
+.byline {
+  display: none;
+}
+
+.entry-attachment {
+  margin-bottom: 1.75em;
+}
+
+.entry-caption {
+  color: $dark_grey;
+  font-size: $base_font_size - 5px;
+  font-style: italic;
+  line-height: 1.6;
+  padding-top: 1.1em;
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.comments-area {
+  border-top: 1px solid $grey;
+  margin: 0 0 3.5em;
+}
+
+.comment-list {
+  list-style: none;
+  margin: 0;
+
+  article {
+    border-top: 1px solid $grey;
+    padding: 1.75em 0;
+  }
+
+  .pingback {
+    border-top: 1px solid $grey;
+    padding: 1.75em 0;
+  }
+
+  .trackback {
+    border-top: 1px solid $grey;
+    padding: 1.75em 0;
+  }
+
+  .children {
+    list-style: none;
+    margin: 0;
+
+    >li {
+      padding-left: 0.875em;
+    }
+  }
+
+  .comment-form {
+    padding-bottom: 1.75em;
+  }
+}
+
+.comment-author {
+  color: $almost_black;
+  margin-bottom: 0.4em;
+
+  .avatar {
+    float: left;
+    height: 28px;
+    margin-right: 0.875em;
+    position: relative;
+    width: 28px;
+  }
+}
+
+.comment-metadata {
+  @extend %extend_32;
+  margin-bottom: 2.2em;
+
+  .edit-link {
+    display: inline-block;
+
+    &:before {
+      @extend %extend_33;
+    }
+  }
+}
+
+.comment-reply-link {
+  border: 1px solid $grey;
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 2px;
+  color: $williams_purple;
+  display: inline-block;
+  font-family: $sans_serif;
+  font-size: $base_font_size - 5px;
+  line-height: 1;
+  margin-top: 2.2em;
+  padding: .55em .55em 0.4615384615em;
+
+  &:hover {
+    @extend %extend_34;
+  }
+
+  &:focus {
+    @extend %extend_34;
+  }
+}
+
+.comment-form {
+  label {
+    /* 
+    color: $dark_grey;
+	 */
+    display: block;
+    font-family: $sans_serif;
+    font-size: $base_font_size - 5px;
+    letter-spacing: .1em;
+    line-height: 1.6;
+    margin-bottom: .55em;
+    text-transform: uppercase;
+  }
+}
+
+.comment-notes {
+  @extend %extend_35;
+}
+
+.comment-awaiting-moderation {
+  @extend %extend_35;
+}
+
+.form-allowed-tags {
+  @extend %extend_35;
+
+  code {
+    font-family: $monospace;
+  }
+}
+
+.no-comments {
+  border-top: 1px solid $grey;
+  font-family: $sans_serif;
+  font-weight: 700;
+  margin: 0;
+  padding-top: 1.75em;
+}
+
+.form-submit {
+  margin-bottom: 0;
+}
+
+.required {
+  color: $williams_purple;
+  font-family: $serif;
+}
+
+.sidebar {
+  margin-bottom: 0;
+  padding-top: 2em;
+  border-top: 1px solid $grey;
+
+  .site-title {
+    padding: 0;
+    margin: 28px 13px;
+    display: none; // disabled
+
+    .site-title-inner>span {
+      color: rgba($black, .3);
+      font-size: $base_font_size - 3px;
+      font-weight: 700;
+      padding: 0 0 25px 0;
+      margin: 0;
+    }
+  }
+
+  /*.menu-toggle {
+    .bt-bars:before {
+      vertical-align: bottom;
+    }
+  }*/
+}
+
+embed {
+  @extend %extend_37;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+.menu-item-has-children a:after {
+  @extend %sm_blacktie;
+}
+
+.logged-in .site .skip-link {
+  //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+  box-shadow: 0 0 2px 2px $transparent_grey;
+  font-family: $open_sans, $sans_serif;
+}
+
+#content[tabindex="-1"]:focus {
+  //outline: 0;
+}
+
+.no-sidebar .post-thumbnail img {
+  margin: 0 auto;
+}
+
+.author-avatar .avatar {
+  float: left;
+  height: 42px;
+  margin: 0 1.75em 1.75em 0;
+  width: 42px;
+}
+
+.author-description> :last-child {
+  margin-bottom: 0;
+}
+
+.updated:not(.published) {
+  display: none;
+}
+
+.sticky .posted-on {
+  display: none;
+}
+
+.single .byline {
+  display: inline;
+}
+
+.group-blog .byline {
+  display: inline;
+}
+
+.format-aside .main-title {
+  @extend %extend_30;
+}
+
+.format-image .main-title {
+  @extend %extend_30;
+}
+
+.format-video .main-title {
+  @extend %extend_30;
+}
+
+.format-quote .main-title {
+  @extend %extend_30;
+}
+
+.format-gallery .main-title {
+  @extend %extend_30;
+}
+
+.format-status .main-title {
+  @extend %extend_30;
+}
+
+.format-link .main-title {
+  @extend %extend_30;
+}
+
+.format-audio .main-title {
+  @extend %extend_30;
+}
+
+.format-chat .main-title {
+  @extend %extend_30;
+}
+
+.blog .format-status .main-title {
+  display: none;
+}
+
+.archive .format-status .main-title {
+  display: none;
+}
+
+.gallery-columns-1 .gallery-item {
+  max-width: 100%;
+}
+
+.gallery-columns-2 .gallery-item {
+  max-width: 50%;
+}
+
+.gallery-columns-4 .gallery-item {
+  max-width: 25%;
+}
+
+.gallery-columns-5 .gallery-item {
+  max-width: 20%;
+}
+
+.gallery-icon img {
+  margin: 0 auto;
+}
+
+.content-box {
+  margin: 0 22px 0;
+  padding: 10px;
+  border: 0;
+  margin-left: 0;
+  border: none;
+
+  h2,
+  h3 {
+    color: darken($marigold, 30%);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 25px;
+    margin-bottom: 1.1em;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0 0 1.7em .5em;
+
+    li {
+      font-family: $sans_serif;
+      margin-bottom: 10px;
+
+      a {
+        color: #C88A13;
+
+        &:hover {
+          color: $almost_black;
+        }
+      }
+    }
+  }
+
+}
+
+//addthis orange button on home overlay
+.custom_addthis_btn {
+  padding: 0 2px;
+  float: left;
+}

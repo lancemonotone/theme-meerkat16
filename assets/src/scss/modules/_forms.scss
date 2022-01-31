@@ -1,0 +1,491 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Form Styles
+
+We put all the form and button styles in here to setup a consistent
+look. If we need to customize them, we can do this in the main
+stylesheets and just override them. Easy Peasy.
+
+You're gonna see a few data-uri thingies down there. If you're not
+sure what they are, check this link out:
+http://css-tricks.com/data-uris/
+If you want to create your own, use this helpful link:
+http://websemantics.co.uk/online_tools/image_to_data_uri_convertor/
+
+******************************************************************/
+
+/*********************
+INPUTS
+*********************/
+label {
+  color: $almost_black;
+  opacity: .8;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+input[type="button"],
+input[type="submit"] {
+  @extend %btn;
+
+  &:hover {
+    background: $blue;
+  }
+
+  &:focus {
+    background: $blue;
+    /*outline: thin dotted;
+    outline-offset: -4px;*/
+  }
+}
+
+select[disabled] {
+  &:hover {
+    @extend %btn;
+  }
+
+  &:focus {
+    @extend %btn;
+  }
+}
+
+input[type="button"][disabled] {
+  &:hover {
+    @extend %btn;
+  }
+
+  &:focus {
+    @extend %btn;
+  }
+}
+
+input[type="reset"][disabled] {
+  &:hover {
+    @extend %btn;
+  }
+
+  &:focus {
+    @extend %btn;
+  }
+}
+
+input[type="submit"][disabled] {
+  &:hover {
+    @extend %btn;
+  }
+
+  &:focus {
+    @extend %btn;
+  }
+}
+
+input[type="text"],
+textarea {
+  @extend %extend_10;
+
+  &:focus {
+    @extend %extend_11;
+  }
+}
+
+input[type="email"] {
+  @extend %extend_10;
+
+  &:focus {
+    @extend %extend_11;
+  }
+}
+
+input[type="url"] {
+  @extend %extend_10;
+
+  &:focus {
+    @extend %extend_11;
+  }
+}
+
+input[type="password"] {
+  @extend %extend_10;
+
+  &:focus {
+    @extend %extend_11;
+  }
+}
+
+input[type="tel"] {
+  @extend %extend_10;
+
+  &:focus {
+    @extend %extend_11;
+  }
+}
+
+input[type="number"] {
+  @extend %extend_10;
+
+  &:focus {
+    @extend %extend_11;
+  }
+}
+
+select {
+  @extend %extend_10;
+
+  &:focus {
+    @extend %extend_11;
+  }
+}
+
+select {
+  /* styling */
+  display: inline-block;
+  font: inherit;
+  /* reset */
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-image: linear-gradient(45deg, transparent 50%, $almost_black 50%),
+  linear-gradient(135deg, $almost_black 50%, transparent 50%),
+  linear-gradient(to right, #ccc, #ccc);
+  background-position: calc(100% - 20px) calc(1em - -4px),
+  calc(100% - 15px) calc(1em - -4px),
+  calc(100% - 2.5em) 0.6em;
+  background-size: 5px 5px,
+  5px 5px,
+  1px 1.5em;
+  background-repeat: no-repeat;
+}
+
+select:focus,
+select:active {
+  background-image: linear-gradient(45deg, $almost_black 50%, transparent 50%),
+  linear-gradient(135deg, transparent 50%, $almost_black 50%),
+  linear-gradient(to right, #ccc, #ccc);
+  background-position: calc(100% - 15px) calc(1em - -4px),
+  calc(100% - 20px) calc(1em - -4px),
+  calc(100% - 2.5em) 0.6em;
+  background-size: 5px 5px,
+  5px 5px,
+  1px 1.5em;
+  background-repeat: no-repeat;
+  /*outline: 0;*/
+}
+
+select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #000;
+}
+
+/* Gravity Forms */
+.gform_wrapper {
+  // Fix select arrows
+  select {
+    background-position: calc(100% - 17px) calc(1em - 0px), calc(100% - 12px) calc(1em - 0px), calc(100% - 2.5em) 0.4em;
+
+    &:focus,
+    &:active {
+      background-position: calc(100% - 12px) calc(1em - 0px), calc(100% - 17px) calc(1em - 0px), calc(100% - 2.5em) 0.4em;
+    }
+  }
+
+  // Fix vertical align for input fields
+  input:not([type=radio]):not([type=checkbox]):not([type=submit]):not([type=button]):not([type=image]):not([type=file]) {
+    padding: 9px 4px 2px;
+  }
+}
+
+// Fix select arrows
+.ui-datepicker-title select {
+  margin-top: 2.5%;
+  display: block;
+  line-height: 1;
+  background-position: calc(100% - 24px) calc(1em - 2px), calc(100% - 19px) calc(1em - 2px), calc(100% - 2.5em) 0.2em;
+
+  &:focus,
+  &:active {
+    background-position: calc(100% - 19px) calc(1em - 2px), calc(100% - 24px) calc(1em - 2px), calc(100% - 2.5em) 0.2em;
+  }
+}
+
+@media only screen and (min-width: 641px) {
+  .gform_wrapper {
+    // Override name field styles to make them 100% width
+    ul.gform_fields:not(.top_label) {
+      div.ginput_complex.ginput_container.gf_name_has_4 {
+        width: calc(70% + 0px);
+        margin-left: 30%;
+      }
+    }
+
+    // Override name field styles to make them 100% width
+    div.ginput_complex.ginput_container.gf_name_has_4 span {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+}
+
+/* use jQuery setup_filter plugin (common.js) to create clear-filter link. */
+.filter-wrapper {
+  position: relative;
+
+  &.bt-search:before,
+  .bt-times:before {
+    font: normal normal normal 18px/1 "Black Tie";
+    position: absolute;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+    top: calc(50% - 8px);
+    color: $dark_grey;
+  }
+
+  &.bt-search:before {
+    left: 9px;
+  }
+
+  .bt-times:before {
+    right: 9px;
+  }
+
+  input.filter {
+    padding-left: 35px;
+    padding-right: 30px;
+  }
+
+  a.clear-filter {
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    top: 50%;
+    right: 0;
+    margin: -15px 0 0;
+    cursor: pointer;
+    color: inherit;
+    /*outline: none;*/
+    @include NO_link_underline;
+
+    &:hover:before {
+      color: $almost_black;
+    }
+  }
+}
+
+// likert from meerkat
+/* likert box styles - requires .gf_likert script in main.js */
+.gform_wrapper .gf_likert ul.gfield_radio {
+  * {
+    -webkit-transition: background-color 0.5s ease-out;
+    -moz-transition: background-color 0.5s ease-out;
+    -o-transition: background-color 0.5s ease-out;
+    transition: background-color 0.5s ease-out;
+  }
+
+  overflow: hidden;
+  position: relative;
+  padding: 0 !important;
+  width: 100%;
+}
+
+.left_label .gform_wrapper .gf_likert ul.gfield_radio, .right_label .gform_wrapper .gf_likert ul.gfield_radio {
+  top: -16px;
+}
+
+.gform_wrapper {
+  .gf_likert {
+    margin-bottom: 20px;
+
+    ul.gfield_radio li {
+      padding: 0;
+      min-height: 50px !important;
+      display: -moz-inline-stack;
+      display: inline-block;
+      zoom: 1;
+      margin: 0;
+      border: 1px solid #aaa;
+      border-left: none;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background-color: #f8f8f8;
+
+      &.likert-first {
+        border-left: 1px solid #ccc !important;
+      }
+
+      input {
+        position: relative;
+        top: 25px;
+        float: none !important;
+        width: auto;
+        margin: 0 auto;
+      }
+
+      label {
+        position: relative;
+        margin: 0 auto !important;
+        text-align: center;
+        font-weight: normal !important;
+        font-size: 10px;
+      }
+
+      div.likert-label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #eee;
+        //padding: 2px 0;
+        width: 100%;
+      }
+
+      &.likert-hover {
+        background-color: #f8f8f8;
+
+        div.likert-label {
+          background-color: #E0E0E0;
+
+          label {
+          }
+        }
+      }
+
+      &.mychoice {
+        background-color: #fff;
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+
+        div.likert-label {
+          background-color: #eee;
+        }
+      }
+    }
+  }
+
+  .gf_likert_1 ul.gfield_radio li {
+    width: 100% !important;
+  }
+
+  .gf_likert_2 ul.gfield_radio li {
+    width: 50% !important;
+  }
+
+  .gf_likert_3 ul.gfield_radio li {
+    width: 33% !important;
+  }
+
+  .gf_likert_4 ul.gfield_radio li {
+    width: 25% !important;
+  }
+
+  .gf_likert_5 ul.gfield_radio li {
+    width: 20% !important;
+  }
+
+  .gf_likert_6 ul.gfield_radio li {
+    width: 16.5% !important;
+  }
+
+  .gf_likert_7 ul.gfield_radio li {
+    width: 14% !important;
+  }
+
+  .gf_likert_8 ul.gfield_radio li {
+    width: 12.5% !important;
+  }
+
+  .gf_likert_9 ul.gfield_radio li {
+    width: 11% !important;
+  }
+
+  .gf_likert_10 ul.gfield_radio li {
+    width: 10% !important;
+  }
+
+  .gf_likert_20 ul.gfield_radio li {
+    width: 20px !important;
+  }
+
+  .gf_likert_30 ul.gfield_radio li {
+    width: 30px !important;
+  }
+
+  .gf_likert_40 ul.gfield_radio li {
+    width: 40px !important;
+  }
+
+  .gf_likert_50 ul.gfield_radio li {
+    width: 50px !important;
+  }
+
+  .gf_likert_60 ul.gfield_radio li {
+    width: 60px !important;
+  }
+
+  .gf_likert_70 ul.gfield_radio li {
+    width: 70px !important;
+  }
+
+  .gf_likert_80 ul.gfield_radio li {
+    width: 80px !important;
+  }
+
+  .gf_likert_90 ul.gfield_radio li {
+    width: 90px !important;
+  }
+
+  .gf_likert_100 ul.gfield_radio li {
+    width: 100px !important;
+  }
+
+  .gf_likert_110 ul.gfield_radio li {
+    width: 110px !important;
+  }
+
+  .gf_likert_120 ul.gfield_radio li {
+    width: 120px !important;
+  }
+
+  .gf_likert_130 ul.gfield_radio li {
+    width: 130px !important;
+  }
+
+  .gf_likert_140 ul.gfield_radio li {
+    width: 140px !important;
+  }
+
+  .gf_likert_150 ul.gfield_radio li {
+    width: 150px !important;
+  }
+
+  &.gf_browser_chrome .gfield_radio li input[type=radio] {
+    margin-top: 0;
+  }
+}
+
+/*********************
+MOBILE 710
+*********************/
+@media only screen and (min-width: $mobile_portrait) {
+  body .gform_wrapper ul li.gfield {
+    margin-top: 1.4em;
+  }
+  .gform_wrapper .gfield_checkbox li {
+    margin: 0;
+  }
+  .gform_wrapper.gf_browser_chrome .gfield_checkbox li input[type=checkbox] {
+    margin-top: 0;
+  }
+  .gform_wrapper ul.gfield_checkbox li label {
+    margin-top: 7px;
+  }
+}

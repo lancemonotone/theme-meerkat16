@@ -1,0 +1,171 @@
+/*********************
+BASE
+*********************/
+.network-header.has-bug {
+  .wordmark {
+    height: auto;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    .logo {
+      width: 120px;
+    }
+
+    .dept-bug {
+      position: relative;
+      color: $almost_white;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 20px;
+      font-weight: 100;
+      margin-left: 7px;
+      top: 0;
+      display: block;
+      height: 35px;
+
+      &:before {
+        display: none;
+      }
+
+      &:hover {
+        color: $marigold;
+      }
+
+      #bugimg {
+        height: 24px;
+        margin-bottom: 9px;
+      }
+    }
+  }
+}
+
+/*********************
+MOBILE 320
+*********************/
+@media only screen and (min-width: $mobile_zoom) {
+  // DRY same as above
+  /*.network-header.has-bug {
+    .wordmark {
+      .logo {
+        width: 120px;
+      }
+
+      .dept-bug {
+        &:hover {
+          color: $links;
+        }
+      }
+    }
+  }*/
+}
+
+/*********************
+MOBILE 710
+*********************/
+@media only screen and (min-width: $mobile_portrait) {
+  .network-header.has-bug {
+    .wordmark {
+      //height: auto;
+      bottom: 0;
+      justify-content: center;
+      flex-direction: row;
+
+      .dept-bug {
+        margin-left: 2rem;
+        top: 3px;
+        //display: block;
+        //height: 35px;
+
+        &:before {
+          display: block;
+          position: absolute;
+          content: " ";
+          height: 100%;
+          width: 1px;
+          background-color: $iron;
+          top: 0;
+          left: -1rem;
+        }
+      }
+    }
+  }
+}
+
+/*********************
+MOBILE LANDSCAPE 783
+*********************/
+@media only screen and (min-width: $mobile_landscape) {
+  .network-header.has-bug {
+    .wordmark {
+      .logo {
+        width: 264px;
+      }
+
+      .dept-bug {
+        top: 1px;
+        display: inline-block;
+        font-size: 2.4rem;
+        height: auto;
+
+        #bugimg {
+          height: 46px;
+          margin-bottom: 15px;
+
+        }
+      }
+    }
+  }
+}
+
+/*********************
+HOVER HEADER BREAKPOINT
+*********************/
+@media screen and (min-width: 50em) {
+  .network-header.has-bug {
+    .wordmark {
+
+      .dept-bug {
+
+        #bugimg {
+          height: 46px;
+          margin-bottom: 15px;
+
+        }
+      }
+    }
+  }
+
+}
+
+/*********************
+TABLET 910
+*********************/
+@media only screen and (min-width: $tablet) {
+  .network-header.has-bug {
+    .wordmark {
+      .logo {
+        width: 264px;
+      }
+
+      .dept-bug {
+        top: 6px;
+        display: inline-block;
+        font-size: 2.4rem;
+        height: auto;
+      }
+    }
+  }
+
+}
+
+/*********************
+DESKTOP 985
+*********************/
+@media only screen and (min-width: $desktop) {
+}
+
+/*********************
+LARGE 1200
+*********************/
+@media only screen and (min-width: $large) {
+}

@@ -1,0 +1,174 @@
+//colors
+$color_half_and_half_approx: #ffffe0;
+$color_confetti_approx: #e6db55;
+$color_guardsman_red_approx: #c00;
+$white: white;
+$color_sushi_approx: #8ab840;
+$color_wasabi_approx: #749b36;
+$color_olive_drab_approx: #729935;
+
+//@extend-elements
+//original selectors
+//.acf-field .acf-label p.acfi, .acfi
+%extend_1 {
+  background-color: $color_half_and_half_approx;
+  border-color: $color_confetti_approx;
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 3px 3px 3px 3px;
+  border-style: solid;
+  border-width: 1px;
+  margin: 5px 0 15px !important;
+  padding: 0.5em !important;
+}
+
+.mce-menu {
+  .mce-menu-item {
+    &.mce-active,
+    &.mce-selected,
+    &:focus,
+    &:hover {
+      .mce-text {
+        color: inherit !important;
+      }
+    }
+  }
+}
+
+// keeps the footer at the bottom on CPT lists
+body[class*="post-type"] #wpfooter {
+  position: relative;
+}
+
+.acfi {
+  @extend %extend_1;
+}
+
+.blog-93 {
+  .www-show {
+    display: block;
+  }
+  .www-hide {
+    display: none;
+  }
+}
+
+.metabox-blurb {
+  padding: 10px;
+  line-height: 1.4;
+}
+
+.metabox-help-docs {
+  float: right;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.metabox-hint {
+  margin-left: 5px;
+  font-style: italic;
+}
+
+body {
+  &.post-type-event .postbox#categorydiv {
+    display: block !important;
+  }
+  &.meerkat-magazine li#menu-posts-profile {
+    display: none;
+  }
+}
+
+.meerkat_widget_form {
+  .form_hint {
+    display: block;
+    margin-top: 8px;
+    line-height: 18px;
+  }
+  input[type="checkbox"] {
+    margin-right: 10px;
+    float: left;
+  }
+  textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    height: 250px;
+  }
+}
+
+/* @deprecated in m21 - moved cat-config styles below to class.categories_options */
+.cat-config-options {
+  margin: 10px;
+  width: 90%;
+}
+
+.cat-config-multi {
+  float: right;
+  width: 50%;
+  select {
+    float: right;
+    width: 100px;
+    margin-right: 100px;
+    margin-top: -3px;
+  }
+}
+
+.cat-config-single {
+  float: left;
+  width: 50%;
+}
+
+.cat-config-blurb {
+  margin: 10px 0 15px;
+}
+
+.cat-config-item {
+  margin-bottom: 10px;
+  width: 300px;
+  input {
+    margin-right: 5px;
+    float: right;
+  }
+}
+/* m21 - moved cat-config styles above to class.categories_options */
+
+#admin_profile_container {
+  h4 {
+    margin-top: 0;
+    color: $color_guardsman_red_approx;
+  }
+  ul {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+}
+
+.acf-field .acf-label p.acfi {
+  @extend %extend_1;
+}
+
+.super-admin .super-admin-show {
+  display: block;
+}
+
+#acf-profile_contact .acf_wysiwyg iframe {
+  min-height: 20px;
+}
+
+#acf-profile_affiliations .acf_wysiwyg iframe {
+  min-height: 20px;
+}
+
+.wp-core-ui .button.view_profile {
+  color: $white;
+  font-weight: bold;
+  background-color: $color_sushi_approx;
+  border: 1px solid $color_wasabi_approx;
+  //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+  box-shadow: none;
+  height: 32px;
+  line-height: 28px;
+  &:hover {
+    background: $color_olive_drab_approx;
+    border-color: $color_olive_drab_approx;
+  }
+}

@@ -1,0 +1,28 @@
+<div class="cf facetwp-filter-toggle">
+
+    {% set time = random() %}
+    {% include 'widgets/button_menu-toggle.twig' with {
+    'target' : '#facet-filters-' ~ time,
+    'title' : __('Filters'),
+    } %}
+
+    <div class="facetwp-filter-column one-third left">
+        <div id="facet-filters-{{time}}">
+        {% if theme.do_display('facetwp_filters') %}
+            {% set filtersidebar = facets.get_facetwp_sidebar() %}
+            {% filter shortcodes %}
+                [wms_widgetized_area sidebar="{{ filtersidebar }}"]
+            {% endfilter %}
+        {% endif %}
+        </div>
+    </div>
+
+    <div class="facetwp-posts-column two-thirds right">
+        {% if theme.do_display('facetwp_template') %}
+            {% include 'modules/facetwp_template.twig' %}
+        {% else %}
+            {% include 'modules/posts_loop.twig' %}
+        {% endif %}
+    </div>
+
+</div>

@@ -1,0 +1,80 @@
+{% if not options.hide_site_footer %}
+    <div id="section-footer" class="section-footer">
+        <div class="outer-container">
+            <div class="inner-container">
+                <div class="widget-area">
+                    <div class="site-title-container ">
+
+                        <a class="site-title" href="{{ site.url }}" rel="home" title="{{ __('Go to') }} {{ site.name }}">
+                            {{ site.name }}
+                        </a>
+
+                    </div>
+                    <div id="footer-blocks">
+                        <div class="address-container">
+
+                            <address>
+                                {% if  theme.contact_info.address_1 %}
+                                    <span>{{ theme.contact_info.address_1 }}</span>
+                                    <br/>
+                                {% endif %}
+                                {% if  theme.contact_info.address_2 %}
+                                    <span>{{ theme.contact_info.address_2 }}</span>
+                                    <br/>
+                                {% endif %}
+                                {% if  theme.contact_info.city or theme.contact_info.state or theme.contact_info.zipcode %}
+                                    <span>{% if  theme.contact_info.city %}{{ theme.contact_info.city }},{% endif %} {{ theme.contact_info.state }} {{ theme.contact_info.zipcode }}</span>
+                                    <span>USA</span>
+                                    <br/>
+                                {% endif %}
+                            </address>
+
+                        </div>
+
+                        <div class="othercontact-container">
+
+                            {% if  theme.contact_info.phone %}
+                                <span><i class="btl bt-phone"></i> <a href="tel:{{ theme.contact_info.phone }}"><span class="screen-reader-text">{{ site.name }} Phone Number </span>{{ theme.contact_info.phone }}</a></span>
+                                <br/>
+                            {% endif %}
+                            {% if  theme.contact_info.fax %}
+                                <span><i class="btl bt-fax"></i>{{ theme.contact_info.fax }}</span>
+                                <br/>
+                            {% endif %}
+                            {% if  theme.contact_info.contact_email %}
+                                <span><i class="btl bt-envelope"></i><a href="mailto:{{ theme.contact_info.contact_email }}">{{ theme.contact_info.contact_email }}</a></span>
+                                <br/>
+                            {% endif %}
+                            {% if  theme.contact_info.contact_notes %}
+                                <span>{{ theme.contact_info.contact_notes }}</span>
+                            {% endif %}
+                            <br/>
+
+
+                        </div>
+                        {{ footer_nav or social_nav ? '<div class="footer-menus">' }}
+                        {% if footer_nav %}
+                            <div class="footer-menu text-menu">
+
+                                {% include 'modules/navigation.twig' with {'nav_obj' : footer_nav, 'menu_class' : 'footer-text-navigation'} %}
+
+                            </div>
+                        {% endif %}
+                        {% if social_nav %}
+                            <div class="footer-menu social-menu">
+
+                                {% include 'modules/navigation.twig' with {'is_social' : 1, 'nav_obj' : social_nav, 'menu_class' : 'social-navigation-footer'} %}
+
+                            </div>
+                        {% endif %}
+                        {{ footer_nav or social_nav ? '</div>' }}
+                    </div>
+                </div>
+            </div><!-- .widget-area -->
+        </div><!-- .inner-container -->
+        </div><!-- .outer-container -->
+
+    </div><!-- .site-footer -->
+    <div class="footer-over"></div>
+{% endif %}  
+	 
